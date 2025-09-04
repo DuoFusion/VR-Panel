@@ -1,0 +1,123 @@
+/**=====================
+  5.3 Header CSS Start
+==========================**/
+@use "../utils/variables";
+@use "../layout/sidebar";
+.form-group {
+  width: unset !important;
+  .Typeahead {
+    width: unset !important;
+    .u-posRelative {
+      input {
+        background-color: variables.$lighter-gray;
+        color: #949494 !important;
+        font-weight: 400;
+        letter-spacing: 0.4px;
+        line-height: 1.4;
+        padding: 11px 25px 11px 48px;
+        width: calc(350px + (583 - 350) * ((100vw - 1200px) / (1920 - 1200))) !important;
+        position: relative;
+      }
+      svg {
+        stroke: #1f2f3e;
+        cursor: pointer;
+        height: 23px;
+        position: absolute;
+        top: 25%;
+        width: 23px;
+        left: 12px;
+      }
+    }
+  }
+}
+
+/*======= Page Header css ends  ======= */
+
+/**======Main Header css Start ======**/
+.offcanvas,
+.offcanvas-bookmark {
+  .page-wrapper {
+    .page-body-wrapper {
+      .page-body {
+        position: relative;
+        // filter: blur(5px) grayscale(100%);
+      }
+    }
+  }
+}
+
+.offcanvas {
+  position: unset;
+  visibility: visible;
+  background: unset;
+  z-index: 2;
+}
+.toggle-sidebar {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  cursor: pointer; 
+  background-color: rgba(variables.$primary-color , 0.1);
+  padding: 7px;
+  border-radius: 6px;
+  line-height: 0.7;
+  svg { 
+    width: variables.$page-title-font-size;
+    height: variables.$page-title-font-size;
+    stroke: variables.$theme-font-color;
+    transform: rotate(0deg);
+    transition: all .9s ease-in-out;
+  }
+  &:hover {
+    >svg {
+      color: rgba(variables.$primary-color, 0.07) !important;
+      transform: rotate(360deg); 
+    }
+  }
+  &:hover {
+    &:before {
+      height: 40px;
+      width: 40px;
+      transform: scale(1);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+.onhover-dropdown {
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    .onhover-show-div {
+      @extend %for-animated-hover-box;
+    }
+  }
+}
+
+.onhover-show-div {
+  top: 80px;
+  position: absolute;
+  z-index: 8;
+  background-color: variables.$white;
+  transition: all linear 0.3s;
+  @extend %for-animated-hover;
+
+  li {
+    a {
+      svg {
+        margin-top: 0 !important;
+
+        path,
+        line {
+          color: variables.$theme-body-font-color !important;
+        }
+      }
+    }
+  }
+}
+
+/**======Main Header css Ends ======**/
+/**=====================
+    5.3 Header CSS Ends
+==========================**/

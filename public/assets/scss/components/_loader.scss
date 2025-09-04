@@ -1,0 +1,71 @@
+/**=====================
+    2.20 Loader CSS Start
+==========================**/
+@use "../utils/variables" as *;
+.loader-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  background-color: $white;
+  z-index: 11;
+  top: 0;
+  animation: hideLoader 4s forwards;
+
+  .loader {
+    width: 150px;
+    height: 150px;
+    border-left: 5px solid $success-color;
+    border-radius: 50%;
+    animation: right5231 4s linear infinite;
+
+    &::before,
+    &::after {
+      content: "";
+      width: 120px;
+      height: 120px;
+      display: block;
+      position: absolute;
+      top: calc(50% - 60px);
+      left: calc(50% - 60px);
+      border-right: 5px solid $warning-color;
+      border-radius: 50%;
+      animation: left036 4s linear infinite;
+    }
+    &::after {
+      width: 90px;
+      height: 90px;
+      top: calc(50% - 45px);
+      left: calc(50% - 45px);
+      border: 0;
+      border-top: 5px solid $danger-color;
+      animation: none;
+    }
+  }
+}
+
+@keyframes right5231 {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-160deg);
+  }
+}
+
+@keyframes left036 {
+  from {
+    transform: rotate(-520deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/**=====================
+    2.20 Loader CSS Ends
+==========================**/
