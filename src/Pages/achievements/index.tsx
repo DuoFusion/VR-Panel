@@ -7,24 +7,24 @@ import { Container } from "reactstrap";
 import { Mutations, Queries } from "../../api";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
-import { MentorsType } from "../../types";
-import { useBasicTableFilterHelper } from "../../utils/hook";
+import { AchievementsType } from "../../types";
 import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
+import { useBasicTableFilterHelper } from "../../utils/hook";
 
-const MentorsContainer = () => {
+const AchievementsContainer = () => {
   const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange } = useBasicTableFilterHelper({
     initialParams: { page: 1, limit: 10 },
     debounceDelay: 500,
   });
 
   const navigate = useNavigate();
-  const { mutate: DeleteMentors } = Mutations.useDeleteMentors();
+  const { mutate: DeleteAchievements } = Mutations.useDeleteAchievements();
 
-  const { data: Mentors, isLoading: isMentorsLoading } = Queries.useGetMentors(params);
-  const All_Mentors = Mentors?.data;
-  const handleNavigate = ROUTES.MENTORS.ADD_EDIT_MENTORS;
+  const { data: Achievements, isLoading: isAchievementsLoading } = Queries.useGetAchievements(params);
+  const All_Achievements = Achievements?.data;
+  const handleNavigate = ROUTES.ACHIEVEMENTS.ADD_EDIT_ACHIEVEMENTS;
 
-  const handleEdit = (item: MentorsType) => {
+  const handleEdit = (item: AchievementsType) => {
     navigate(handleNavigate, {
       state: {
         editData: item,
@@ -33,13 +33,11 @@ const MentorsContainer = () => {
     });
   };
 
-  const columns: ColumnsType<MentorsType> = [
+  const columns: ColumnsType<AchievementsType> = [
     { title: "Sr No.", key: "index", fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
     { title: "priority", dataIndex: "priority", key: "priority" },
     { title: "Id", dataIndex: "_id", key: "_id" },
-    { title: "name", dataIndex: "name", key: "name" },
-    { title: "role", dataIndex: "role", key: "role" },
-    { title: "experience", dataIndex: "experience", key: "experience" },
+    { title: "title", dataIndex: "title", key: "title" },
     {
       title: "Image",
       dataIndex: "image",
@@ -63,10 +61,10 @@ const MentorsContainer = () => {
             onClick={() => {
               Modal.confirm({
                 title: "Are you sure?",
-                content: `Do you really want to delete "${record?.name}"?`,
+                content: `Do you really want to delete "${record?.title}"?`,
                 okText: "Yes, Delete",
                 cancelText: "Cancel",
-                onOk: () => DeleteMentors(record?._id),
+                onOk: () => DeleteAchievements(record?._id),
               });
             }}
             title="Delete"
@@ -80,20 +78,20 @@ const MentorsContainer = () => {
 
   return (
     <Fragment>
-      <Breadcrumbs mainTitle="Mentors" parent="Pages" />
+      <Breadcrumbs mainTitle="Achievements" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Add Mentors" onButtonClick={() => navigate(handleNavigate)}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Add Achievements" onButtonClick={() => navigate(handleNavigate)}>
           <Table
             className="custom-table"
-            dataSource={All_Mentors?.mentors_data}
+            dataSource={All_Achievements?.achievements_data}
             columns={ColumnsWithFallback(columns)}
             rowKey={(record) => record._id}
             scroll={{ x: "max-content" }}
-            loading={isMentorsLoading}
+            loading={isAchievementsLoading}
             pagination={{
               current: pageNumber,
               pageSize: pageSize,
-              total: All_Mentors?.totalData,
+              total: All_Achievements?.totalData,
               showSizeChanger: true,
               onChange: handlePaginationChange,
             }}
@@ -104,4 +102,4 @@ const MentorsContainer = () => {
   );
 };
 
-export default MentorsContainer;
+export default AchievementsContainer;

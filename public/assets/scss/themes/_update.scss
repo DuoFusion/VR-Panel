@@ -1606,6 +1606,10 @@
       border-radius: 4px;
       padding: 10px 16px;
     }
+    .ant-switch-checked {
+      background-color: var(--theme-default) !important;
+      border-color: var(--theme-default) !important;
+    }
     input {
       background-color: #fff;
       padding: 10px 16px;

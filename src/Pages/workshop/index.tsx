@@ -7,7 +7,7 @@ import { Container } from "reactstrap";
 import { Mutations, Queries } from "../../api";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
-import { CategoryType, WorkshopType } from "../../types";
+import {  WorkshopType } from "../../types";
 import { FormatDate, FormatTime } from "../../utils/DateFormatted";
 import { useBasicTableFilterHelper } from "../../utils/hook";
 import { ActiveStatus } from "../../data";
@@ -47,9 +47,7 @@ const WorkshopContainer = () => {
     { title: "time", dataIndex: "time", key: "time", render: (time: string) => (FormatTime(time) ? <Tag color="green">{FormatTime(time)}</Tag> : "-") },
     { title: "duration", dataIndex: "duration", key: "duration" },
     { title: "price", dataIndex: "price", key: "price" },
-    { title: "category", dataIndex: "categoryId", key: "categoryId", render: (categoryId: CategoryType) => categoryId?.name ?? "-" },
-    { title: "status", dataIndex: "status", key: "status" },
-    { title: "syllabus", dataIndex: "syllabus", key: "syllabus" },
+    { title: "mrp", dataIndex: "mrp", key: "mrp" },
     { title: "instructor Name", dataIndex: "instructorName", key: "instructorName" },
     {
       title: "instructor Image",
@@ -86,12 +84,12 @@ const WorkshopContainer = () => {
         <Flex gap="middle" justify="center">
           <Button
             type="text"
-            title="Active/UnActive"
-            className={`m-1 p-1 btn ${record?.isBlocked ? "btn-danger" : "btn-success"}`}
+            title={record?.isBlocked ? `Active` : `UnActive`}
+            className={`m-1 p-1 btn ${record?.isBlocked ? "btn-success" : "btn-danger"}`}
             onClick={() => {
               Modal.confirm({
                 title: "Are you sure?",
-                content: `Do you really want to ${record?.isBlocked ? "UnActive" : "Active"} "${record?.title}"?`,
+                content: `Do you really want to ${!record?.isBlocked ? "Active" : "UnActive"} "${record?.title}"?`,
                 okText: "ok",
                 cancelText: "Cancel",
                 onOk: async () => {

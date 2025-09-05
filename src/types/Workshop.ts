@@ -1,4 +1,3 @@
-import { CategoryType } from "./Category";
 import { CommonDataType, MessageStatus, PageStatus } from "./Common";
 
 export interface WorkshopFormValues {
@@ -12,23 +11,14 @@ export interface WorkshopFormValues {
   thumbnailImage?: string | string[];
   workshopImage?: string | string[];
   price?: number;
-  categoryId?: string;
-  status?: string;
+  mrp?: number;
   priority?: number;
   fullDescription?: string;
-  syllabus?: string;
-  faq?: FAQ[];
   features?: boolean;
 }
 
-interface FAQ {
-  question: string;
-  answer: string;
-}
-
-export interface WorkshopType extends Omit<Required<WorkshopFormValues>, "categoryId">, CommonDataType {
+export interface WorkshopType extends WorkshopFormValues, CommonDataType {
   _id: string;
-  categoryId: CategoryType;
 }
 
 export interface WorkshopDataResponse extends PageStatus {

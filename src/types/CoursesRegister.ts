@@ -1,9 +1,8 @@
 import { CommonDataType, MessageStatus, PageStatus } from "./Common";
-import { CouponCodeType } from "./CouponCode";
 import { CoursesType } from "./Courses";
 
 export interface CoursesRegisterFormValues {
-  fullName?: string;
+  name?: string;
   email?: string;
   phoneNumber?: string;
   city?: string;
@@ -11,15 +10,13 @@ export interface CoursesRegisterFormValues {
   transactionId?: string;
   paymentStatus?: string;
   courseId?: string;
-  couponCodeId?: string;
   profession?: string;
   fees?: number;
 }
 
-export interface CoursesRegisterType extends Omit<Required<CoursesRegisterFormValues>, "courseId" | "couponCodeId">, CommonDataType {
+export interface CoursesRegisterType extends Omit<Required<CoursesRegisterFormValues>, "courseId" >, CommonDataType {
   _id: string;
   courseId: CoursesType;
-  couponCodeId: CouponCodeType;
 }
 
 export interface CoursesRegisterDataResponse extends PageStatus {

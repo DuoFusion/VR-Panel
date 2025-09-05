@@ -40,7 +40,7 @@ const TestomonialsContainer = () => {
     { title: "name", dataIndex: "name", key: "name" },
     { title: "role", dataIndex: "role", key: "role" },
     { title: "message", dataIndex: "message", key: "message", width: 400 },
-    { title: "rating", dataIndex: "rating", key: "rating", render: (rating: number) => <Rate allowHalf value={rating} disabled/> },
+    { title: "rating", dataIndex: "rating", key: "rating", render: (rating: number) => <Rate value={rating} disabled/> },
     {
       title: "Image",
       dataIndex: "image",

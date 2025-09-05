@@ -1,4 +1,4 @@
-import { Button, Flex, Image, Modal, Rate, Table } from "antd";
+import { Button, Flex, Modal, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { Edit, Trash } from "iconsax-react";
 import { Fragment } from "react";
@@ -8,8 +8,8 @@ import { Mutations, Queries } from "../../api";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
 import { FaqType } from "../../types";
-import { useBasicTableFilterHelper } from "../../utils/hook";
 import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
+import { useBasicTableFilterHelper } from "../../utils/hook";
 
 const FaqContainer = () => {
   const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange } = useBasicTableFilterHelper({

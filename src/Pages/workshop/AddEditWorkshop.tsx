@@ -1,18 +1,16 @@
 import { Button } from "antd";
-import { FieldArray, Form, Formik, FormikHelpers } from "formik";
-import { Add, Minus } from "iconsax-react";
+import { Form, Formik, FormikHelpers } from "formik";
 import { Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Col, Container, Label, Row } from "reactstrap";
-import { Mutations, Queries } from "../../api";
+import { Col, Container, Row } from "reactstrap";
+import { Mutations } from "../../api";
 import { CustomSwitch, DataAndTime, ImageUpload, SelectInput, TextInput } from "../../attribute/formFields";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
-import { WorkshopFormValues } from "../../types";
-import { WorkshopSchema } from "../../utils/ValidationSchemas";
 import { WorkshopStatus } from "../../data";
-import { generateOptions } from "../../utils";
+import { WorkshopFormValues } from "../../types";
 import { buildPayload } from "../../utils/FormHelpers";
+import { WorkshopSchema } from "../../utils/ValidationSchemas";
 
 const AddEditWorkshop = () => {
   const navigate = useNavigate();
@@ -22,7 +20,6 @@ const AddEditWorkshop = () => {
 
   const { mutate: useWorkshop, isPending: isWorkshopAdding } = Mutations.useWorkshop();
   const { mutate: upEditWorkshop, isPending: isWorkshopUpdating } = Mutations.useEditWorkshop();
-  const { data: category, isLoading: isCategoryLoading } = Queries.useGetCategory({});
 
   const handleNavigate = () => navigate(ROUTES.WORKSHOP.WORKSHOP);
 
@@ -37,12 +34,9 @@ const AddEditWorkshop = () => {
     thumbnailImage: initialData?.thumbnailImage ? [initialData.thumbnailImage] : [],
     workshopImage: initialData?.workshopImage ? [initialData.workshopImage] : [],
     price: initialData?.price || null,
-    categoryId: initialData?.categoryId?._id || "",
-    status: initialData?.status || "",
+    mrp: initialData?.mrp || null,
     priority: initialData?.priority || null,
     fullDescription: initialData?.fullDescription || "",
-    syllabus: initialData?.syllabus || "",
-    faq: initialData?.faq || [{ question: "", answer: "" }],
     features: initialData?.features,
   };
 
@@ -68,38 +62,32 @@ const AddEditWorkshop = () => {
         <CardWrapper title={`${state?.edit ? "Edit" : "Add"} Workshop`}>
           <div className="input-items">
             <Formik<WorkshopFormValues> initialValues={initialValues} validationSchema={WorkshopSchema} onSubmit={handleSubmit} enableReinitialize>
-              {({ values }) => (
+              {() => (
                 <Form>
                   <Row className="gy-3">
                     <Col md="6" xl="4">
                       <TextInput name="title" label="Title" type="text" placeholder="Enter workshop title" required />
                     </Col>
                     <Col md="6" xl="4">
-                      <DataAndTime name="date" type="date" label="Start Date" format="DD/MM/YYYY" placeholder="Start Date" required disablePast />
+                      <DataAndTime name="date" type="date" label="Date" format="DD/MM/YYYY" required disablePast />
                     </Col>
                     <Col md="6" xl="4">
-                      <DataAndTime name="time" type="time" label="Meeting Time" format="HH:mm:ss" required />
+                      <DataAndTime name="time" type="time" label="Time" format="HH:mm:ss" required />
                     </Col>
                     <Col md="6" xl="4">
                       <TextInput name="duration" label="Duration" type="text" placeholder="Enter duration" required />
                     </Col>
                     <Col md="6" xl="4">
-                      <TextInput name="price" label="Price" type="number" placeholder="Enter price" />
+                      <TextInput name="price" label="Price" type="number" placeholder="Enter price" required />
                     </Col>
                     <Col md="6" xl="4">
-                      <SelectInput name="categoryId" label="category" options={generateOptions(category?.data?.category_data)} loading={isCategoryLoading} />
-                    </Col>
-                    <Col md="6" xl="4">
-                      <SelectInput name="status" label="status" options={WorkshopStatus} required />
+                      <TextInput name="mrp" label="mrp" type="number" placeholder="Enter mrp" />
                     </Col>
                     <Col md="6" xl="4">
                       <TextInput name="priority" label="Priority" type="number" placeholder="Enter priority" required />
                     </Col>
                     <Col md="6" xl="4">
                       <TextInput name="instructorName" label="Instructor Name" type="text" placeholder="Enter instructor name" required />
-                    </Col>
-                    <Col md="12">
-                      <TextInput name="syllabus" label="Syllabus" type="text" placeholder="Enter syllabus" />
                     </Col>
                     <Col md="12">
                       <TextInput name="shortDescription" label="Short Description" type="textarea" placeholder="Enter short description" required />
@@ -115,38 +103,6 @@ const AddEditWorkshop = () => {
                     </Col>
                     <Col>
                       <ImageUpload name="workshopImage" label="Workshop Image" required />
-                    </Col>
-                    {/* FAQ Section */}
-                    <Col md="12" className="input-box">
-                      <Label className="mb-3">Workshop FAQ</Label>
-                      <FieldArray name="faq">
-                        {({ push, remove }) => (
-                          <>
-                            {values.faq?.map((_, index) => (
-                              <Row key={index} className="mb-3 gy-4">
-                                <Col md="5">
-                                  <TextInput name={`faq[${index}].question`} label={`FAQ Question ${index + 1}`} type="text" placeholder="Enter FAQ question" />
-                                </Col>
-                                <Col md="5">
-                                  <TextInput name={`faq[${index}].answer`} label={`FAQ Answer ${index + 1}`} type="textarea" placeholder="Enter FAQ answer" />
-                                </Col>
-                                <Col md="2" className="d-flex align-items-center gap-2">
-                                  {(values.faq?.length ?? 0) > 1 && (
-                                    <Button type="text" onClick={() => remove(index)} danger className="m-1 p-1 action-btn btn-danger">
-                                      <Minus className="action" />
-                                    </Button>
-                                  )}
-                                  {index === (values.faq?.length ?? 0) - 1 && (
-                                    <Button type="text" onClick={() => push({ question: "", answer: "" })} className="m-1 p-1 btn btn-primary action-btn">
-                                      <Add className="action" />
-                                    </Button>
-                                  )}
-                                </Col>
-                              </Row>
-                            ))}
-                          </>
-                        )}
-                      </FieldArray>
                     </Col>
                     <Col md="12">
                       <CustomSwitch name="features" title="features" />

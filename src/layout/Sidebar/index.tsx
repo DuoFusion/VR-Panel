@@ -20,7 +20,7 @@ const Sidebar = () => {
       <div>
         <div className="logo-wrapper">
           <Link to={ROUTES.DASHBOARD}>
-            <h2>HK Lead Course</h2>
+            <h2>VR Course</h2>
           </Link>
           <div className="toggle-sidebar" onClick={() => dispatch(toggleSidebar())}>
             <SvgIcon className="sidebar-toggle" iconId="toggle-icon" />
@@ -28,7 +28,7 @@ const Sidebar = () => {
         </div>
         <div className="logo-icon-wrapper">
           <Link to={ROUTES.DASHBOARD}>
-            <h2>HK</h2>
+            <h2>VR</h2>
           </Link>
         </div>
         <nav className="sidebar-main">

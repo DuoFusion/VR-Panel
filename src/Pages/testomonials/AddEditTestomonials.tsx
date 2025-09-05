@@ -1,6 +1,5 @@
 import { Button } from "antd";
 import { Form, Formik, FormikHelpers } from "formik";
-import { Facebook, Instagram, LinkCircle, Xrp } from "iconsax-react";
 import { Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
@@ -70,7 +69,7 @@ const AddEditTestomonials = () => {
                       <TextInput name="priority" label="Priority" type="number" placeholder="Enter priority" required />
                     </Col>
                     <Col md="4">
-                      <RateInput name="rating" label="Course Rating" allowHalf />
+                      <RateInput name="rating" label="Course Rating" />
                     </Col>
                     <Col md="12">
                       <ImageUpload name="image" label="Image" />

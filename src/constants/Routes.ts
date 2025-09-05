@@ -5,12 +5,7 @@ export const ROUTES = {
   VERIFY_OTP: "/verify-otp",
   Reset_PASSWORD: "/reset-password",
   CHANGE_PASSWORD: "/change-password",
-
   DASHBOARD: "/dashboard",
-  CATEGORY: {
-    CATEGORY: "/category",
-    ADD_EDIT_CATEGORY: "/add-edit-category",
-  },
   WORKSHOP: {
     WORKSHOP: "/workshop",
     ADD_EDIT_WORKSHOP: "/add-edit-workshop",
@@ -19,27 +14,14 @@ export const ROUTES = {
     COURSES: "/coursers",
     ADD_EDIT_COURSES: "/add-edit-coursers",
   },
-  LANGUAGE: {
-    LANGUAGE: "/languages",
-    ADD_EDIT_LANGUAGE: "/add-edit-languages",
-  },
-  SKILL_LEVEL: {
-    SKILL_LEVEL: "/skill-level",
-    ADD_EDIT_SKILL_LEVEL: "/add-edit-skill-level",
-  },
-  WHAT_YOU_LEARN: {
-    WHAT_YOU_LEARN: "/what-you-learn",
-    ADD_EDIT_WHAT_YOU_LEARN: "/add-edit-what-you-learn",
-  },
   BANNER: {
     BANNER: "/banner",
     ADD_EDIT_BANNER: "/add-edit-banner",
   },
-  MENTORS: {
-    MENTORS: "/mentors",
-    ADD_EDIT_MENTORS: "/add-edit-mentors",
+  ACHIEVEMENTS: {
+    ACHIEVEMENTS: "/achievements",
+    ADD_EDIT_ACHIEVEMENTS: "/add-edit-achievements",
   },
-  ABOUT: "/about",
   TESTOMONIALS: {
     TESTOMONIALS: "/testomonials",
     ADD_EDIT_TESTOMONIALS: "/add-edit-testomonials",
@@ -47,15 +29,6 @@ export const ROUTES = {
   FAQ: {
     FAQ: "/faq",
     ADD_EDIT_FAQ: "/add-edit-faq",
-  },
-  LEAD_FORM: "/lead-form",
-  COUPON_CODE: {
-    COUPON_CODE: "/coupon-code",
-    ADD_EDIT_COUPON_CODE: "/add-edit-coupon-code",
-  },
-  INTEREST: {
-    INTEREST: "/interest",
-    ADD_EDIT_INTEREST: "/add-edit-interest",
   },
   WEB_SETTING: "/web-setting",
   WORKSHOP_REGISTER: {
@@ -65,9 +38,5 @@ export const ROUTES = {
   COURSES_REGISTER: {
     COURSES_REGISTER: "/coursers-register",
     ADD_EDIT_COURSES_REGISTER: "/add-edit-coursers-register",
-  },
-  NEWS_LETTER: {
-    NEWS_LETTER: "/news-letter",
-    ADD_EDIT_NEWS_LETTER: "/add-edit-news-letter",
   },
 } as const;

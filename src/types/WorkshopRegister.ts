@@ -1,5 +1,4 @@
 import { CommonDataType, MessageStatus, PageStatus } from "./Common";
-import { CouponCodeType } from "./CouponCode";
 import { WorkshopType } from "./Workshop";
 
 export interface WorkshopRegisterFormValues {
@@ -11,15 +10,13 @@ export interface WorkshopRegisterFormValues {
   profession?: string;
   paymentStatus?: string;
   fees?: number;
-  couponCodeId?: string;
   paymentMethod?: string;
   transactionId?: string;
 }
 
-export interface WorkshopRegisterType extends Omit<Required<WorkshopRegisterFormValues>, "workshopId" | "couponCodeId">, CommonDataType {
+export interface WorkshopRegisterType extends Omit<Required<WorkshopRegisterFormValues>, "workshopId" >, CommonDataType {
   _id: string;
   workshopId: WorkshopType;
-  couponCodeId: CouponCodeType;
 }
 
 export interface WorkshopRegisterDataResponse extends PageStatus {

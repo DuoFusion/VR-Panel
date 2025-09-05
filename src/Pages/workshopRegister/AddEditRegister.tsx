@@ -21,7 +21,6 @@ const AddEditWorkshopRegister = () => {
 
   const { mutate: upEditWorkshop, isPending: isWorkshopUpdating } = Mutations.useEditWorkshopRegister();
   const { data: Workshop, isLoading: isWorkshopLoading } = Queries.useGetWorkshop({});
-  const { data: CouponCode, isLoading: isCouponCodeLoading } = Queries.useGetCouponCode({});
 
   const handleNavigate = () => navigate(ROUTES.WORKSHOP_REGISTER.WORKSHOP_REGISTER);
 
@@ -34,7 +33,6 @@ const AddEditWorkshopRegister = () => {
     profession: initialData?.profession || "",
     paymentStatus: initialData?.paymentStatus || "",
     fees: initialData?.fees || null,
-    couponCodeId: initialData?.couponCodeId?._id || "",
     paymentMethod: initialData?.paymentMethod || "",
     transactionId: initialData?.transactionId || "",
   };
@@ -80,14 +78,11 @@ const AddEditWorkshopRegister = () => {
                     <Col md="6" xl="4">
                       <TextInput name="profession" label="profession" type="text" placeholder="Enter profession" />
                     </Col>
-                    <Col md="6" xl="4">
+                    <Col md="6">
                       <SelectInput name="paymentStatus" label="payment Status" placeholder="select an paymentStatus" options={PaymentStatus} required/>
                     </Col>
-                    <Col md="6" xl="4">
+                    <Col md="6">
                       <TextInput name="fees" label="fees" type="number" placeholder="Enter fees" />
-                    </Col>
-                    <Col md="6" xl="4">
-                      <SelectInput name="couponCodeId" label="CouponCode" placeholder="select an CouponCode" options={generateOptions(CouponCode?.data?.coupon_data)} loading={isCouponCodeLoading} />
                     </Col>
                     <Col md="6">
                       <SelectInput name="paymentMethod" label="payment Method" placeholder="select an payment Method" options={PaymentMethodStatus}/>

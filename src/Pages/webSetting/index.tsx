@@ -1,6 +1,6 @@
 import { Button, Spin } from "antd";
 import { Form, Formik } from "formik";
-import { Facebook, Instagram, LinkCircle, Whatsapp } from "iconsax-react";
+import { Facebook, Instagram, LinkCircle, Youtube } from "iconsax-react";
 import { Fragment } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Mutations, Queries } from "../../api";
@@ -17,17 +17,15 @@ const WebSettingContainer = () => {
   const WebSetting = data?.data;
 
   const initialValues: WebSettingFormValues = {
+    name: WebSetting?.name || "",
     email: WebSetting?.email || "",
     phoneNumber: WebSetting?.phoneNumber || 0,
-    whatsappNumber: WebSetting?.whatsappNumber || 0,
-    whatsappMessage: WebSetting?.whatsappMessage || "",
     razorpayKeyId: WebSetting?.razorpayKeyId || "",
     razorpayKeySecret: WebSetting?.razorpayKeySecret || "",
-    address: WebSetting?.address || "",
     socialMedia: {
       instagram: WebSetting?.socialMedia?.instagram || "",
       facebook: WebSetting?.socialMedia?.facebook || "",
-      whatsapp: WebSetting?.socialMedia?.whatsapp || "",
+      youtube: WebSetting?.socialMedia?.youtube || "",
       linkedin: WebSetting?.socialMedia?.linkedin || "",
     },
   };
@@ -51,16 +49,13 @@ const WebSettingContainer = () => {
                   <Form>
                     <Row className="gy-3">
                       <Col md="6">
+                        <TextInput name="name" label="User Name" type="text" placeholder="Enter User Name" />
+                      </Col>
+                      <Col md="6">
                         <TextInput name="email" label="email" type="email" placeholder="Enter email" required />
                       </Col>
                       <Col md="6">
                         <TextInput name="phoneNumber" label="phone Number" type="number" placeholder="Enter phone Number" required />
-                      </Col>
-                      <Col md="6">
-                        <TextInput name="whatsappNumber" label="whatsapp Number" type="number" placeholder="Enter whatsapp Number" required />
-                      </Col>
-                      <Col md="6">
-                        <TextInput name="whatsappMessage" label="whatsapp Message" type="text" placeholder="Enter whatsapp Message" />
                       </Col>
                       <Col md="6">
                         <TextInput name="socialMedia.instagram" label="Instagram" type="text" placeholder="Instagram Link" inputGroupIcon={<Instagram />} />
@@ -72,16 +67,13 @@ const WebSettingContainer = () => {
                         <TextInput name="socialMedia.linkedin" label="linkedin" type="text" placeholder="linkedin Link" inputGroupIcon={<LinkCircle />} />
                       </Col>
                       <Col md="6">
-                        <TextInput name="socialMedia.whatsapp" label="whatsapp" type="text" placeholder="whatsapp Link" inputGroupIcon={<Whatsapp />} />
+                        <TextInput name="socialMedia.youtube" label="youtube" type="text" placeholder="youtube Link" inputGroupIcon={<Youtube />} />
                       </Col>
                       <Col md="6">
                         <TextInput name="razorpayKeyId" label="razorpay Key Id" type="text" placeholder="Enter razorpay Key Id" required />
                       </Col>
                       <Col md="6">
                         <TextInput name="razorpayKeySecret" label="razorpay Key Secret" type="text" placeholder="Enter razorpay Key Secret" required />
-                      </Col>
-                      <Col md="12">
-                        <TextInput name="address" label="address" type="textarea" placeholder="Enter address" required />
                       </Col>
                       <Col sm="12">
                         <div className="text-center mt-1">

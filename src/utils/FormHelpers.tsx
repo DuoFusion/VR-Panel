@@ -1,6 +1,6 @@
 export function buildPayload<T extends Record<string, any>>(values: T, initialData?: Partial<T>): Partial<T> {
   const payload: Partial<T> = {};
-  const socialKeys = ["instagram", "facebook", "linkedin", "x", "whatsapp"];
+  const socialKeys = ["instagram", "facebook", "linkedin", "x", "youtube"];
   const socialMedia: Record<string, string | null> = {};
 
   function normalize(val: any) {

@@ -44,7 +44,6 @@ const WorkshopRegisterContainer = () => {
     { title: "profession", dataIndex: "profession", key: "profession" },
     { title: "payment Status", dataIndex: "paymentStatus", key: "paymentStatus" },
     { title: "fees", dataIndex: "fees", key: "fees" },
-    { title: "coupon Code", dataIndex: "couponCodeId", key: "couponCodeId", render: (couponCodeId) => couponCodeId?.name ?? "-" },
     { title: "payment Method", dataIndex: "paymentMethod", key: "paymentMethod" },
     { title: "Transaction ID", dataIndex: "transactionId", key: "transactionId" },
     {

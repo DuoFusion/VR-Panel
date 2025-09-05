@@ -44,16 +44,11 @@ const CoursesContainer = () => {
     { title: "background", dataIndex: "background", key: "background" },
     { title: "short Description", dataIndex: "shortDescription", key: "shortDescription", width: 400 },
     { title: "duration", dataIndex: "duration", key: "duration" },
-    { title: "skill Level", dataIndex: "skillLevelId", key: "skillLevelId", render: (skillLevelId) => skillLevelId?.title ?? "-" },
     { title: "price", dataIndex: "price", key: "price" },
     { title: "total Lectures", dataIndex: "totalLectures", key: "totalLectures" },
     { title: "total Hours", dataIndex: "totalHours", key: "totalHours" },
-    { title: "rating", dataIndex: "rating", key: "rating" },
-    { title: "what You Learn", dataIndex: "whatYouLearnId", key: "whatYouLearnId", render: (whatYouLearnId) => whatYouLearnId?.title ?? "-" },
     { title: "instructor Name", dataIndex: "instructorName", key: "instructorName" },
-    { title: "courseLanguageId", dataIndex: "courseLanguageId", key: "courseLanguageId", render: (courseLanguageId) => courseLanguageId?.name ?? "-" },
     { title: "mrp", dataIndex: "mrp", key: "mrp" },
-    { title: "discount", dataIndex: "discount", key: "discount" },
     {
       title: "instructor Image",
       dataIndex: "instructorImage",
@@ -83,12 +78,12 @@ const CoursesContainer = () => {
         <Flex gap="middle" justify="center">
           <Button
             type="text"
-            title={record?.isBlocked ? "UnActive" : "Active"}
-            className={`m-1 p-1 btn ${record?.isBlocked ? "btn-danger" : "btn-success"}`}
+            title={record?.isBlocked ? `Active` : `UnActive`}
+            className={`m-1 p-1 btn ${record?.isBlocked ? "btn-success" : "btn-danger"}`}
             onClick={() => {
               Modal.confirm({
                 title: "Are you sure?",
-                content: `Do you really want to ${record?.isBlocked ? "UnActive" : "Active"} "${record?.title}"?`,
+                content: `Do you really want to ${!record?.isBlocked ? "Active" : "UnActive"} "${record?.title}"?`,
                 okText: "ok",
                 cancelText: "Cancel",
                 onOk: async () => {

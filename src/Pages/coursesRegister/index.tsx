@@ -35,7 +35,7 @@ const CoursesRegisterContainer = () => {
 
   const columns: ColumnsType<CoursesRegisterType> = [
     { title: "Sr No.", key: "index", width: 100, fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
-    { title: "full Name", dataIndex: "fullName", key: "fullName" },
+    { title: "Name", dataIndex: "name", key: "name" },
     { title: "email", dataIndex: "email", key: "email" },
     { title: "phone Number", dataIndex: "phoneNumber", key: "phoneNumber" },
     { title: "city", dataIndex: "city", key: "city" },
@@ -44,7 +44,6 @@ const CoursesRegisterContainer = () => {
     { title: "payment Method", dataIndex: "paymentMethod", key: "paymentMethod" },
     { title: "transaction Id", dataIndex: "transactionId", key: "transactionId" },
     { title: "payment Status", dataIndex: "paymentStatus", key: "paymentStatus" },
-    { title: "coupon Code", dataIndex: "couponCodeId", key: "couponCodeId", render: (couponCodeId) => couponCodeId?.name ?? "-" },
     { title: "profession", dataIndex: "profession", key: "profession" },
     {
       title: "Option",
@@ -63,7 +62,7 @@ const CoursesRegisterContainer = () => {
             onClick={() => {
               Modal.confirm({
                 title: "Are you sure?",
-                content: `Do you really want to delete "${record?.fullName}"?`,
+                content: `Do you really want to delete "${record?.name}"?`,
                 okText: "Yes, Delete",
                 cancelText: "Cancel",
                 onOk: () => DeleteCoursesRegister(record?._id),
@@ -80,7 +79,7 @@ const CoursesRegisterContainer = () => {
 
   return (
     <Fragment>
-      <Breadcrumbs mainTitle="Courses" parent="Pages" />
+      <Breadcrumbs mainTitle="Courses Register" parent="Pages" />
       <Container fluid className="custom-table">
         <CardWrapper onSearch={(e) => handleSetSearch(e)}>
           <Table

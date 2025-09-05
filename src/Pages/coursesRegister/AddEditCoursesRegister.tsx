@@ -22,10 +22,9 @@ const AddEditCoursesRegister = () => {
   const { mutate: upEditCoursesRegister, isPending: isCoursesRegisterUpdating } = Mutations.useEditCoursesRegister();
 
   const { data: Courses, isLoading: isCoursesLoading } = Queries.useGetCourses({});
-  const { data: CouponCode, isLoading: isCouponCodeLoading } = Queries.useGetCouponCode({});
 
   const initialValues: CoursesRegisterFormValues = {
-    fullName: initialData?.fullName || "",
+    name: initialData?.name || "",
     email: initialData?.email || "",
     phoneNumber: initialData?.phoneNumber || "",
     city: initialData?.city || "",
@@ -33,7 +32,6 @@ const AddEditCoursesRegister = () => {
     transactionId: initialData?.transactionId || "",
     paymentStatus: initialData?.paymentStatus || "",
     courseId: initialData?.courseId?._id || "",
-    couponCodeId: initialData?.couponCodeId?._id || "",
     profession: initialData?.profession || "",
     fees: initialData?.fees || null,
   };
@@ -64,7 +62,10 @@ const AddEditCoursesRegister = () => {
                 <Form>
                   <Row className="gy-3">
                     <Col md="6" xl="4">
-                      <TextInput name="fullName" label="full Name" type="text" placeholder="Enter course full Name" required />
+                      <SelectInput name="courseId" label="courseId" placeholder="Select courseId" options={generateOptions(Courses?.data?.course_data)} loading={isCoursesLoading} required />
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="name" label="Name" type="text" placeholder="Enter course Name" required />
                     </Col>
                     <Col md="6" xl="4">
                       <TextInput name="email" label="email" type="text" placeholder="Enter course email" />
@@ -76,25 +77,19 @@ const AddEditCoursesRegister = () => {
                       <TextInput name="city" label="city" type="text" placeholder="Enter city" />
                     </Col>
                     <Col md="6" xl="4">
-                      <SelectInput name="paymentMethod" label="payment Method" placeholder="select an payment Method" options={PaymentMethodStatus} required />
-                    </Col>
-                    <Col md="6" xl="4">
-                      <TextInput name="transactionId" label="transactionId" type="number" placeholder="Enter transactionId" required />
-                    </Col>
-                    <Col md="6" xl="4">
-                      <SelectInput name="paymentStatus" label="payment Status" placeholder="select an paymentStatus" options={PaymentStatus} required />
-                    </Col>
-                    <Col md="6" xl="4">
-                      <SelectInput name="courseId" label="courseId" placeholder="Select courseId" options={generateOptions(Courses?.data?.course_data)} loading={isCoursesLoading} required />
-                    </Col>
-                    <Col md="6" xl="4">
-                      <SelectInput name="couponCodeId" label="couponCodeId" placeholder="Select couponCodeId" options={generateOptions(CouponCode?.data?.coupon_data)} loading={isCouponCodeLoading} />
-                    </Col>
-                    <Col md="6" xl="4">
                       <TextInput name="profession" label="profession" type="text" placeholder="Enter profession" />
                     </Col>
-                    <Col md="6" xl="4">
+                    <Col md="6">
+                      <SelectInput name="paymentStatus" label="payment Status" placeholder="select an paymentStatus" options={PaymentStatus} required />
+                    </Col>
+                    <Col md="6">
                       <TextInput name="fees" label="fees" type="number" placeholder="Enter fees" />
+                    </Col>
+                    <Col md="6">
+                      <SelectInput name="paymentMethod" label="payment Method" placeholder="select an payment Method" options={PaymentMethodStatus} required />
+                    </Col>
+                    <Col md="6">
+                      <TextInput name="transactionId" label="transactionId" type="number" placeholder="Enter transactionId" required />
                     </Col>
                     <Col sm="12">
                       <div className="text-center mt-1">

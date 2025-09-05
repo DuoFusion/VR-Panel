@@ -4,15 +4,13 @@ interface socialMedia {
   instagram?: string;
   linkedin?: string;
   facebook?: string;
-  whatsapp?: string;
+  youtube?: string;
 }
 
 export interface WebSettingFormValues {
+  name?: string;
   email?: string;
   phoneNumber?: number | null;
-  address?: string;
-  whatsappNumber?: number | null;
-  whatsappMessage?: string;
   socialMedia?: socialMedia;
   razorpayKeyId?: string;
   razorpayKeySecret?: string;
