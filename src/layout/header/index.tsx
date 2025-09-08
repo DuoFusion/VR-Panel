@@ -8,12 +8,16 @@ import { toggleSidebar } from "../../store/slices/LayoutSlice";
 import { logout } from "../../store/slices/AuthSlice";
 import { Image } from "../../attribute/image";
 import { Maximize2 } from "iconsax-react";
+import { Queries } from "../../api";
 
 const Header = () => {
   const [fullScreen, setFullScreen] = useState(false);
 
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.auth);
+  const { data } = Queries.useGetAdminSetting();
+  const AdminSetting = data?.data;
+
+  // const { user } = useAppSelector((state) => state.auth);
   const { sideBarToggle } = useAppSelector((state) => state.layout);
 
   const fullScreenHandler = (isFullScreen: boolean) => {
@@ -44,13 +48,13 @@ const Header = () => {
             </li>
             <li className="profile-nav onhover-dropdown p-0 m-0">
               <div className="d-flex profile-media align-items-center">
-                <Image className="b-r-6 img-40" src={user?.profilePhoto ? user?.profilePhoto : `${ImagePath}user/user.png`} alt="profile" />
+                <Image className="b-r-6 img-40" src={AdminSetting?.profilePhoto ?? `${ImagePath}user/user.png`} alt="profile" />
                 <div className="flex-grow-1">
                   <span>
-                    {user?.firstName} {user?.lastName}
+                    {AdminSetting?.firstName} {AdminSetting?.lastName}
                   </span>
                   <p className="mb-0 text-capitalize">
-                    {user?.userType}
+                    {/* {AdminSetting?.userType} */}
                     <SvgIcon iconId="header-arrow-down" />
                   </p>
                 </div>

@@ -53,16 +53,6 @@ export function fieldSchema<K extends keyof FieldTypeMap>(...args: FieldSchemaAr
 
 // ---------- Reusable helpers ----------
 
-const faqSchema = Yup.object({
-  question: fieldSchema("string", { required: false }),
-  answer: fieldSchema("string", { required: false }),
-});
-
-const lectureSchema = Yup.object({
-  title: fieldSchema("string", { required: false }),
-  description: fieldSchema("string", { required: false }),
-});
-
 const imageSchema = (label: string, required = true) => fieldSchema("array", label, required ? { minItems: 1 } : { required: false });
 
 // ---------- Schemas ----------
@@ -82,31 +72,36 @@ export const ChangePasswordSchema = Yup.object({
 // Workshop
 export const WorkshopSchema = Yup.object({
   title: fieldSchema("string", "Title"),
-  shortDescription: fieldSchema("string", "Short Description"),
-  date: fieldSchema("string", "Date"),
-  time: fieldSchema("string", "Time"),
+  // shortDescription: fieldSchema("string", "Short Description"),
+  // date: fieldSchema("string", "Date"),
+  // time: fieldSchema("string", "Time"),
   duration: fieldSchema("string", "Duration"),
   instructorImage: imageSchema("Instructor Image", false),
   instructorName: fieldSchema("string", "Instructor Name"),
-  thumbnailImage: imageSchema("Thumbnail Image"),
-  workshopImage: imageSchema("Workshop Image"),
+  languageId: fieldSchema("array", "language", { minItems: 1 }),
+  // thumbnailImage: imageSchema("Thumbnail Image"),
+  // workshopImage: imageSchema("Workshop Image"),
   price: fieldSchema("number", { extraRules: (s) => s.min(0, "Price must be greater than or equal to 0") }),
-  mrp: fieldSchema("number", { required: false, extraRules: (s) => s.min(0, "MRP must be greater than or equal to 0") }),
+  // mrp: fieldSchema("number", { required: false, extraRules: (s) => s.min(0, "MRP must be greater than or equal to 0") }),
   priority: fieldSchema("number", "Priority"),
-  fullDescription: fieldSchema("string", { required: false }),
+  // fullDescription: fieldSchema("string", { required: false }),
   features: fieldSchema("boolean", { required: false }),
 });
 
 export const WorkshopRegisterSchema = Yup.object({
   workshopId: fieldSchema("string", "Workshop"),
   name: fieldSchema("string", "name"),
-  email: fieldSchema("string", { required: false }),
-  phoneNumber: fieldSchema("string", "phone Number"),
-  city: fieldSchema("string", { required: false }),
-  profession: fieldSchema("string", { required: false }),
-  paymentStatus: fieldSchema("string", "payment Status"),
+  gender: fieldSchema("string", "gender"),
+  standard: fieldSchema("string", "standard"),
+  schoolName: fieldSchema("string", "school Name"),
+  city: fieldSchema("string", "city"),
+  whatsAppNumber: fieldSchema("string", "phone Number"),
+  email: fieldSchema("string", "email", { extraRules: (s) => s.email("Invalid email address") }),
+  previousPercentage: fieldSchema("number", "previous Percentage"),
+  targetPercentage: fieldSchema("number", "target Percentage"),
+  goal: fieldSchema("string", "goal"),
   fees: fieldSchema("number", "fees"),
-  paymentMethod: fieldSchema("string", "paymentMethod"),
+  paymentStatus: fieldSchema("string", "payment Status"),
   transactionId: fieldSchema("string", "transactionId"),
 });
 
@@ -114,33 +109,39 @@ export const WorkshopRegisterSchema = Yup.object({
 export const CoursesSchema = Yup.object({
   title: fieldSchema("string", "Title"),
   subtitle: fieldSchema("string", "Sub Title"),
-  background: fieldSchema("string", "Background"),
+  // background: fieldSchema("string", "Background"),
   duration: fieldSchema("string", "Duration"),
   price: fieldSchema("number", "Price", { extraRules: (s) => s.min(0, "Price must be greater than or equal to 0") }),
   totalLectures: fieldSchema("number", "Total Lectures"),
   totalHours: fieldSchema("string", "Total Hours"),
   priority: fieldSchema("number", "Priority"),
+  languageId: fieldSchema("array", "language", { minItems: 1 }),
+  whatWillYouLearn: fieldSchema("string", { required: false }),
   instructorName: fieldSchema("string", { required: false }),
   mrp: fieldSchema("number", { required: false, extraRules: (s) => s.min(0, "MRP must be greater than or equal to 0") }),
-  shortDescription: fieldSchema("string", "Short Description"),
+  // shortDescription: fieldSchema("string", "Short Description"),
   instructorImage: imageSchema("Instructor Image", false),
-  courseImage: imageSchema("Course Image"),
-  listOfLecture: Yup.array().of(lectureSchema).min(1, "At least one Lecture is required"),
+  // courseImage: imageSchema("Course Image"),
+  // listOfLecture: Yup.array().of(lectureSchema).min(1, "At least one Lecture is required"),
   features: fieldSchema("boolean", { required: false }),
 });
 
 // Courses Register
 export const CoursesRegisterSchema = Yup.object({
   name: fieldSchema("string", "name"),
-  email: fieldSchema("string", { required: false }),
-  phoneNumber: fieldSchema("string", "phoneNumber"),
-  city: fieldSchema("string", { required: false }),
-  paymentMethod: fieldSchema("string", "paymentMethod"),
+  gender: fieldSchema("string", "gender"),
+  standard: fieldSchema("string", "standard"),
+  schoolName: fieldSchema("string", "school Name"),
+  city: fieldSchema("string", "city"),
+  whatsAppNumber: fieldSchema("string", "phone Number"),
+  email: fieldSchema("string", "email", { extraRules: (s) => s.email("Invalid email address") }),
+  previousPercentage: fieldSchema("number", "previous Percentage"),
+  targetPercentage: fieldSchema("number", "target Percentage"),
+  goal: fieldSchema("string", "goal"),
+  fees: fieldSchema("number", "fees"),
+  paymentStatus: fieldSchema("string", "payment Status"),
   transactionId: fieldSchema("string", "transactionId"),
-  paymentStatus: fieldSchema("string", "paymentStatus"),
   courseId: fieldSchema("string", "courseId"),
-  profession: fieldSchema("string", { required: false }),
-  fees: fieldSchema("string", "fees"),
 });
 
 // Banner
@@ -183,8 +184,26 @@ export const WebSettingSchema = Yup.object({
   phoneNumber: fieldSchema("number", "phoneNumber"),
   razorpayKeyId: fieldSchema("string", "razorpayKeyId"),
   razorpayKeySecret: fieldSchema("string", "razorpayKeySecret"),
+  ourStudent: fieldSchema("string", "ourStudent"),
+  rating: fieldSchema("string", "rating"),
   instagram: fieldSchema("string", { required: false }),
   linkedin: fieldSchema("string", { required: false }),
   facebook: fieldSchema("string", { required: false }),
   youtube: fieldSchema("string", { required: false }),
+  twitter: fieldSchema("string", { required: false }),
+});
+
+// Languages
+export const LanguagesSchema = Yup.object({
+  name: fieldSchema("string", "Name"),
+  priority: fieldSchema("number", "Priority"),
+});
+
+// Admin Setting
+export const AdminSettingSchema = Yup.object({
+  firstName: fieldSchema("string", "firstName"),
+  lastName: fieldSchema("string", "lastName"),
+  email: fieldSchema("string", "email"),
+  phoneNumber: fieldSchema("number", "phoneNumber"),
+  profilePhoto: imageSchema("profile Photo"),
 });

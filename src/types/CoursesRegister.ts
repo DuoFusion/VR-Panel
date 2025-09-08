@@ -2,19 +2,23 @@ import { CommonDataType, MessageStatus, PageStatus } from "./Common";
 import { CoursesType } from "./Courses";
 
 export interface CoursesRegisterFormValues {
-  name?: string;
-  email?: string;
-  phoneNumber?: string;
-  city?: string;
-  paymentMethod?: string;
-  transactionId?: string;
-  paymentStatus?: string;
   courseId?: string;
-  profession?: string;
+  name?: string;
+  gender?: string;
+  standard?: string;
+  schoolName?: string;
+  city?: string;
+  whatsAppNumber?: string;
+  email?: string;
+  previousPercentage?: number;
+  targetPercentage?: number;
+  goal?: string;
   fees?: number;
+  paymentStatus?: string;
+  transactionId?: string;
 }
 
-export interface CoursesRegisterType extends Omit<Required<CoursesRegisterFormValues>, "courseId" >, CommonDataType {
+export interface CoursesRegisterType extends Omit<Required<CoursesRegisterFormValues>, "courseId">, CommonDataType {
   _id: string;
   courseId: CoursesType;
 }

@@ -52,6 +52,10 @@ const URL = {
     ALL: "/web-setting",
     ADD_EDIT: "/web-setting/add/edit",
   },
+  ADMIN_SETTING: {
+    ALL: "/admin-setting",
+    ADD_EDIT: "/admin-setting/add/edit",
+  },
   COURSES_REGISTER: {
     ALL: "/course-register",
     EDIT: "/course-register/edit",
@@ -61,6 +65,19 @@ const URL = {
     ALL: "/workshop-register",
     EDIT: "/workshop-register/edit",
     DELETE: "/workshop-register/delete",
+  },
+  ABOUT: {
+    ALL: "/about",
+    ADD_EDIT: "/about/add/edit",
+  },
+  LANGUAGE: {
+    ALL: "/language",
+    ADD: "/language/add",
+    EDIT: "/language/edit",
+    DELETE: "/language/delete",
+  },
+  USER_REGISTRATION: {
+    ALL: "/user-registration",
   },
 } as const;
 

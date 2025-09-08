@@ -68,9 +68,11 @@ const ImageUpload: FC<ImageUploadProps> = ({ multiple, name, accept, isListType,
 
   return (
     <div className="input-box">
-      <Label>
-        {label ? label : "Upload Logo"} {required && <span className="required">*</span>}
-      </Label>
+      {isListType !== "picture-circle" && (
+        <Label>
+          {label ? label : "Upload Logo"} {required && <span className="required">*</span>}
+        </Label>
+      )}
       <Upload
         accept={accept ?? "image/*"}
         listType={isListType ?? "picture-card"}

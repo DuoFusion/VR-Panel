@@ -1,4 +1,5 @@
 import { STORAGE_KEYS } from "../constants";
+import { TypeFilterOption } from "../types";
 
 export const stringify = (value: string): string => {
   try {
@@ -29,3 +30,5 @@ export const generateOptions = (data?: { _id: string; name?: string; firstName?:
     };
   });
 };
+
+export const normalizeTags = (items: TypeFilterOption[] = []) => items.map((item: any) => (typeof item === "string" ? item : item.value));

@@ -1,5 +1,5 @@
 import { KEYS, URL_KEYS } from "../constants";
-import { AchievementsApiResponse, BannerApiResponse, CoursesApiResponse, CoursesRegisterApiResponse, FaqApiResponse, Params, TestomonialsApiResponse, WebSettingApiResponse, WorkshopApiResponse } from "../types";
+import { AboutApiResponse, AchievementsApiResponse, AdminSettingApiResponse, BannerApiResponse, CoursesApiResponse, CoursesRegisterApiResponse, FaqApiResponse, LanguagesApiResponse, Params, TestomonialsApiResponse, WebSettingApiResponse, WorkshopApiResponse } from "../types";
 import { WorkshopRegisterApiResponse } from "../types/WorkshopRegister";
 import Get from "./Get";
 import { useApiGet } from "./hooks";
@@ -31,6 +31,15 @@ const Queries = {
 
   // ************ Web Setting ***********
   useGetWebSetting: () => useApiGet<WebSettingApiResponse>([KEYS.WEB_SETTING.ALL], () => Get(URL_KEYS.WEB_SETTING.ALL)),
+
+  // ************ Admin Setting ***********
+  useGetAdminSetting: () => useApiGet<AdminSettingApiResponse>([KEYS.ADMIN_SETTING.ALL], () => Get(URL_KEYS.ADMIN_SETTING.ALL)),
+
+  // ************ About ***********
+  useGetAbout: () => useApiGet<AboutApiResponse>([KEYS.ABOUT.ALL], () => Get(URL_KEYS.ABOUT.ALL)),
+
+  // ************ Languages ***********
+  useGetLanguages: (params: Params) => useApiGet<LanguagesApiResponse>([KEYS.LANGUAGE.ALL, params], () => Get(URL_KEYS.LANGUAGE.ALL, params)),
 };
 
 export default Queries;

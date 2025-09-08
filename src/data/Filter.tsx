@@ -36,3 +36,9 @@ export const PaymentMethodStatus = [
   { value: "Card", label: "Card" },
   { value: "NetBanking", label: "NetBanking" },
 ];
+
+export const GenderStatus = [
+  { value: "male", label: "Male" },
+  { value: "female", label: "Female" },
+  { value: "other", label: "Other" },
+];

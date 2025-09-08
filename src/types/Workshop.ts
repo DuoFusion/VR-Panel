@@ -1,24 +1,27 @@
-import { CommonDataType, MessageStatus, PageStatus } from "./Common";
+import { CommonDataType, MessageStatus, PageStatus, TypeFilterOption } from "./Common";
+import { LanguagesType } from "./Languages";
 
 export interface WorkshopFormValues {
   title?: string;
-  shortDescription?: string;
-  date?: string;
-  time?: string;
+  // shortDescription?: string;
+  // date?: string;
+  // time?: string;
   duration?: string;
   instructorImage?: string | string[];
   instructorName?: string;
-  thumbnailImage?: string | string[];
-  workshopImage?: string | string[];
+  languageId?: TypeFilterOption[];
+  // thumbnailImage?: string | string[];
+  // workshopImage?: string | string[];
   price?: number;
-  mrp?: number;
+  // mrp?: number;
   priority?: number;
-  fullDescription?: string;
+  // fullDescription?: string;
   features?: boolean;
 }
 
-export interface WorkshopType extends WorkshopFormValues, CommonDataType {
+export interface WorkshopType extends Omit<Required<WorkshopFormValues>, "languageId">, CommonDataType {
   _id: string;
+  languageId: LanguagesType[];
 }
 
 export interface WorkshopDataResponse extends PageStatus {

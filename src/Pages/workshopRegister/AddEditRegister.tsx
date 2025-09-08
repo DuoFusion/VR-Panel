@@ -7,11 +7,11 @@ import { Mutations, Queries } from "../../api";
 import { SelectInput, TextInput } from "../../attribute/formFields";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
+import { GenderStatus, PaymentStatus } from "../../data";
 import { WorkshopRegisterFormValues } from "../../types";
 import { generateOptions } from "../../utils";
 import { buildPayload } from "../../utils/FormHelpers";
 import { WorkshopRegisterSchema } from "../../utils/ValidationSchemas";
-import { PaymentMethodStatus, PaymentStatus } from "../../data";
 
 const AddEditWorkshopRegister = () => { 
   const navigate = useNavigate();
@@ -28,12 +28,19 @@ const AddEditWorkshopRegister = () => {
     workshopId: initialData?.workshopId?._id || "",
     name: initialData?.name || "",
     email: initialData?.email || "",
-    phoneNumber: initialData?.phoneNumber || "",
+    gender: initialData?.gender || "",
+    standard: initialData?.standard || "",
+    schoolName: initialData?.schoolName || "",
+    // phoneNumber: initialData?.phoneNumber || "",
     city: initialData?.city || "",
-    profession: initialData?.profession || "",
+    whatsAppNumber: initialData?.whatsAppNumber || "",
+    // profession: initialData?.profession || "",
+    previousPercentage: initialData?.previousPercentage || "",
+    targetPercentage: initialData?.targetPercentage || "",
+    goal: initialData?.goal || "",
     paymentStatus: initialData?.paymentStatus || "",
     fees: initialData?.fees || null,
-    paymentMethod: initialData?.paymentMethod || "",
+    // paymentMethod: initialData?.paymentMethod || "",
     transactionId: initialData?.transactionId || "",
   };
 
@@ -67,25 +74,37 @@ const AddEditWorkshopRegister = () => {
                       <TextInput name="name" label="name" type="text" placeholder="Enter name" required />
                     </Col>
                     <Col md="6" xl="4">
-                      <TextInput name="email" label="email" type="email" placeholder="Enter email" />
+                      <TextInput name="email" label="email" type="email" placeholder="Enter email" required/>
                     </Col>
                     <Col md="6" xl="4">
-                      <TextInput name="phoneNumber" label="phone Number" type="number" placeholder="Enter phone Number" required />
+                      <TextInput name="whatsAppNumber" label="whatsApp Number" type="number" placeholder="Enter whatsApp Number" required />
                     </Col>
                     <Col md="6" xl="4">
-                      <TextInput name="city" label="city" type="text" placeholder="Enter city" />
+                      <TextInput name="city" label="city" type="text" placeholder="Enter city" required/>
                     </Col>
                     <Col md="6" xl="4">
-                      <TextInput name="profession" label="profession" type="text" placeholder="Enter profession" />
+                      <SelectInput name="gender" label="gender" placeholder="select an gender" options={GenderStatus} required/>
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="standard" label="standard" type="text" placeholder="Enter Your standard" required/>
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="schoolName" label="school Name" type="text" placeholder="Enter Your school Name" required/>
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="previousPercentage" label="previous Percentage" type="number" placeholder="Enter previous Percentage" required/>
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="targetPercentage" label="target Percentage" type="number" placeholder="Enter target Percentage" required/>
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="goal" label="goal" type="text" placeholder="Enter goal" required/>
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="fees" label="fees" type="number" placeholder="Enter fees" required/>
                     </Col>
                     <Col md="6">
                       <SelectInput name="paymentStatus" label="payment Status" placeholder="select an paymentStatus" options={PaymentStatus} required/>
-                    </Col>
-                    <Col md="6">
-                      <TextInput name="fees" label="fees" type="number" placeholder="Enter fees" />
-                    </Col>
-                    <Col md="6">
-                      <SelectInput name="paymentMethod" label="payment Method" placeholder="select an payment Method" options={PaymentMethodStatus}/>
                     </Col>
                     <Col md="6">
                       <TextInput name="transactionId" label="transactionId" type="text" placeholder="Enter transactionId" required />

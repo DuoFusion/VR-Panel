@@ -7,25 +7,24 @@ import { Container } from "reactstrap";
 import { Mutations, Queries } from "../../api";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
-import { WorkshopRegisterType } from "../../types";
-import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
+import { LanguagesType } from "../../types";
 import { useBasicTableFilterHelper } from "../../utils/hook";
+import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
 
-const WorkshopRegisterContainer = () => {
+const LanguagesContainer = () => {
   const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange } = useBasicTableFilterHelper({
     initialParams: { page: 1, limit: 10 },
     debounceDelay: 500,
   });
 
   const navigate = useNavigate();
-  const { mutate: DeleteWorkshopRegister } = Mutations.useDeleteWorkshopRegister();
+  const { mutate: DeleteLanguages } = Mutations.useDeleteLanguages();
 
-  const { data: WorkshopRegister, isLoading: isWorkshopLoading } = Queries.useGetWorkshopRegister(params);
-  const All_WorkshopRegister = WorkshopRegister?.data;
+  const { data: Languages, isLoading: isLanguagesLoading } = Queries.useGetLanguages(params);
+  const All_Languages = Languages?.data;
+  const handleNavigate = ROUTES.LANGUAGE.ADD_EDIT_LANGUAGE;
 
-  const handleNavigate = ROUTES.WORKSHOP_REGISTER.ADD_EDIT_WORKSHOP_REGISTER;
-
-  const handleEdit = (item: WorkshopRegisterType) => {
+  const handleEdit = (item: LanguagesType) => {
     navigate(handleNavigate, {
       state: {
         editData: item,
@@ -34,22 +33,11 @@ const WorkshopRegisterContainer = () => {
     });
   };
 
-  const columns: ColumnsType<WorkshopRegisterType> = [
-    { title: "Sr No.", dataIndex: "index", key: "index", width: 100, fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
-    { title: "Workshop Name", dataIndex: "workshopId", key: "workshopId", render: (workshopId) => workshopId?.title ?? "-" },
-    { title: "User Name", dataIndex: "name", key: "name" },
-    { title: "User email", dataIndex: "email", key: "email" },
-    { title: "User whatsApp Number", dataIndex: "whatsAppNumber", key: "whatsAppNumber" },
-    { title: "city", dataIndex: "city", key: "city" },
-    { title: "gender", dataIndex: "gender", key: "gender" },
-    { title: "standard", dataIndex: "standard", key: "standard" },
-    { title: "school Name", dataIndex: "schoolName", key: "schoolName" },
-    { title: "previous Percentage", dataIndex: "previousPercentage", key: "previousPercentage" },
-    { title: "target Percentage", dataIndex: "targetPercentage", key: "targetPercentage" },
-    { title: "goal", dataIndex: "goal", key: "goal" },
-    { title: "fees", dataIndex: "fees", key: "fees" },
-    { title: "payment Status", dataIndex: "paymentStatus", key: "paymentStatus" },
-    { title: "Transaction ID", dataIndex: "transactionId", key: "transactionId" },
+  const columns: ColumnsType<LanguagesType> = [
+    { title: "Sr No.", key: "index", fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
+    { title: "priority", dataIndex: "priority", key: "priority" },
+    { title: "Languages Id", dataIndex: "_id", key: "_id" },
+    { title: "Languages Name", dataIndex: "name", key: "name" },
     {
       title: "Option",
       key: "actionIcons",
@@ -70,7 +58,7 @@ const WorkshopRegisterContainer = () => {
                 content: `Do you really want to delete "${record?.name}"?`,
                 okText: "Yes, Delete",
                 cancelText: "Cancel",
-                onOk: () => DeleteWorkshopRegister(record?._id),
+                onOk: () => DeleteLanguages(record?._id),
               });
             }}
             title="Delete"
@@ -84,20 +72,20 @@ const WorkshopRegisterContainer = () => {
 
   return (
     <Fragment>
-      <Breadcrumbs mainTitle="Workshop Register" parent="Pages" />
+      <Breadcrumbs mainTitle="Languages" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Add Languages" onButtonClick={() => navigate(handleNavigate)}>
           <Table
             className="custom-table"
-            dataSource={All_WorkshopRegister?.workshopRegister_data}
+            dataSource={All_Languages?.language_data}
             columns={ColumnsWithFallback(columns)}
             rowKey={(record) => record._id}
             scroll={{ x: "max-content" }}
-            loading={isWorkshopLoading}
+            loading={isLanguagesLoading}
             pagination={{
               current: pageNumber,
               pageSize: pageSize,
-              total: All_WorkshopRegister?.totalData,
+              total: All_Languages?.totalData,
               showSizeChanger: true,
               onChange: handlePaginationChange,
             }}
@@ -108,4 +96,4 @@ const WorkshopRegisterContainer = () => {
   );
 };
 
-export default WorkshopRegisterContainer;
+export default LanguagesContainer;

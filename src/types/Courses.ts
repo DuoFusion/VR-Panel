@@ -1,4 +1,5 @@
 import { CommonDataType, MessageStatus, PageStatus } from "./Common";
+import { LanguagesType } from "./Languages";
 
 export interface ListOfLectureType {
   title: string;
@@ -8,23 +9,27 @@ export interface ListOfLectureType {
 export interface CoursesFormValues {
   title?: string;
   subtitle?: string;
-  background?: string;
+  // background?: string;
   duration?: string;
   price?: number;
+  mrp?: number;
   totalLectures?: number;
   totalHours?: string;
   priority?: number;
+  whatWillYouLearn?: string;
   instructorName?: string;
-  mrp?: number;
-  shortDescription?: string;
+  languageId?: string;
+  // shortDescription?: string;
+  language?: string;
   instructorImage?: string | string[];
-  courseImage?: string | string[];
-  listOfLecture?: ListOfLectureType[];
+  // courseImage?: string | string[];
+  // listOfLecture?: ListOfLectureType[];
   features?: boolean;
 }
 
-export interface CoursesType extends CoursesFormValues, CommonDataType {
+export interface CoursesType extends Omit<Required<CoursesFormValues>, "languageId">, CommonDataType {
   _id: string;
+  languageId: LanguagesType;
 }
 
 export interface CoursesDataResponse extends PageStatus {

@@ -3,12 +3,12 @@ import { Form, Formik, FormikHelpers } from "formik";
 import { Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
-import { Mutations } from "../../api";
-import { CustomSwitch, DataAndTime, ImageUpload, SelectInput, TextInput } from "../../attribute/formFields";
+import { Mutations, Queries } from "../../api";
+import { CustomSwitch, ImageUpload, SelectInput, TextInput } from "../../attribute/formFields";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
-import { WorkshopStatus } from "../../data";
-import { WorkshopFormValues } from "../../types";
+import { LanguagesType, WorkshopFormValues } from "../../types";
+import { generateOptions } from "../../utils";
 import { buildPayload } from "../../utils/FormHelpers";
 import { WorkshopSchema } from "../../utils/ValidationSchemas";
 
@@ -20,23 +20,25 @@ const AddEditWorkshop = () => {
 
   const { mutate: useWorkshop, isPending: isWorkshopAdding } = Mutations.useWorkshop();
   const { mutate: upEditWorkshop, isPending: isWorkshopUpdating } = Mutations.useEditWorkshop();
+  const { data: Languages, isLoading: isLanguagesLoading } = Queries.useGetLanguages({});
 
   const handleNavigate = () => navigate(ROUTES.WORKSHOP.WORKSHOP);
 
   const initialValues: WorkshopFormValues = {
     title: initialData?.title || "",
-    shortDescription: initialData?.shortDescription || "",
-    date: initialData?.date || "",
-    time: initialData?.time || "",
+    // shortDescription: initialData?.shortDescription || "",
+    // date: initialData?.date || "",
+    // time: initialData?.time || "",
     duration: initialData?.duration || "",
     instructorImage: initialData?.instructorImage ? [initialData.instructorImage] : [],
     instructorName: initialData?.instructorName || "",
-    thumbnailImage: initialData?.thumbnailImage ? [initialData.thumbnailImage] : [],
-    workshopImage: initialData?.workshopImage ? [initialData.workshopImage] : [],
+    // thumbnailImage: initialData?.thumbnailImage ? [initialData.thumbnailImage] : [],
+    // workshopImage: initialData?.workshopImage ? [initialData.workshopImage] : [],
     price: initialData?.price || null,
-    mrp: initialData?.mrp || null,
+    languageId: initialData?.languageId?.map((language: LanguagesType) => (language?._id )) ?? [],
+    // mrp: initialData?.mrp || null,
     priority: initialData?.priority || null,
-    fullDescription: initialData?.fullDescription || "",
+    // fullDescription: initialData?.fullDescription || "",
     features: initialData?.features,
   };
 
@@ -68,20 +70,23 @@ const AddEditWorkshop = () => {
                     <Col md="6" xl="4">
                       <TextInput name="title" label="Title" type="text" placeholder="Enter workshop title" required />
                     </Col>
-                    <Col md="6" xl="4">
+                    {/* <Col md="6" xl="4">
                       <DataAndTime name="date" type="date" label="Date" format="DD/MM/YYYY" required disablePast />
-                    </Col>
-                    <Col md="6" xl="4">
+                    </Col> */}
+                    {/* <Col md="6" xl="4">
                       <DataAndTime name="time" type="time" label="Time" format="HH:mm:ss" required />
-                    </Col>
+                    </Col> */}
                     <Col md="6" xl="4">
                       <TextInput name="duration" label="Duration" type="text" placeholder="Enter duration" required />
                     </Col>
                     <Col md="6" xl="4">
                       <TextInput name="price" label="Price" type="number" placeholder="Enter price" required />
                     </Col>
-                    <Col md="6" xl="4">
+                    {/* <Col md="6" xl="4">
                       <TextInput name="mrp" label="mrp" type="number" placeholder="Enter mrp" />
+                    </Col> */}
+                    <Col md="6" xl="4">
+                      <SelectInput name="languageId" label="language" placeholder="select an language" options={generateOptions(Languages?.data?.language_data)} loading={isLanguagesLoading} mode="multiple" required />
                     </Col>
                     <Col md="6" xl="4">
                       <TextInput name="priority" label="Priority" type="number" placeholder="Enter priority" required />
@@ -89,21 +94,21 @@ const AddEditWorkshop = () => {
                     <Col md="6" xl="4">
                       <TextInput name="instructorName" label="Instructor Name" type="text" placeholder="Enter instructor name" required />
                     </Col>
-                    <Col md="12">
+                    {/* <Col md="12">
                       <TextInput name="shortDescription" label="Short Description" type="textarea" placeholder="Enter short description" required />
-                    </Col>
-                    <Col md="12">
+                    </Col> */}
+                    {/* <Col md="12">
                       <TextInput name="fullDescription" label="Full Description" type="textarea" placeholder="Enter full description" />
-                    </Col>
-                    <Col>
+                    </Col> */}
+                    <Col md="12">
                       <ImageUpload name="instructorImage" label="Instructor Image" />
                     </Col>
-                    <Col>
+                    {/* <Col>
                       <ImageUpload name="thumbnailImage" label="Thumbnail Image" required />
-                    </Col>
-                    <Col>
+                    </Col> */}
+                    {/* <Col>
                       <ImageUpload name="workshopImage" label="Workshop Image" required />
-                    </Col>
+                    </Col> */}
                     <Col md="12">
                       <CustomSwitch name="features" title="features" />
                     </Col>

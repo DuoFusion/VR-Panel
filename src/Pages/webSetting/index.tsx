@@ -1,6 +1,6 @@
 import { Button, Spin } from "antd";
 import { Form, Formik } from "formik";
-import { Facebook, Instagram, LinkCircle, Youtube } from "iconsax-react";
+import { Facebook, Instagram, LinkCircle, Xrp, Youtube } from "iconsax-react";
 import { Fragment } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Mutations, Queries } from "../../api";
@@ -22,11 +22,14 @@ const WebSettingContainer = () => {
     phoneNumber: WebSetting?.phoneNumber || 0,
     razorpayKeyId: WebSetting?.razorpayKeyId || "",
     razorpayKeySecret: WebSetting?.razorpayKeySecret || "",
+    ourStudent: WebSetting?.ourStudent || "",
+    rating: WebSetting?.rating || "",
     socialMedia: {
       instagram: WebSetting?.socialMedia?.instagram || "",
       facebook: WebSetting?.socialMedia?.facebook || "",
       youtube: WebSetting?.socialMedia?.youtube || "",
       linkedin: WebSetting?.socialMedia?.linkedin || "",
+      twitter: WebSetting?.socialMedia?.twitter || "",
     },
   };
 
@@ -68,6 +71,15 @@ const WebSettingContainer = () => {
                       </Col>
                       <Col md="6">
                         <TextInput name="socialMedia.youtube" label="youtube" type="text" placeholder="youtube Link" inputGroupIcon={<Youtube />} />
+                      </Col>
+                      <Col md="6">
+                        <TextInput name="socialMedia.twitter" label="twitter" type="text" placeholder="twitter Link" inputGroupIcon={<Xrp />} />
+                      </Col>
+                      <Col md="6">
+                        <TextInput name="ourStudent" label="our Student" type="text" placeholder="Enter ourStudent" required />
+                      </Col>
+                      <Col md="6">
+                        <TextInput name="rating" label="Web Rating" type="text" placeholder="Enter Your Web Rating" required />
                       </Col>
                       <Col md="6">
                         <TextInput name="razorpayKeyId" label="razorpay Key Id" type="text" placeholder="Enter razorpay Key Id" required />

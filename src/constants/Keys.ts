@@ -48,6 +48,10 @@ export const KEYS = {
     ALL: "web-setting",
     ADD_EDIT: "add-edit-web-setting",
   },
+  ADMIN_SETTING: {
+    ALL: "admin-setting",
+    ADD_EDIT: "add-edit-admin-setting",
+  },
   COURSES_REGISTER: {
     ALL: "course-register",
     EDIT: "edit-course-register",
@@ -57,5 +61,18 @@ export const KEYS = {
     ALL: "workshop-register",
     EDIT: "edit-workshop-register",
     DELETE: "delete-workshop-register",
+  },
+  ABOUT: {
+    ALL: "about",
+    ADD_EDIT: "add-edit-about",
+  },
+  LANGUAGE: {
+    ALL: "language",
+    ADD: "add-language",
+    EDIT: "edit-language",
+    DELETE: "delete-language",
+  },
+  USER_REGISTRATION: {
+    ALL: "user-registration",
   },
 } as const;

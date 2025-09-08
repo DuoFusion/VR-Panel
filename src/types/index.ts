@@ -11,3 +11,7 @@ export * from "./WebSetting";
 export * from "./WorkshopRegister";
 export * from "./CoursesRegister";
 export * from "./Achievements";
+export * from "./About";
+export * from "./Languages";
+export * from "./AdminSetting";
+export * from "./UserRegistration";

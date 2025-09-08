@@ -6,6 +6,9 @@ export const ROUTES = {
   Reset_PASSWORD: "/reset-password",
   CHANGE_PASSWORD: "/change-password",
   DASHBOARD: "/dashboard",
+  ABOUT: "/about",
+  WEB_SETTING: "/web-setting",
+  ADMIN_SETTING: "/admin-setting",
   WORKSHOP: {
     WORKSHOP: "/workshop",
     ADD_EDIT_WORKSHOP: "/add-edit-workshop",
@@ -30,7 +33,6 @@ export const ROUTES = {
     FAQ: "/faq",
     ADD_EDIT_FAQ: "/add-edit-faq",
   },
-  WEB_SETTING: "/web-setting",
   WORKSHOP_REGISTER: {
     WORKSHOP_REGISTER: "/workshop-register",
     ADD_EDIT_WORKSHOP_REGISTER: "/add-edit-workshop-register",
@@ -38,5 +40,12 @@ export const ROUTES = {
   COURSES_REGISTER: {
     COURSES_REGISTER: "/coursers-register",
     ADD_EDIT_COURSES_REGISTER: "/add-edit-coursers-register",
+  },
+  LANGUAGE: {
+    LANGUAGE: "/languages",
+    ADD_EDIT_LANGUAGE: "/add-edit-languages",
+  },
+  USER_REGISTRATION: {
+    USER_REGISTRATION: "/user-registration",
   },
 } as const;

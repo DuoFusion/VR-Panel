@@ -5,6 +5,7 @@ interface socialMedia {
   linkedin?: string;
   facebook?: string;
   youtube?: string;
+  twitter?: string;
 }
 
 export interface WebSettingFormValues {
@@ -14,6 +15,8 @@ export interface WebSettingFormValues {
   socialMedia?: socialMedia;
   razorpayKeyId?: string;
   razorpayKeySecret?: string;
+  ourStudent?: string;
+  rating?: string;
 }
 
 export interface WebSettingType extends WebSettingFormValues, CommonDataType {

@@ -131,7 +131,7 @@ export interface BreadcrumbsProps {
 // ************ CardHeaderProp ***********
 
 export interface TypeFilterOption {
-  label: string;
+  label: string | undefined;
   value: string;
 }
 

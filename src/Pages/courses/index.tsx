@@ -1,4 +1,4 @@
-import { Button, Flex, Image, Modal, Switch, Table } from "antd";
+import { Button, Flex, Image, Modal, Switch, Table, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { Edit, Forbidden, Trash } from "iconsax-react";
 import { Fragment } from "react";
@@ -8,7 +8,7 @@ import { Mutations, Queries } from "../../api";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
 import { ActiveStatus } from "../../data";
-import { CoursesType } from "../../types";
+import { CoursesType, LanguagesType } from "../../types";
 import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
 import { useBasicTableFilterHelper } from "../../utils/hook";
 
@@ -41,26 +41,28 @@ const CoursesContainer = () => {
     { title: "priority", dataIndex: "priority", key: "priority" },
     { title: "Courses Id", dataIndex: "_id", key: "_id" },
     { title: "Courses title", dataIndex: "title", key: "title" },
-    { title: "background", dataIndex: "background", key: "background" },
-    { title: "short Description", dataIndex: "shortDescription", key: "shortDescription", width: 400 },
+    // { title: "background", dataIndex: "background", key: "background" },
+    // { title: "short Description", dataIndex: "shortDescription", key: "shortDescription", width: 400 },
     { title: "duration", dataIndex: "duration", key: "duration" },
     { title: "price", dataIndex: "price", key: "price" },
+ { title: "language", dataIndex: "languageId", key: "languageId", render: (languageId) => languageId?.map((item:LanguagesType) => <Tag color="geekblue">{item.name}</Tag>) ?? "-" },
     { title: "total Lectures", dataIndex: "totalLectures", key: "totalLectures" },
     { title: "total Hours", dataIndex: "totalHours", key: "totalHours" },
     { title: "instructor Name", dataIndex: "instructorName", key: "instructorName" },
     { title: "mrp", dataIndex: "mrp", key: "mrp" },
+    { title: "what Will You Learn", dataIndex: "whatWillYouLearn", key: "whatWillYouLearn", width: 400 },
     {
       title: "instructor Image",
       dataIndex: "instructorImage",
       key: "instructorImage",
       render: (instructorImage) => (instructorImage ? <Image src={instructorImage} width={60} height={60} alt="instructor_image" fallback="/placeholder.png" /> : "-"),
     },
-    {
-      title: "Courses Image",
-      dataIndex: "courseImage",
-      key: "courseImage",
-      render: (courseImage) => (courseImage ? <Image src={courseImage} width={60} height={60} alt="courses_image" fallback="/placeholder.png" /> : "-"),
-    },
+    // {
+    //   title: "Courses Image",
+    //   dataIndex: "courseImage",
+    //   key: "courseImage",
+    //   render: (courseImage) => (courseImage ? <Image src={courseImage} width={60} height={60} alt="courses_image" fallback="/placeholder.png" /> : "-"),
+    // },
     {
       title: "features",
       dataIndex: "features",

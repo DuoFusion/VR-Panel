@@ -1,5 +1,5 @@
 import { KEYS, URL_KEYS } from "../constants";
-import { AchievementsFormValues, BannerFormValues, ChangePasswordPayload, CoursesFormValues, CoursesRegisterFormValues, FaqFormValues, LoginPayload, LoginResponse, TestomonialsFormValues, UploadResponse, WebSettingFormValues, WorkshopFormValues, WorkshopRegisterFormValues } from "../types";
+import { AboutType, AchievementsFormValues, AdminSettingFormValues, BannerFormValues, ChangePasswordPayload, CoursesFormValues, CoursesRegisterFormValues, FaqFormValues, LanguagesFormValues, LoginPayload, LoginResponse, TestomonialsFormValues, UploadResponse, WebSettingFormValues, WorkshopFormValues, WorkshopRegisterFormValues } from "../types";
 import Delete from "./Delete";
 import { useApiDelete, useApiPost } from "./hooks";
 import Post from "./Post";
@@ -55,6 +55,17 @@ const Mutations = {
 
   // ************ Web Setting ***********
   useWebSetting: () => useApiPost<Partial<WebSettingFormValues>, void>([KEYS.WEB_SETTING.ADD_EDIT, KEYS.WEB_SETTING.ALL], (input) => Post(URL_KEYS.WEB_SETTING.ADD_EDIT, input)),
+
+  // ************ Admin Setting ***********
+  useAdminSetting: () => useApiPost<Partial<AdminSettingFormValues>, void>([KEYS.ADMIN_SETTING.ADD_EDIT, KEYS.ADMIN_SETTING.ALL], (input) => Post(URL_KEYS.ADMIN_SETTING.ADD_EDIT, input)),
+
+  // ************ About ***********
+  useAbout: () => useApiPost<Partial<AboutType>, void>([KEYS.ABOUT.ADD_EDIT, KEYS.ABOUT.ALL], (input) => Post(URL_KEYS.ABOUT.ADD_EDIT, input)),
+
+  // ************ Language ***********
+  useLanguages: () => useApiPost<LanguagesFormValues, void>([KEYS.LANGUAGE.ADD, KEYS.LANGUAGE.ALL], (input) => Post(URL_KEYS.LANGUAGE.ADD, input)),
+  useEditLanguages: () => useApiPost<{ languageId: string } & LanguagesFormValues, void>([KEYS.LANGUAGE.EDIT, KEYS.LANGUAGE.ALL], (input) => Post(URL_KEYS.LANGUAGE.EDIT, input)),
+  useDeleteLanguages: () => useApiDelete<string, void>([KEYS.LANGUAGE.DELETE, KEYS.LANGUAGE.ALL], (id) => Delete(`${URL_KEYS.LANGUAGE.DELETE}/${id}`)),
 };
 
 export default Mutations;

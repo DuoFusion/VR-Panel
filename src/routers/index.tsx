@@ -24,6 +24,11 @@ import CoursesRegisterContainer from "../Pages/coursesRegister";
 import AddEditCoursesRegister from "../Pages/coursesRegister/AddEditCoursesRegister";
 import AchievementsContainer from "../Pages/achievements";
 import AddEditAchievements from "../Pages/achievements/AddEditAchievements";
+import AboutContainer from "../Pages/about";
+import LanguagesContainer from "../Pages/languages";
+import AddEditLanguages from "../Pages/languages/AddEditLanguages";
+import AdminSettingContainer from "../Pages/adminSetting";
+import UserRegistrationContainer from "../Pages/userRegistration";
 
 export const Router = createBrowserRouter([
   {
@@ -60,6 +65,15 @@ export const Router = createBrowserRouter([
           { path: ROUTES.FAQ.ADD_EDIT_FAQ, element: <AddEditFaq /> },
 
           { path: ROUTES.WEB_SETTING, element: <WebSettingContainer /> },
+
+          { path: ROUTES.ADMIN_SETTING, element: <AdminSettingContainer /> },
+
+          { path: ROUTES.ABOUT, element: <AboutContainer /> },
+
+          { path: ROUTES.USER_REGISTRATION.USER_REGISTRATION, element: <UserRegistrationContainer /> },
+
+          { path: ROUTES.LANGUAGE.LANGUAGE, element: <LanguagesContainer /> },
+          { path: ROUTES.LANGUAGE.ADD_EDIT_LANGUAGE, element: <AddEditLanguages /> },
         ],
       },
     ],

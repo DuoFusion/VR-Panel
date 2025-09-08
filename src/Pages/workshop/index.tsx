@@ -7,7 +7,7 @@ import { Container } from "reactstrap";
 import { Mutations, Queries } from "../../api";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
-import {  WorkshopType } from "../../types";
+import {  LanguagesType, WorkshopType } from "../../types";
 import { FormatDate, FormatTime } from "../../utils/DateFormatted";
 import { useBasicTableFilterHelper } from "../../utils/hook";
 import { ActiveStatus } from "../../data";
@@ -43,11 +43,12 @@ const WorkshopContainer = () => {
     { title: "priority", dataIndex: "priority", key: "priority" },
     { title: "Workshop Id", dataIndex: "_id", key: "_id" },
     { title: "Workshop Name", dataIndex: "title", key: "title" },
-    { title: "date", dataIndex: "date", key: "date", render: (date: string) => (FormatDate(date) ? <Tag color="geekblue">{FormatDate(date)}</Tag> : "-") },
-    { title: "time", dataIndex: "time", key: "time", render: (time: string) => (FormatTime(time) ? <Tag color="green">{FormatTime(time)}</Tag> : "-") },
+    // { title: "date", dataIndex: "date", key: "date", render: (date: string) => (FormatDate(date) ? <Tag color="geekblue">{FormatDate(date)}</Tag> : "-") },
+    // { title: "time", dataIndex: "time", key: "time", render: (time: string) => (FormatTime(time) ? <Tag color="green">{FormatTime(time)}</Tag> : "-") },
     { title: "duration", dataIndex: "duration", key: "duration" },
     { title: "price", dataIndex: "price", key: "price" },
-    { title: "mrp", dataIndex: "mrp", key: "mrp" },
+    { title: "language", dataIndex: "languageId", key: "languageId", render: (languageId) => languageId?.map((item:LanguagesType) => <Tag color="geekblue">{item.name}</Tag>) ?? "-" },
+    // { title: "mrp", dataIndex: "mrp", key: "mrp" },
     { title: "instructor Name", dataIndex: "instructorName", key: "instructorName" },
     {
       title: "instructor Image",
@@ -55,18 +56,18 @@ const WorkshopContainer = () => {
       key: "instructorImage",
       render: (instructorImage: string) => (instructorImage ? <Image src={instructorImage} width={60} height={60} alt="instructor_image" fallback="/placeholder.png" /> : "-"),
     },
-    {
-      title: "thumbnail Image",
-      dataIndex: "thumbnailImage",
-      key: "thumbnailImage",
-      render: (thumbnailImage: string) => (thumbnailImage ? <Image src={thumbnailImage} width={60} height={60} alt="thumbnail_image" fallback="/placeholder.png" /> : "-"),
-    },
-    {
-      title: "workshop Image",
-      dataIndex: "workshopImage",
-      key: "workshopImage",
-      render: (workshopImage: string) => (workshopImage ? <Image src={workshopImage} width={60} height={60} alt="workshop_image" fallback="/placeholder.png" /> : "-"),
-    },
+    // {
+    //   title: "thumbnail Image",
+    //   dataIndex: "thumbnailImage",
+    //   key: "thumbnailImage",
+    //   render: (thumbnailImage: string) => (thumbnailImage ? <Image src={thumbnailImage} width={60} height={60} alt="thumbnail_image" fallback="/placeholder.png" /> : "-"),
+    // },
+    // {
+    //   title: "workshop Image",
+    //   dataIndex: "workshopImage",
+    //   key: "workshopImage",
+    //   render: (workshopImage: string) => (workshopImage ? <Image src={workshopImage} width={60} height={60} alt="workshop_image" fallback="/placeholder.png" /> : "-"),
+    // },
     {
       title: "features",
       dataIndex: "features",

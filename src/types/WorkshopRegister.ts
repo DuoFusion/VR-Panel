@@ -4,13 +4,17 @@ import { WorkshopType } from "./Workshop";
 export interface WorkshopRegisterFormValues {
   workshopId?: string;
   name?: string;
-  email?: string;
-  phoneNumber?: string;
+  gender?: string;
+  standard?: string;
+  schoolName?: string;
   city?: string;
-  profession?: string;
-  paymentStatus?: string;
+  whatsAppNumber?: string;
+  email?: string;
+  previousPercentage?: number;
+  targetPercentage?: number;
+  goal?: string;
   fees?: number;
-  paymentMethod?: string;
+  paymentStatus?: string;
   transactionId?: string;
 }
 

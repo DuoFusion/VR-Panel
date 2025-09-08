@@ -11,7 +11,7 @@ import { CoursesRegisterFormValues } from "../../types";
 import { generateOptions } from "../../utils";
 import { buildPayload } from "../../utils/FormHelpers";
 import { CoursesRegisterSchema } from "../../utils/ValidationSchemas";
-import { PaymentMethodStatus, PaymentStatus } from "../../data";
+import { GenderStatus, PaymentMethodStatus, PaymentStatus } from "../../data";
 
 const AddEditCoursesRegister = () => {
   const navigate = useNavigate();
@@ -24,16 +24,20 @@ const AddEditCoursesRegister = () => {
   const { data: Courses, isLoading: isCoursesLoading } = Queries.useGetCourses({});
 
   const initialValues: CoursesRegisterFormValues = {
+    courseId: initialData?.courseId?._id || "",
     name: initialData?.name || "",
     email: initialData?.email || "",
-    phoneNumber: initialData?.phoneNumber || "",
+    gender: initialData?.gender || "",
+    standard: initialData?.standard || "",
+    schoolName: initialData?.schoolName || "",
     city: initialData?.city || "",
-    paymentMethod: initialData?.paymentMethod || "",
-    transactionId: initialData?.transactionId || "",
+    whatsAppNumber: initialData?.whatsAppNumber || "",
+    previousPercentage: initialData?.previousPercentage || "",
+    targetPercentage: initialData?.targetPercentage || "",
+    goal: initialData?.goal || "",
     paymentStatus: initialData?.paymentStatus || "",
-    courseId: initialData?.courseId?._id || "",
-    profession: initialData?.profession || "",
     fees: initialData?.fees || null,
+    transactionId: initialData?.transactionId || "",
   };
 
   const handleNavigate = () => navigate(ROUTES.COURSES_REGISTER.COURSES_REGISTER);
@@ -48,7 +52,7 @@ const AddEditCoursesRegister = () => {
 
     if (state?.edit) {
       upEditCoursesRegister({ courseRegisterId: state?.editData?._id, ...payload }, { onSuccess: () => onSuccessHandler() });
-    } 
+    }
   };
 
   return (
@@ -65,31 +69,43 @@ const AddEditCoursesRegister = () => {
                       <SelectInput name="courseId" label="courseId" placeholder="Select courseId" options={generateOptions(Courses?.data?.course_data)} loading={isCoursesLoading} required />
                     </Col>
                     <Col md="6" xl="4">
-                      <TextInput name="name" label="Name" type="text" placeholder="Enter course Name" required />
+                      <TextInput name="name" label="name" type="text" placeholder="Enter name" required />
                     </Col>
                     <Col md="6" xl="4">
-                      <TextInput name="email" label="email" type="text" placeholder="Enter course email" />
+                      <TextInput name="email" label="email" type="email" placeholder="Enter email" required />
                     </Col>
                     <Col md="6" xl="4">
-                      <TextInput name="phoneNumber" label="phoneNumber" type="text" placeholder="Enter course phoneNumber" required />
+                      <TextInput name="whatsAppNumber" label="whatsApp Number" type="number" placeholder="Enter whatsApp Number" required />
                     </Col>
                     <Col md="6" xl="4">
-                      <TextInput name="city" label="city" type="text" placeholder="Enter city" />
+                      <TextInput name="city" label="city" type="text" placeholder="Enter city" required />
                     </Col>
                     <Col md="6" xl="4">
-                      <TextInput name="profession" label="profession" type="text" placeholder="Enter profession" />
+                      <SelectInput name="gender" label="gender" placeholder="select an gender" options={GenderStatus} required />
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="standard" label="standard" type="text" placeholder="Enter Your standard" required />
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="schoolName" label="school Name" type="text" placeholder="Enter Your school Name" required />
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="previousPercentage" label="previous Percentage" type="number" placeholder="Enter previous Percentage" required />
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="targetPercentage" label="target Percentage" type="number" placeholder="Enter target Percentage" required />
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="goal" label="goal" type="text" placeholder="Enter goal" required />
+                    </Col>
+                    <Col md="6" xl="4">
+                      <TextInput name="fees" label="fees" type="number" placeholder="Enter fees" required />
                     </Col>
                     <Col md="6">
                       <SelectInput name="paymentStatus" label="payment Status" placeholder="select an paymentStatus" options={PaymentStatus} required />
                     </Col>
                     <Col md="6">
-                      <TextInput name="fees" label="fees" type="number" placeholder="Enter fees" />
-                    </Col>
-                    <Col md="6">
-                      <SelectInput name="paymentMethod" label="payment Method" placeholder="select an payment Method" options={PaymentMethodStatus} required />
-                    </Col>
-                    <Col md="6">
-                      <TextInput name="transactionId" label="transactionId" type="number" placeholder="Enter transactionId" required />
+                      <TextInput name="transactionId" label="transactionId" type="text" placeholder="Enter transactionId" required />
                     </Col>
                     <Col sm="12">
                       <div className="text-center mt-1">

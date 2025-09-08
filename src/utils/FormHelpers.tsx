@@ -1,6 +1,6 @@
 export function buildPayload<T extends Record<string, any>>(values: T, initialData?: Partial<T>): Partial<T> {
   const payload: Partial<T> = {};
-  const socialKeys = ["instagram", "facebook", "linkedin", "x", "youtube"];
+  const socialKeys = ["instagram", "facebook", "linkedin", "x", "youtube", "twitter"];
   const socialMedia: Record<string, string | null> = {};
 
   function normalize(val: any) {
@@ -11,7 +11,7 @@ export function buildPayload<T extends Record<string, any>>(values: T, initialDa
     const normalizedValue = normalize(value);
 
     // image fields (array -> string)
-    if ((key.toLowerCase().includes("image") || key === "image") && Array.isArray(value)) {
+    if ((key.toLowerCase().includes("image") || key === "image" || key === "profilePhoto") && Array.isArray(value)) {
       const newImage = value[0] || null;
       if (newImage !== initialValue) target[key] = newImage;
     }

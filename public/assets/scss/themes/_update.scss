@@ -2018,6 +2018,17 @@
     }
   }
 }
+
+.profile-image {
+  .ant-upload-list-picture-circle {
+    justify-content: center;
+
+    .ant-upload-list-item-container {
+      width: 125px !important;
+      height: 125px !important;
+    }
+  }
+}
 /**=====================
     4.3 Update CSS Ends
 ==========================**/
