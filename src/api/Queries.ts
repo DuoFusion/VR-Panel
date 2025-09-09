@@ -1,5 +1,5 @@
 import { KEYS, URL_KEYS } from "../constants";
-import { AboutApiResponse, AchievementsApiResponse, AdminSettingApiResponse, BannerApiResponse, CoursesApiResponse, CoursesRegisterApiResponse, FaqApiResponse, LanguagesApiResponse, Params, TestomonialsApiResponse, WebSettingApiResponse, WorkshopApiResponse } from "../types";
+import { AboutApiResponse, AchievementsApiResponse, AdminSettingApiResponse, BannerApiResponse, CoursesApiResponse, CoursesRegisterApiResponse, FaqApiResponse, LanguagesApiResponse, NewsLetterApiResponse, Params, TestomonialsApiResponse, UserRegistrationApiResponse, WebSettingApiResponse, WorkshopApiResponse } from "../types";
 import { WorkshopRegisterApiResponse } from "../types/WorkshopRegister";
 import Get from "./Get";
 import { useApiGet } from "./hooks";
@@ -33,13 +33,19 @@ const Queries = {
   useGetWebSetting: () => useApiGet<WebSettingApiResponse>([KEYS.WEB_SETTING.ALL], () => Get(URL_KEYS.WEB_SETTING.ALL)),
 
   // ************ Admin Setting ***********
-  useGetAdminSetting: () => useApiGet<AdminSettingApiResponse>([KEYS.ADMIN_SETTING.ALL], () => Get(URL_KEYS.ADMIN_SETTING.ALL)),
+  useGetAdminSetting: (id:string) => useApiGet<AdminSettingApiResponse>([KEYS.ADMIN_SETTING.ALL,id], () => Get(`${URL_KEYS.ADMIN_SETTING.ALL}/${id}`)),
 
   // ************ About ***********
   useGetAbout: () => useApiGet<AboutApiResponse>([KEYS.ABOUT.ALL], () => Get(URL_KEYS.ABOUT.ALL)),
 
   // ************ Languages ***********
   useGetLanguages: (params: Params) => useApiGet<LanguagesApiResponse>([KEYS.LANGUAGE.ALL, params], () => Get(URL_KEYS.LANGUAGE.ALL, params)),
+
+  // ************ User Registration ***********
+  useGetUserRegistration: (params: Params) => useApiGet<UserRegistrationApiResponse>([KEYS.USER_REGISTRATION.ALL, params], () => Get(URL_KEYS.USER_REGISTRATION.ALL, params)),
+
+  // ************ News Letter ***********
+  useGetNewsLetter: (params: Params) => useApiGet<NewsLetterApiResponse>([KEYS.NEWS_LETTER.ALL, params], () => Get(URL_KEYS.NEWS_LETTER.ALL, params)),
 };
 
 export default Queries;

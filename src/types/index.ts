@@ -15,3 +15,4 @@ export * from "./About";
 export * from "./Languages";
 export * from "./AdminSetting";
 export * from "./UserRegistration";
+export * from "./NewsLetter";

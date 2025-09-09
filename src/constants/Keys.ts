@@ -50,7 +50,7 @@ export const KEYS = {
   },
   ADMIN_SETTING: {
     ALL: "admin-setting",
-    ADD_EDIT: "add-edit-admin-setting",
+    ADD_EDIT: "update-profile",
   },
   COURSES_REGISTER: {
     ALL: "course-register",
@@ -74,5 +74,11 @@ export const KEYS = {
   },
   USER_REGISTRATION: {
     ALL: "user-registration",
+  },
+    NEWS_LETTER: {
+    ALL: "news-letter",
+    ADD: "add-news-letter",
+    EDIT: "edit-news-letter",
+    DELETE: "delete-news-letter",
   },
 } as const;

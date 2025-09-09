@@ -29,6 +29,7 @@ import LanguagesContainer from "../Pages/languages";
 import AddEditLanguages from "../Pages/languages/AddEditLanguages";
 import AdminSettingContainer from "../Pages/adminSetting";
 import UserRegistrationContainer from "../Pages/userRegistration";
+import NewsLetterContainer from "../Pages/NewsLetter";
 
 export const Router = createBrowserRouter([
   {
@@ -73,7 +74,10 @@ export const Router = createBrowserRouter([
           { path: ROUTES.USER_REGISTRATION.USER_REGISTRATION, element: <UserRegistrationContainer /> },
 
           { path: ROUTES.LANGUAGE.LANGUAGE, element: <LanguagesContainer /> },
+
           { path: ROUTES.LANGUAGE.ADD_EDIT_LANGUAGE, element: <AddEditLanguages /> },
+
+          { path: ROUTES.NEWS_LETTER.NEWS_LETTER, element: <NewsLetterContainer /> },
         ],
       },
     ],

@@ -17,6 +17,7 @@ export interface WebSettingFormValues {
   razorpayKeySecret?: string;
   ourStudent?: string;
   rating?: string;
+  address?: string;
 }
 
 export interface WebSettingType extends WebSettingFormValues, CommonDataType {

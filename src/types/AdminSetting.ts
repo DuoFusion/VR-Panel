@@ -10,7 +10,7 @@ export interface AdminSettingFormValues {
 
 export interface AdminSettingType extends AdminSettingFormValues, CommonDataType {
   _id?: string;
-  
+  userType?: string;
 }
 
 export interface AdminSettingApiResponse extends MessageStatus {

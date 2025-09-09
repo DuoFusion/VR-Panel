@@ -24,6 +24,7 @@ const WebSettingContainer = () => {
     razorpayKeySecret: WebSetting?.razorpayKeySecret || "",
     ourStudent: WebSetting?.ourStudent || "",
     rating: WebSetting?.rating || "",
+    address: WebSetting?.address || "",
     socialMedia: {
       instagram: WebSetting?.socialMedia?.instagram || "",
       facebook: WebSetting?.socialMedia?.facebook || "",
@@ -86,6 +87,9 @@ const WebSettingContainer = () => {
                       </Col>
                       <Col md="6">
                         <TextInput name="razorpayKeySecret" label="razorpay Key Secret" type="text" placeholder="Enter razorpay Key Secret" required />
+                      </Col>
+                      <Col md="12">
+                        <TextInput name="address" label="address" type="textarea" placeholder="Enter address" required />
                       </Col>
                       <Col sm="12">
                         <div className="text-center mt-1">

@@ -53,8 +53,8 @@ const URL = {
     ADD_EDIT: "/web-setting/add/edit",
   },
   ADMIN_SETTING: {
-    ALL: "/admin-setting",
-    ADD_EDIT: "/admin-setting/add/edit",
+    ALL: "/auth/user",
+    ADD_EDIT: "/auth/update-profile",
   },
   COURSES_REGISTER: {
     ALL: "/course-register",
@@ -78,6 +78,12 @@ const URL = {
   },
   USER_REGISTRATION: {
     ALL: "/user-registration",
+  },
+  NEWS_LETTER: {
+    ALL: "/news-letter",
+    ADD: "/news-letter",
+    EDIT: "/news-letter",
+    DELETE: "/news-letter",
   },
 } as const;
 

@@ -48,4 +48,8 @@ export const ROUTES = {
   USER_REGISTRATION: {
     USER_REGISTRATION: "/user-registration",
   },
+  NEWS_LETTER: {
+    NEWS_LETTER: "/news-letter",
+    ADD_EDIT_NEWS_LETTER: "/add-edit-news-letter",
+  },
 } as const;

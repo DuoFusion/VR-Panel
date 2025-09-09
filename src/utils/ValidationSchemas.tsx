@@ -186,6 +186,7 @@ export const WebSettingSchema = Yup.object({
   razorpayKeySecret: fieldSchema("string", "razorpayKeySecret"),
   ourStudent: fieldSchema("string", "ourStudent"),
   rating: fieldSchema("string", "rating"),
+  address: fieldSchema("string", "address"),
   instagram: fieldSchema("string", { required: false }),
   linkedin: fieldSchema("string", { required: false }),
   facebook: fieldSchema("string", { required: false }),

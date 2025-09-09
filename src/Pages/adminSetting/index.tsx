@@ -8,11 +8,12 @@ import { Breadcrumbs, CardWrapper } from "../../coreComponents";
 import { AdminSettingFormValues } from "../../types";
 import { buildPayload } from "../../utils/FormHelpers";
 import { AdminSettingSchema } from "../../utils/ValidationSchemas";
+import { useAppSelector } from "../../store/hooks";
 
 const AdminSettingContainer = () => {
+  const { user } = useAppSelector((store) => store.auth);
   const { mutate: useAdminSetting, isPending: isAdminSettingAdding } = Mutations.useAdminSetting();
-
-  const { data, isLoading: isAdminSettingLoading } = Queries.useGetAdminSetting();
+  const { data, isLoading: isAdminSettingLoading } = Queries.useGetAdminSetting(user?._id || "");
   const AdminSetting = data?.data;
 
   const initialValues: AdminSettingFormValues = {
@@ -24,7 +25,7 @@ const AdminSettingContainer = () => {
   };
 
   const handleSubmit = async (values: AdminSettingFormValues) => {
-    const payload = buildPayload(values, AdminSetting);
+    const payload = buildPayload({ profileId: user?._id, ...values }, AdminSetting);
     useAdminSetting(payload);
   };
 

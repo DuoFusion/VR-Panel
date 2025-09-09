@@ -12,9 +12,10 @@ import { Queries } from "../../api";
 
 const Header = () => {
   const [fullScreen, setFullScreen] = useState(false);
+  const { user } = useAppSelector((store) => store.auth);
 
   const dispatch = useAppDispatch();
-  const { data } = Queries.useGetAdminSetting();
+  const { data } = Queries.useGetAdminSetting(user?._id || "");
   const AdminSetting = data?.data;
 
   // const { user } = useAppSelector((state) => state.auth);
@@ -54,7 +55,7 @@ const Header = () => {
                     {AdminSetting?.firstName} {AdminSetting?.lastName}
                   </span>
                   <p className="mb-0 text-capitalize">
-                    {/* {AdminSetting?.userType} */}
+                    {AdminSetting?.userType}
                     <SvgIcon iconId="header-arrow-down" />
                   </p>
                 </div>
