@@ -1,23 +1,22 @@
 import { Button, Flex, Image, Modal, Switch, Table, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
-import { Edit, Forbidden, Trash } from "iconsax-react";
+import { Edit, Trash } from "iconsax-react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "reactstrap";
 import { Mutations, Queries } from "../../api";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
-import {  LanguagesType, WorkshopType } from "../../types";
-import { FormatDate, FormatTime } from "../../utils/DateFormatted";
-import { useBasicTableFilterHelper } from "../../utils/hook";
-import { ActiveStatus } from "../../data";
+import { FeaturesStatus } from "../../data";
+import { LanguagesType, WorkshopType } from "../../types";
 import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
+import { useBasicTableFilterHelper } from "../../utils/hook";
 
 const WorkshopContainer = () => {
   const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange, handleSetSortBy } = useBasicTableFilterHelper({
     initialParams: { page: 1, limit: 10 },
     debounceDelay: 500,
-    sortKey: "blockFilter",
+    sortKey: "featuresFilter",
   });
 
   const navigate = useNavigate();
@@ -56,18 +55,18 @@ const WorkshopContainer = () => {
       key: "instructorImage",
       render: (instructorImage: string) => (instructorImage ? <Image src={instructorImage} width={60} height={60} alt="instructor_image" fallback="/placeholder.png" /> : "-"),
     },
-    // {
-    //   title: "thumbnail Image",
-    //   dataIndex: "thumbnailImage",
-    //   key: "thumbnailImage",
-    //   render: (thumbnailImage: string) => (thumbnailImage ? <Image src={thumbnailImage} width={60} height={60} alt="thumbnail_image" fallback="/placeholder.png" /> : "-"),
-    // },
-    // {
-    //   title: "workshop Image",
-    //   dataIndex: "workshopImage",
-    //   key: "workshopImage",
-    //   render: (workshopImage: string) => (workshopImage ? <Image src={workshopImage} width={60} height={60} alt="workshop_image" fallback="/placeholder.png" /> : "-"),
-    // },
+    {
+      title: "thumbnail Image",
+      dataIndex: "thumbnailImage",
+      key: "thumbnailImage",
+      render: (thumbnailImage: string) => (thumbnailImage ? <Image src={thumbnailImage} width={60} height={60} alt="thumbnail_image" fallback="/placeholder.png" /> : "-"),
+    },
+    {
+      title: "workshop Image",
+      dataIndex: "workshopImage",
+      key: "workshopImage",
+      render: (workshopImage: string) => (workshopImage ? <Image src={workshopImage} width={60} height={60} alt="workshop_image" fallback="/placeholder.png" /> : "-"),
+    },
     {
       title: "features",
       dataIndex: "features",
@@ -83,7 +82,7 @@ const WorkshopContainer = () => {
       fixed: "right",
       render: (_, record) => (
         <Flex gap="middle" justify="center">
-          <Button
+          {/* <Button
             type="text"
             title={record?.isBlocked ? `Active` : `UnActive`}
             className={`m-1 p-1 btn ${record?.isBlocked ? "btn-success" : "btn-danger"}`}
@@ -100,7 +99,7 @@ const WorkshopContainer = () => {
             }}
           >
             <Forbidden className="action" />
-          </Button>
+          </Button> */}
           <Button type="text" onClick={() => handleEdit(record)} title="Edit" className="m-1 p-1 btn btn-primary">
             <Edit className="action" />
           </Button>
@@ -130,7 +129,7 @@ const WorkshopContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="Workshop" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-md-6 col-xl-8" typeFilterPlaceholder="Select Status" typeFilterOptions={ActiveStatus} onTypeFilterChange={handleSetSortBy} buttonLabel="Add Workshop" onButtonClick={() => navigate(handleNavigate)}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-md-6 col-xl-8" typeFilterPlaceholder="Select Status" typeFilterOptions={FeaturesStatus} onTypeFilterChange={handleSetSortBy} buttonLabel="Add Workshop" onButtonClick={() => navigate(handleNavigate)}>
           <Table
             className="custom-table"
             dataSource={All_Workshop?.workshop_data}

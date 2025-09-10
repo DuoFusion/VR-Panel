@@ -3,6 +3,11 @@ export const ActiveStatus = [
   { value: "false", label: "UnActive" },
 ];
 
+export const FeaturesStatus = [
+  { value: "true", label: "Features ON" },
+  { value: "false", label: "Features OFF" },
+];
+
 export const DiscountStatus = [
   { value: "percentage", label: "Percentage" },
   { value: "fixed", label: "Fixed" },

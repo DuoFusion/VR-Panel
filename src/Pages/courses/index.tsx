@@ -7,7 +7,7 @@ import { Container } from "reactstrap";
 import { Mutations, Queries } from "../../api";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
-import { ActiveStatus } from "../../data";
+import { FeaturesStatus } from "../../data";
 import { CoursesType, LanguagesType } from "../../types";
 import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
 import { useBasicTableFilterHelper } from "../../utils/hook";
@@ -16,7 +16,7 @@ const CoursesContainer = () => {
   const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange, handleSetSortBy } = useBasicTableFilterHelper({
     initialParams: { page: 1, limit: 10 },
     debounceDelay: 500,
-    sortKey: "blockFilter",
+    sortKey: "featuresFilter",
   });
 
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const CoursesContainer = () => {
     // { title: "short Description", dataIndex: "shortDescription", key: "shortDescription", width: 400 },
     { title: "duration", dataIndex: "duration", key: "duration" },
     { title: "price", dataIndex: "price", key: "price" },
- { title: "language", dataIndex: "languageId", key: "languageId", render: (languageId) => languageId?.map((item:LanguagesType) => <Tag color="geekblue">{item.name}</Tag>) ?? "-" },
+    { title: "language", dataIndex: "languageId", key: "languageId", render: (languageId) => languageId?.map((item: LanguagesType) => <Tag color="geekblue">{item.name}</Tag>) ?? "-" },
     { title: "total Lectures", dataIndex: "totalLectures", key: "totalLectures" },
     { title: "total Hours", dataIndex: "totalHours", key: "totalHours" },
     { title: "instructor Name", dataIndex: "instructorName", key: "instructorName" },
@@ -57,12 +57,18 @@ const CoursesContainer = () => {
       key: "instructorImage",
       render: (instructorImage) => (instructorImage ? <Image src={instructorImage} width={60} height={60} alt="instructor_image" fallback="/placeholder.png" /> : "-"),
     },
-    // {
-    //   title: "Courses Image",
-    //   dataIndex: "courseImage",
-    //   key: "courseImage",
-    //   render: (courseImage) => (courseImage ? <Image src={courseImage} width={60} height={60} alt="courses_image" fallback="/placeholder.png" /> : "-"),
-    // },
+    {
+      title: "thumbnail Image",
+      dataIndex: "thumbnailImage",
+      key: "thumbnailImage",
+      render: (thumbnailImage: string) => (thumbnailImage ? <Image src={thumbnailImage} width={60} height={60} alt="thumbnail_image" fallback="/placeholder.png" /> : "-"),
+    },
+    {
+      title: "Courses Image",
+      dataIndex: "courseImage",
+      key: "courseImage",
+      render: (courseImage) => (courseImage ? <Image src={courseImage} width={60} height={60} alt="courses_image" fallback="/placeholder.png" /> : "-"),
+    },
     {
       title: "features",
       dataIndex: "features",
@@ -125,7 +131,7 @@ const CoursesContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="Courses" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-md-6 col-xl-8" typeFilterPlaceholder="Select Status" typeFilterOptions={ActiveStatus} onTypeFilterChange={handleSetSortBy} buttonLabel="Add Courses" onButtonClick={() => navigate(handleNavigate)}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-md-6 col-xl-8" typeFilterPlaceholder="Select Status" typeFilterOptions={FeaturesStatus} onTypeFilterChange={handleSetSortBy} buttonLabel="Add Courses" onButtonClick={() => navigate(handleNavigate)}>
           <Table
             className="custom-table"
             dataSource={All_Courses?.course_data}

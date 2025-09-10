@@ -52,4 +52,8 @@ export const ROUTES = {
     NEWS_LETTER: "/news-letter",
     ADD_EDIT_NEWS_LETTER: "/add-edit-news-letter",
   },
+  BLOG: {
+    BLOG: "/blog",
+    ADD_EDIT_BLOG: "/add-edit-blog",
+  },
 } as const;

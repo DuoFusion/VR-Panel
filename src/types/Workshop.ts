@@ -10,8 +10,8 @@ export interface WorkshopFormValues {
   instructorImage?: string | string[];
   instructorName?: string;
   languageId?: TypeFilterOption[];
-  // thumbnailImage?: string | string[];
-  // workshopImage?: string | string[];
+  thumbnailImage?: string | string[];
+  workshopImage?: string | string[];
   price?: number;
   // mrp?: number;
   priority?: number;

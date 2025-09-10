@@ -15,6 +15,7 @@ export const menuList: MenuItem[] = [
   // { id: 10, title: "Banner", url: ROUTES.BANNER.BANNER, icon: "editors", type: "link" },
   { id: 13, title: "Testimonials", url: ROUTES.TESTOMONIALS.TESTOMONIALS, icon: "editors", type: "link" },
   { id: 14, title: "FAQ", url: ROUTES.FAQ.FAQ, icon: "editors", type: "link" },
+  { id: 15, title: "Blog", url: ROUTES.BLOG.BLOG, icon: "editors", type: "link" },
   { id: 16, title: "About Us", url: ROUTES.ABOUT, icon: "editors", type: "link" },
   { id: 17, title: "Admin Setting", url: ROUTES.ADMIN_SETTING, icon: "editors", type: "link" },
   { id: 18, title: "Web Setting", url: ROUTES.WEB_SETTING, icon: "editors", type: "link" },

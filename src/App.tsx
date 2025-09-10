@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import { Router } from "./routers";
 import Store from "./store/store";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -13,7 +12,6 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Provider store={Store}>
         <RouterProvider router={Router} />
-        <ReactQueryDevtools buttonPosition="bottom-right" />
       </Provider>
     </QueryClientProvider>
   );

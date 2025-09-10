@@ -32,8 +32,8 @@ const AddEditWorkshop = () => {
     duration: initialData?.duration || "",
     instructorImage: initialData?.instructorImage ? [initialData.instructorImage] : [],
     instructorName: initialData?.instructorName || "",
-    // thumbnailImage: initialData?.thumbnailImage ? [initialData.thumbnailImage] : [],
-    // workshopImage: initialData?.workshopImage ? [initialData.workshopImage] : [],
+    thumbnailImage: initialData?.thumbnailImage ? [initialData.thumbnailImage] : [],
+    workshopImage: initialData?.workshopImage ? [initialData.workshopImage] : [],
     price: initialData?.price || null,
     languageId: initialData?.languageId?.map((language: LanguagesType) => (language?._id )) ?? [],
     // mrp: initialData?.mrp || null,
@@ -100,15 +100,15 @@ const AddEditWorkshop = () => {
                     {/* <Col md="12">
                       <TextInput name="fullDescription" label="Full Description" type="textarea" placeholder="Enter full description" />
                     </Col> */}
-                    <Col md="12">
+                    <Col>
                       <ImageUpload name="instructorImage" label="Instructor Image" />
                     </Col>
-                    {/* <Col>
+                    <Col>
                       <ImageUpload name="thumbnailImage" label="Thumbnail Image" required />
-                    </Col> */}
-                    {/* <Col>
+                    </Col>
+                    <Col>
                       <ImageUpload name="workshopImage" label="Workshop Image" required />
-                    </Col> */}
+                    </Col>
                     <Col md="12">
                       <CustomSwitch name="features" title="features" />
                     </Col>

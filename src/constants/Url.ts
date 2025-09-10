@@ -81,9 +81,15 @@ const URL = {
   },
   NEWS_LETTER: {
     ALL: "/news-letter",
-    ADD: "/news-letter",
-    EDIT: "/news-letter",
-    DELETE: "/news-letter",
+    ADD: "/news-letter/add",
+    EDIT: "/news-letter/edit",
+    DELETE: "/news-letter/delete",
+  },
+  BLOG: {
+    ALL: "/blog",
+    ADD: "/blog/add",
+    EDIT: "/blog/edit",
+    DELETE: "/blog/delete",
   },
 } as const;
 

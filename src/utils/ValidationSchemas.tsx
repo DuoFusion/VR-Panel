@@ -79,8 +79,8 @@ export const WorkshopSchema = Yup.object({
   instructorImage: imageSchema("Instructor Image", false),
   instructorName: fieldSchema("string", "Instructor Name"),
   languageId: fieldSchema("array", "language", { minItems: 1 }),
-  // thumbnailImage: imageSchema("Thumbnail Image"),
-  // workshopImage: imageSchema("Workshop Image"),
+  thumbnailImage: imageSchema("Thumbnail Image"),
+  workshopImage: imageSchema("Workshop Image"),
   price: fieldSchema("number", { extraRules: (s) => s.min(0, "Price must be greater than or equal to 0") }),
   // mrp: fieldSchema("number", { required: false, extraRules: (s) => s.min(0, "MRP must be greater than or equal to 0") }),
   priority: fieldSchema("number", "Priority"),
@@ -121,7 +121,8 @@ export const CoursesSchema = Yup.object({
   mrp: fieldSchema("number", { required: false, extraRules: (s) => s.min(0, "MRP must be greater than or equal to 0") }),
   // shortDescription: fieldSchema("string", "Short Description"),
   instructorImage: imageSchema("Instructor Image", false),
-  // courseImage: imageSchema("Course Image"),
+  courseImage: imageSchema("Course Image"),
+  thumbnailImage: imageSchema("Thumbnail Image"),
   // listOfLecture: Yup.array().of(lectureSchema).min(1, "At least one Lecture is required"),
   features: fieldSchema("boolean", { required: false }),
 });
@@ -207,4 +208,15 @@ export const AdminSettingSchema = Yup.object({
   email: fieldSchema("string", "email"),
   phoneNumber: fieldSchema("number", "phoneNumber"),
   profilePhoto: imageSchema("profile Photo"),
+});
+
+// Blog
+export const BlogSchema = Yup.object({
+  title: fieldSchema("string", "title"),
+  subtitle: fieldSchema("string", "subtitle"),
+  description: fieldSchema("string", "description"),
+  priority: fieldSchema("number", "priority"),
+  tag: fieldSchema("string", "tag"),
+  blogImage: imageSchema("blog Image"),
+  thumbnailImage: imageSchema("blog thumbnail Image"),
 });

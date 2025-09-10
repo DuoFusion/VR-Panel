@@ -1,5 +1,5 @@
 import { KEYS, URL_KEYS } from "../constants";
-import { AboutType, AchievementsFormValues, AdminSettingFormValues, BannerFormValues, ChangePasswordPayload, CoursesFormValues, CoursesRegisterFormValues, FaqFormValues, LanguagesFormValues, LoginPayload, LoginResponse, TestomonialsFormValues, UploadResponse, WebSettingFormValues, WorkshopFormValues, WorkshopRegisterFormValues } from "../types";
+import { AboutType, AchievementsFormValues, AdminSettingFormValues, BannerFormValues, BlogFormValues, ChangePasswordPayload, CoursesFormValues, CoursesRegisterFormValues, FaqFormValues, LanguagesFormValues, LoginPayload, LoginResponse, TestomonialsFormValues, UploadResponse, WebSettingFormValues, WorkshopFormValues, WorkshopRegisterFormValues } from "../types";
 import Delete from "./Delete";
 import { useApiDelete, useApiPost } from "./hooks";
 import Post from "./Post";
@@ -69,6 +69,11 @@ const Mutations = {
 
   // ************ News Letter ***********
   useDeleteNewsLetter: () => useApiDelete<string, void>([KEYS.NEWS_LETTER.DELETE, KEYS.NEWS_LETTER.ALL], (id) => Delete(`${URL_KEYS.NEWS_LETTER.DELETE}/${id}`)),
+
+  // ************ Blog ***********
+  useBlog: () => useApiPost<BlogFormValues, void>([KEYS.BLOG.ADD, KEYS.BLOG.ALL], (input) => Post(URL_KEYS.BLOG.ADD, input)),
+  useEditBlog: () => useApiPost<{ blogId: string } & BlogFormValues, void>([KEYS.BLOG.EDIT, KEYS.BLOG.ALL], (input) => Post(URL_KEYS.BLOG.EDIT, input)),
+  useDeleteBlog: () => useApiDelete<string, void>([KEYS.BLOG.DELETE, KEYS.BLOG.ALL], (id) => Delete(`${URL_KEYS.BLOG.DELETE}/${id}`)),
 };
 
 export default Mutations;

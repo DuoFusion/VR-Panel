@@ -75,10 +75,16 @@ export const KEYS = {
   USER_REGISTRATION: {
     ALL: "user-registration",
   },
-    NEWS_LETTER: {
+  NEWS_LETTER: {
     ALL: "news-letter",
     ADD: "add-news-letter",
     EDIT: "edit-news-letter",
     DELETE: "delete-news-letter",
+  },
+  BLOG: {
+    ALL: "blog",
+    ADD: "add-blog",
+    EDIT: "edit-blog",
+    DELETE: "delete-blog",
   },
 } as const;

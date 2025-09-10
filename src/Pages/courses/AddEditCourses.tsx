@@ -37,7 +37,8 @@ const AddEditCourses = () => {
     languageId: initialData?.languageId?.map((language: LanguagesType) => language?._id) ?? [],
     // shortDescription: initialData?.shortDescription || "",
     instructorImage: initialData?.instructorImage ? [initialData.instructorImage] : [],
-    // courseImage: initialData?.courseImage ? [initialData.courseImage] : [],
+    courseImage: initialData?.courseImage ? [initialData.courseImage] : [],
+    thumbnailImage: initialData?.thumbnailImage ? [initialData.thumbnailImage] : [],
     // listOfLecture: initialData?.listOfLecture || [{ title: "", description: "" }],
     features: initialData?.features,
   };
@@ -108,12 +109,15 @@ const AddEditCourses = () => {
                     {/* <Col md="12">
                       <TextInput name="shortDescription" label="Short Description" type="textarea" placeholder="Enter short description" required />
                     </Col> */}
-                    <Col md="12">
+                    <Col>
                       <ImageUpload name="instructorImage" label="Instructor Image" />
                     </Col>
-                    {/* <Col md="3">
+                    <Col>
+                      <ImageUpload name="thumbnailImage" label="Thumbnail Image" required />
+                    </Col>
+                    <Col>
                       <ImageUpload name="courseImage" label="Courses Image" required />
-                    </Col> */}
+                    </Col>
                     <Col md="12">
                       <CustomSwitch name="features" title="features" />
                     </Col>

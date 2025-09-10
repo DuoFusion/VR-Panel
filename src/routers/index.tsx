@@ -30,6 +30,8 @@ import AddEditLanguages from "../Pages/languages/AddEditLanguages";
 import AdminSettingContainer from "../Pages/adminSetting";
 import UserRegistrationContainer from "../Pages/userRegistration";
 import NewsLetterContainer from "../Pages/NewsLetter";
+import BlogContainer from "../Pages/blog";
+import AddEditBlog from "../Pages/blog/AddEditBlog";
 
 export const Router = createBrowserRouter([
   {
@@ -78,6 +80,9 @@ export const Router = createBrowserRouter([
           { path: ROUTES.LANGUAGE.ADD_EDIT_LANGUAGE, element: <AddEditLanguages /> },
 
           { path: ROUTES.NEWS_LETTER.NEWS_LETTER, element: <NewsLetterContainer /> },
+
+          { path: ROUTES.BLOG.BLOG, element: <BlogContainer /> },
+          { path: ROUTES.BLOG.ADD_EDIT_BLOG, element: <AddEditBlog /> },
         ],
       },
     ],

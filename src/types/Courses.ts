@@ -22,7 +22,8 @@ export interface CoursesFormValues {
   // shortDescription?: string;
   language?: string;
   instructorImage?: string | string[];
-  // courseImage?: string | string[];
+  courseImage?: string | string[];
+  thumbnailImage?: string | string[];
   // listOfLecture?: ListOfLectureType[];
   features?: boolean;
 }
