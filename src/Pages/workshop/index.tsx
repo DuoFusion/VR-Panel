@@ -1,4 +1,4 @@
-import { Button, Flex, Image, Modal, Switch, Table, Tag } from "antd";
+import { Button, Flex, Image, Modal, Rate, Switch, Table, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { Edit, Trash } from "iconsax-react";
 import { Fragment } from "react";
@@ -47,14 +47,16 @@ const WorkshopContainer = () => {
     { title: "duration", dataIndex: "duration", key: "duration" },
     { title: "price", dataIndex: "price", key: "price" },
     { title: "language", dataIndex: "languageId", key: "languageId", render: (languageId) => languageId?.map((item:LanguagesType) => <Tag color="geekblue">{item.name}</Tag>) ?? "-" },
+    { title: "level", dataIndex: "level", key: "level" },
+    { title: "review", dataIndex: "review", key: "review", render: (review: number) => <Rate value={review} disabled/> },
     // { title: "mrp", dataIndex: "mrp", key: "mrp" },
-    { title: "instructor Name", dataIndex: "instructorName", key: "instructorName" },
-    {
-      title: "instructor Image",
-      dataIndex: "instructorImage",
-      key: "instructorImage",
-      render: (instructorImage: string) => (instructorImage ? <Image src={instructorImage} width={60} height={60} alt="instructor_image" fallback="/placeholder.png" /> : "-"),
-    },
+    // { title: "instructor Name", dataIndex: "instructorName", key: "instructorName" },
+    // {
+    //   title: "instructor Image",
+    //   dataIndex: "instructorImage",
+    //   key: "instructorImage",
+    //   render: (instructorImage: string) => (instructorImage ? <Image src={instructorImage} width={60} height={60} alt="instructor_image" fallback="/placeholder.png" /> : "-"),
+    // },
     {
       title: "thumbnail Image",
       dataIndex: "thumbnailImage",

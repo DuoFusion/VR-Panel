@@ -47,3 +47,9 @@ export const GenderStatus = [
   { value: "female", label: "Female" },
   { value: "other", label: "Other" },
 ];
+
+export const LevelStatus = [
+  { value: "beginner", label: "Beginner"},
+  { value: "intermediate", label: "Intermediate" },
+  { value: "advanced", label: "Advanced" },
+];

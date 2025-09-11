@@ -17,3 +17,4 @@ export * from "./AdminSetting";
 export * from "./UserRegistration";
 export * from "./NewsLetter";
 export * from "./Blog";
+export * from "./ContactUs";

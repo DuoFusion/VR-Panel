@@ -18,6 +18,10 @@ export interface WebSettingFormValues {
   ourStudent?: string;
   rating?: string;
   address?: string;
+  instructorName?: string;
+  instructorImage?: string | string[] | any;
+  instructorAbout?: string;
+  shortDescription?: string;
 }
 
 export interface WebSettingType extends WebSettingFormValues, CommonDataType {

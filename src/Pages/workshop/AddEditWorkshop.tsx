@@ -4,13 +4,14 @@ import { Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { Mutations, Queries } from "../../api";
-import { CustomSwitch, ImageUpload, SelectInput, TextInput } from "../../attribute/formFields";
+import { CustomSwitch, ImageUpload, QuillInput, RateInput, SelectInput, TextInput } from "../../attribute/formFields";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
 import { LanguagesType, WorkshopFormValues } from "../../types";
 import { generateOptions } from "../../utils";
 import { buildPayload } from "../../utils/FormHelpers";
 import { WorkshopSchema } from "../../utils/ValidationSchemas";
+import { LevelStatus } from "../../data";
 
 const AddEditWorkshop = () => {
   const navigate = useNavigate();
@@ -26,16 +27,18 @@ const AddEditWorkshop = () => {
 
   const initialValues: WorkshopFormValues = {
     title: initialData?.title || "",
-    // shortDescription: initialData?.shortDescription || "",
+    description: initialData?.description || "",
     // date: initialData?.date || "",
     // time: initialData?.time || "",
     duration: initialData?.duration || "",
-    instructorImage: initialData?.instructorImage ? [initialData.instructorImage] : [],
-    instructorName: initialData?.instructorName || "",
+    review: initialData?.review || "",
+    level: initialData?.level || "",
+    // instructorImage: initialData?.instructorImage ? [initialData.instructorImage] : [],
+    // instructorName: initialData?.instructorName || "",
     thumbnailImage: initialData?.thumbnailImage ? [initialData.thumbnailImage] : [],
     workshopImage: initialData?.workshopImage ? [initialData.workshopImage] : [],
     price: initialData?.price || null,
-    languageId: initialData?.languageId?.map((language: LanguagesType) => (language?._id )) ?? [],
+    languageId: initialData?.languageId?.map((language: LanguagesType) => language?._id) ?? [],
     // mrp: initialData?.mrp || null,
     priority: initialData?.priority || null,
     // fullDescription: initialData?.fullDescription || "",
@@ -49,7 +52,6 @@ const AddEditWorkshop = () => {
       resetForm();
       handleNavigate();
     };
-
     if (state?.edit) {
       upEditWorkshop({ workshopId: initialData?._id, ...payload }, { onSuccess: () => onSuccessHandler() });
     } else {
@@ -85,24 +87,33 @@ const AddEditWorkshop = () => {
                     {/* <Col md="6" xl="4">
                       <TextInput name="mrp" label="mrp" type="number" placeholder="Enter mrp" />
                     </Col> */}
-                    <Col md="6" xl="4">
+                    <Col md="6">
                       <SelectInput name="languageId" label="language" placeholder="select an language" options={generateOptions(Languages?.data?.language_data)} loading={isLanguagesLoading} mode="multiple" required />
                     </Col>
-                    <Col md="6" xl="4">
+                    <Col md="6">
                       <TextInput name="priority" label="Priority" type="number" placeholder="Enter priority" required />
                     </Col>
-                    <Col md="6" xl="4">
-                      <TextInput name="instructorName" label="Instructor Name" type="text" placeholder="Enter instructor name" required />
+                    <Col md="6">
+                      <RateInput name="review" label="Course review" required />
                     </Col>
+                    <Col md="6">
+                      <SelectInput name="level" label="skill Level" placeholder="select an skill Level" options={LevelStatus} loading={isLanguagesLoading} required />
+                    </Col>
+                    <Col md="12">
+                      <QuillInput name="description" label="Description" required />
+                    </Col>
+                    {/* <Col md="6" xl="4">
+                      <TextInput name="instructorName" label="Instructor Name" type="text" placeholder="Enter instructor name" required />
+                    </Col> */}
                     {/* <Col md="12">
                       <TextInput name="shortDescription" label="Short Description" type="textarea" placeholder="Enter short description" required />
                     </Col> */}
                     {/* <Col md="12">
                       <TextInput name="fullDescription" label="Full Description" type="textarea" placeholder="Enter full description" />
                     </Col> */}
-                    <Col>
-                      <ImageUpload name="instructorImage" label="Instructor Image" />
-                    </Col>
+                    {/* <Col>
+                      <ImageUpload name="instructorImage" label="Instructor Image" required/>
+                    </Col> */}
                     <Col>
                       <ImageUpload name="thumbnailImage" label="Thumbnail Image" required />
                     </Col>

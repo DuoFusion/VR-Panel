@@ -1,5 +1,5 @@
 import { KEYS, URL_KEYS } from "../constants";
-import { AboutApiResponse, AchievementsApiResponse, AdminSettingApiResponse, BannerApiResponse, BlogApiResponse, CoursesApiResponse, CoursesRegisterApiResponse, FaqApiResponse, LanguagesApiResponse, NewsLetterApiResponse, Params, TestomonialsApiResponse, UserRegistrationApiResponse, WebSettingApiResponse, WorkshopApiResponse } from "../types";
+import { AboutApiResponse, AchievementsApiResponse, AdminSettingApiResponse, BannerApiResponse, BlogApiResponse, ContactUsApiResponse, CoursesApiResponse, CoursesRegisterApiResponse, FaqApiResponse, LanguagesApiResponse, NewsLetterApiResponse, Params, TestomonialsApiResponse, UserRegistrationApiResponse, WebSettingApiResponse, WorkshopApiResponse } from "../types";
 import { WorkshopRegisterApiResponse } from "../types/WorkshopRegister";
 import Get from "./Get";
 import { useApiGet } from "./hooks";
@@ -49,6 +49,9 @@ const Queries = {
 
   // ************ Blog ***********
   useGetBlog: (params: Params) => useApiGet<BlogApiResponse>([KEYS.BLOG.ALL, params], () => Get(URL_KEYS.BLOG.ALL, params)),
+
+  // ************ Contact Us ***********
+  useGetContactUs: (params: Params) => useApiGet<ContactUsApiResponse>([KEYS.CONTACT_US.ALL, params], () => Get(URL_KEYS.CONTACT_US.ALL, params)),
 };
 
 export default Queries;

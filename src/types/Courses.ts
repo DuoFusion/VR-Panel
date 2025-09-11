@@ -16,12 +16,15 @@ export interface CoursesFormValues {
   totalLectures?: number;
   totalHours?: string;
   priority?: number;
-  whatWillYouLearn?: string;
-  instructorName?: string;
+  // whatWillYouLearn?: string;
+  // instructorName?: string;
   languageId?: string;
+  description?: string;
+  review?: number;
+  level?: string;
   // shortDescription?: string;
   language?: string;
-  instructorImage?: string | string[];
+  // instructorImage?: string | string[];
   courseImage?: string | string[];
   thumbnailImage?: string | string[];
   // listOfLecture?: ListOfLectureType[];

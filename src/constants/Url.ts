@@ -91,6 +91,12 @@ const URL = {
     EDIT: "/blog/edit",
     DELETE: "/blog/delete",
   },
+  CONTACT_US: {
+    ALL: "/contact-us",
+    ADD: "/contact-us/add",
+    EDIT: "/contact-us/edit",
+    DELETE: "/contact-us/delete",
+  },
 } as const;
 
 // Construct the URL object

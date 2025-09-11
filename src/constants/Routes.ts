@@ -56,4 +56,5 @@ export const ROUTES = {
     BLOG: "/blog",
     ADD_EDIT_BLOG: "/add-edit-blog",
   },
+  CONTACT_US: "/contact-us",
 } as const;

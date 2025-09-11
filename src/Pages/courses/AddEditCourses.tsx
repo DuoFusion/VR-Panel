@@ -4,13 +4,14 @@ import { Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { Mutations, Queries } from "../../api";
-import { CustomSwitch, ImageUpload, SelectInput, TextInput } from "../../attribute/formFields";
+import { CustomSwitch, ImageUpload, QuillInput, RateInput, SelectInput, TextInput } from "../../attribute/formFields";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
 import { CoursesFormValues, LanguagesType } from "../../types";
 import { generateOptions } from "../../utils";
 import { buildPayload } from "../../utils/FormHelpers";
 import { CoursesSchema } from "../../utils/ValidationSchemas";
+import { LevelStatus } from "../../data";
 
 const AddEditCourses = () => {
   const navigate = useNavigate();
@@ -31,12 +32,15 @@ const AddEditCourses = () => {
     totalLectures: initialData?.totalLectures || null,
     totalHours: initialData?.totalHours || "",
     priority: initialData?.priority || null,
-    whatWillYouLearn: initialData?.whatWillYouLearn || "",
-    instructorName: initialData?.instructorName || "",
+    // whatWillYouLearn: initialData?.whatWillYouLearn || "",
+    // instructorName: initialData?.instructorName || "",
+    description: initialData?.description || "",
+    review: initialData?.review || "",
+    level: initialData?.level || "",
     mrp: initialData?.mrp || null,
     languageId: initialData?.languageId?.map((language: LanguagesType) => language?._id) ?? [],
     // shortDescription: initialData?.shortDescription || "",
-    instructorImage: initialData?.instructorImage ? [initialData.instructorImage] : [],
+    // instructorImage: initialData?.instructorImage ? [initialData.instructorImage] : [],
     courseImage: initialData?.courseImage ? [initialData.courseImage] : [],
     thumbnailImage: initialData?.thumbnailImage ? [initialData.thumbnailImage] : [],
     // listOfLecture: initialData?.listOfLecture || [{ title: "", description: "" }],
@@ -100,18 +104,27 @@ const AddEditCourses = () => {
                     <Col md="6" xl="4">
                       <TextInput name="priority" label="Priority" type="number" placeholder="Enter priority" required />
                     </Col>
-                    <Col md="6">
-                      <TextInput name="whatWillYouLearn" label="what Will You Learn" type="text" placeholder="Enter what Will You Learn" />
+                     <Col md="6">
+                      <RateInput name="review" label="Course review" required />
                     </Col>
                     <Col md="6">
+                      <SelectInput name="level" label="skill Level" placeholder="select an skill Level" options={LevelStatus} loading={isLanguagesLoading} required />
+                    </Col>
+                    <Col md="12">
+                      <QuillInput name="description" label="Description" required />
+                    </Col>
+                    {/* <Col md="12">
+                      <QuillInput name="whatWillYouLearn" label="what Will You Learn" required />
+                    </Col> */}
+                    {/* <Col md="6">
                       <TextInput name="instructorName" label="Instructor Name" type="text" placeholder="Enter instructor name" />
-                    </Col>
+                    </Col> */}
                     {/* <Col md="12">
                       <TextInput name="shortDescription" label="Short Description" type="textarea" placeholder="Enter short description" required />
                     </Col> */}
-                    <Col>
-                      <ImageUpload name="instructorImage" label="Instructor Image" />
-                    </Col>
+                    {/* <Col>
+                      <ImageUpload name="instructorImage" label="Instructor Image" required/>
+                    </Col> */}
                     <Col>
                       <ImageUpload name="thumbnailImage" label="Thumbnail Image" required />
                     </Col>

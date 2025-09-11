@@ -1,6 +1,6 @@
-import { Button, Flex, Image, Modal, Switch, Table, Tag } from "antd";
+import { Button, Flex, Image, Modal, Rate, Switch, Table, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
-import { Edit, Forbidden, Trash } from "iconsax-react";
+import { Edit, Trash } from "iconsax-react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "reactstrap";
@@ -48,15 +48,17 @@ const CoursesContainer = () => {
     { title: "language", dataIndex: "languageId", key: "languageId", render: (languageId) => languageId?.map((item: LanguagesType) => <Tag color="geekblue">{item.name}</Tag>) ?? "-" },
     { title: "total Lectures", dataIndex: "totalLectures", key: "totalLectures" },
     { title: "total Hours", dataIndex: "totalHours", key: "totalHours" },
-    { title: "instructor Name", dataIndex: "instructorName", key: "instructorName" },
+    { title: "level", dataIndex: "level", key: "level" },
+    { title: "review", dataIndex: "review", key: "review", render: (review: number) => <Rate value={review} disabled /> },
+    // { title: "instructor Name", dataIndex: "instructorName", key: "instructorName" },
     { title: "mrp", dataIndex: "mrp", key: "mrp" },
-    { title: "what Will You Learn", dataIndex: "whatWillYouLearn", key: "whatWillYouLearn", width: 400 },
-    {
-      title: "instructor Image",
-      dataIndex: "instructorImage",
-      key: "instructorImage",
-      render: (instructorImage) => (instructorImage ? <Image src={instructorImage} width={60} height={60} alt="instructor_image" fallback="/placeholder.png" /> : "-"),
-    },
+    // { title: "what Will You Learn", dataIndex: "whatWillYouLearn", key: "whatWillYouLearn", width: 400 },
+    // {
+    //   title: "instructor Image",
+    //   dataIndex: "instructorImage",
+    //   key: "instructorImage",
+    //   render: (instructorImage) => (instructorImage ? <Image src={instructorImage} width={60} height={60} alt="instructor_image" fallback="/placeholder.png" /> : "-"),
+    // },
     {
       title: "thumbnail Image",
       dataIndex: "thumbnailImage",
@@ -84,7 +86,7 @@ const CoursesContainer = () => {
       fixed: "right",
       render: (_, record) => (
         <Flex gap="middle" justify="center">
-          <Button
+          {/* <Button
             type="text"
             title={record?.isBlocked ? `Active` : `UnActive`}
             className={`m-1 p-1 btn ${record?.isBlocked ? "btn-success" : "btn-danger"}`}
@@ -101,7 +103,7 @@ const CoursesContainer = () => {
             }}
           >
             <Forbidden className="action" />
-          </Button>
+          </Button> */}
           <Button type="text" onClick={() => handleEdit(record)} title="Edit" className="m-1 p-1 btn btn-primary">
             <Edit className="action" />
           </Button>

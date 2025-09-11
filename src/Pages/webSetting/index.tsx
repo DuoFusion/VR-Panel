@@ -4,7 +4,7 @@ import { Facebook, Instagram, LinkCircle, Xrp, Youtube } from "iconsax-react";
 import { Fragment } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Mutations, Queries } from "../../api";
-import { TextInput } from "../../attribute/formFields";
+import { ImageUpload, TextInput } from "../../attribute/formFields";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
 import { WebSettingFormValues } from "../../types";
 import { buildPayload } from "../../utils/FormHelpers";
@@ -25,6 +25,10 @@ const WebSettingContainer = () => {
     ourStudent: WebSetting?.ourStudent || "",
     rating: WebSetting?.rating || "",
     address: WebSetting?.address || "",
+    instructorName: WebSetting?.instructorName || "",
+    instructorAbout: WebSetting?.instructorAbout || "",
+    instructorImage: WebSetting?.instructorImage ? [WebSetting.instructorImage] : [],
+    shortDescription: WebSetting?.shortDescription || "",
     socialMedia: {
       instagram: WebSetting?.socialMedia?.instagram || "",
       facebook: WebSetting?.socialMedia?.facebook || "",
@@ -45,7 +49,7 @@ const WebSettingContainer = () => {
       <Container fluid>
         <CardWrapper title="Web Setting" bodyProps={{ className: "d-flex justify-content-center " }}>
           <div className="input-items">
-            {isWebSettingAdding || isWebSettingLoading ? (
+            {isWebSettingLoading ? (
               <Spin />
             ) : (
               <Formik<WebSettingFormValues> initialValues={initialValues} validationSchema={WebSettingSchema} onSubmit={handleSubmit} enableReinitialize>
@@ -88,8 +92,21 @@ const WebSettingContainer = () => {
                       <Col md="6">
                         <TextInput name="razorpayKeySecret" label="razorpay Key Secret" type="text" placeholder="Enter razorpay Key Secret" required />
                       </Col>
-                      <Col md="12">
+                      <Col md="6">
                         <TextInput name="address" label="address" type="textarea" placeholder="Enter address" required />
+                      </Col>
+                      <Col md="6">
+                        <TextInput name="shortDescription" label="Web short Description" type="textarea" placeholder="Enter short Description" required />
+                      </Col>
+                      <h2>Instructor</h2>
+                      <Col md="12">
+                        <TextInput name="instructorName" label="Instructor Name" type="text" placeholder="Enter instructor name" required />
+                      </Col>
+                      <Col md="12">
+                        <TextInput name="instructorAbout" label="Instructor About" type="textarea" placeholder="Enter instructor About" required />
+                      </Col>
+                      <Col>
+                        <ImageUpload name="instructorImage" label="Instructor Image" required />
                       </Col>
                       <Col sm="12">
                         <div className="text-center mt-1">

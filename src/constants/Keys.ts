@@ -87,4 +87,10 @@ export const KEYS = {
     EDIT: "edit-blog",
     DELETE: "delete-blog",
   },
+  CONTACT_US: {
+    ALL: "contact-us",
+    ADD: "add-contact-us",
+    EDIT: "edit-contact-us",
+    DELETE: "delete-contact-us",
+  },
 } as const;

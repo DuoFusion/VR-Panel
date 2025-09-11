@@ -3,12 +3,14 @@ import { LanguagesType } from "./Languages";
 
 export interface WorkshopFormValues {
   title?: string;
-  // shortDescription?: string;
+  description?: string;
+  review?: number;
+  level?: string;
   // date?: string;
   // time?: string;
   duration?: string;
-  instructorImage?: string | string[];
-  instructorName?: string;
+  // instructorImage?: string | string[];
+  // instructorName?: string;
   languageId?: TypeFilterOption[];
   thumbnailImage?: string | string[];
   workshopImage?: string | string[];

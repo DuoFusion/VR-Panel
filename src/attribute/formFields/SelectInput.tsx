@@ -16,7 +16,12 @@ const SelectInput = ({ label, name, required, options, placeholder, ...props }: 
     }
   };
 
-  const selectOptions = [{ value: "", label: `Select ${label}`, disabled: true }, ...options];
+  const handleBlur = () => {
+    helpers.setTouched(true);
+    if (props.onBlur) props.onBlur();
+  };
+
+  const selectOptions = props.mode === "multiple" ? options : [{ value: "", label: `Select ${label}`, disabled: true }, ...options];
 
   return (
     <div className="input-box">
@@ -27,7 +32,7 @@ const SelectInput = ({ label, name, required, options, placeholder, ...props }: 
         </Label>
       )}
 
-      <Select {...props} allowClear className={meta.error ? "is-invalid" : ""} id={props.id || name} value={field.value === null ? undefined : field.value} onChange={handleChange} placeholder={placeholder || "Select an option"} status={meta.touched && meta.error ? "error" : ""} style={{ width: "100%" }}>
+      <Select {...props} allowClear className={meta.touched && meta.error ? "is-invalid" : ""} id={props.id || name} value={field.value ?? (props.mode === "multiple" ? [] : undefined)} onChange={handleChange} onBlur={handleBlur} placeholder={placeholder || `Select ${label}`} status={meta.touched && meta.error ? "error" : undefined} style={{ width: "100%" }}>
         {selectOptions.map((opt) => (
           <Option key={opt.value} value={opt.value} disabled={opt.disabled}>
             {opt.label}
@@ -35,7 +40,7 @@ const SelectInput = ({ label, name, required, options, placeholder, ...props }: 
         ))}
       </Select>
 
-      {meta.error && <div className="invalid-feedback d-block">{meta.error}</div>}
+      {meta.touched && meta.error && <div className="invalid-feedback d-block">{meta.error}</div>}
     </div>
   );
 };
