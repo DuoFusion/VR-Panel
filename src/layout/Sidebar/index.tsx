@@ -22,6 +22,9 @@ const Sidebar = () => {
           <Link to={ROUTES.DASHBOARD}>
             <h2>VR Course</h2>
           </Link>
+          <div className="back-btn" onClick={() => dispatch(toggleSidebar())}>
+            <i className="fa-solid fa-angle-left" />
+          </div>
           <div className="toggle-sidebar" onClick={() => dispatch(toggleSidebar())}>
             <SvgIcon className="sidebar-toggle" iconId="toggle-icon" />
           </div>
