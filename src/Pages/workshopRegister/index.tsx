@@ -49,7 +49,7 @@ const WorkshopRegisterContainer = () => {
     { title: "goal", dataIndex: "goal", key: "goal" },
     { title: "fees", dataIndex: "fees", key: "fees" },
     { title: "payment Status", dataIndex: "paymentStatus", key: "paymentStatus" },
-    { title: "Transaction ID", dataIndex: "transactionId", key: "transactionId" },
+    { title: "razorpay Payment ID", dataIndex: "razorpayPaymentId", key: "razorpayPaymentId" },
     {
       title: "Option",
       key: "actionIcons",

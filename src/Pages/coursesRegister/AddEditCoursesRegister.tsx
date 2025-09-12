@@ -37,7 +37,7 @@ const AddEditCoursesRegister = () => {
     goal: initialData?.goal || "",
     paymentStatus: initialData?.paymentStatus || "",
     fees: initialData?.fees || null,
-    transactionId: initialData?.transactionId || "",
+    razorpayPaymentId: initialData?.razorpayPaymentId || "",
   };
 
   const handleNavigate = () => navigate(ROUTES.COURSES_REGISTER.COURSES_REGISTER);
@@ -105,7 +105,7 @@ const AddEditCoursesRegister = () => {
                       <SelectInput name="paymentStatus" label="payment Status" placeholder="select an paymentStatus" options={PaymentStatus} required />
                     </Col>
                     <Col md="6">
-                      <TextInput name="transactionId" label="transactionId" type="text" placeholder="Enter transactionId" required />
+                      <TextInput name="razorpayPaymentId" label="razorpay Payment Id" type="text" placeholder="Enter razorpay Payment Id" required />
                     </Col>
                     <Col sm="12">
                       <div className="text-center mt-1">

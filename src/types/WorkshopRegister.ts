@@ -15,7 +15,7 @@ export interface WorkshopRegisterFormValues {
   goal?: string;
   fees?: number;
   paymentStatus?: string;
-  transactionId?: string;
+  razorpayPaymentId?: string;
 }
 
 export interface WorkshopRegisterType extends Omit<Required<WorkshopRegisterFormValues>, "workshopId" >, CommonDataType {

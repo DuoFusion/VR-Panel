@@ -1,5 +1,5 @@
+import { Link } from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
-import SvgIcon from '../../attribute/icons/SvgIcon'
 
 const Footer = () => {
   return (
@@ -7,13 +7,7 @@ const Footer = () => {
       <Container fluid>
         <Row>
           <Col md="6" className="p-0 footer-copyright">
-            <p className="mb-0">Copyright 2025 © Admin theme by pixelstrap</p>
-          </Col>
-          <Col md="6" className="p-0">
-            <p className="float-end mb-0">
-              Hand crafted & made with
-              <SvgIcon className="svg-color footer-icon ms-1" iconId="heart" />
-            </p>
+            <p className="mb-0">Copyright 2025 © <Link to="https://hkdigiverse.com/" target="_blank"> HK Digiverse & IT Consultancy Pvt Ltd.</Link></p>
           </Col>
         </Row>
       </Container>

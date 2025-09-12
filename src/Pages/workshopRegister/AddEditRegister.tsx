@@ -41,7 +41,7 @@ const AddEditWorkshopRegister = () => {
     paymentStatus: initialData?.paymentStatus || "",
     fees: initialData?.fees || null,
     // paymentMethod: initialData?.paymentMethod || "",
-    transactionId: initialData?.transactionId || "",
+    razorpayPaymentId: initialData?.razorpayPaymentId || "",
   };
 
   const handleSubmit = async (values: WorkshopRegisterFormValues, { resetForm }: FormikHelpers<WorkshopRegisterFormValues>) => {
@@ -107,7 +107,7 @@ const AddEditWorkshopRegister = () => {
                       <SelectInput name="paymentStatus" label="payment Status" placeholder="select an paymentStatus" options={PaymentStatus} required/>
                     </Col>
                     <Col md="6">
-                      <TextInput name="transactionId" label="transactionId" type="text" placeholder="Enter transactionId" required />
+                      <TextInput name="razorpayPaymentId" label="razorpay Payment Id" type="text" placeholder="Enter razorpay Payment Id" required />
                     </Col>
                     <Col sm="12">
                       <div className="text-center mt-1">

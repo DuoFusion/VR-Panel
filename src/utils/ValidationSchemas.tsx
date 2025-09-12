@@ -104,7 +104,7 @@ export const WorkshopRegisterSchema = Yup.object({
   goal: fieldSchema("string", "goal"),
   fees: fieldSchema("number", "fees"),
   paymentStatus: fieldSchema("string", "payment Status"),
-  transactionId: fieldSchema("string", "transactionId"),
+  razorpayPaymentId: fieldSchema("string", "razorpayPaymentId"),
 });
 
 // Courses
@@ -145,7 +145,7 @@ export const CoursesRegisterSchema = Yup.object({
   goal: fieldSchema("string", "goal"),
   fees: fieldSchema("number", "fees"),
   paymentStatus: fieldSchema("string", "payment Status"),
-  transactionId: fieldSchema("string", "transactionId"),
+  razorpayPaymentId: fieldSchema("string", "razorpayPaymentId"),
   courseId: fieldSchema("string", "courseId"),
 });
 

@@ -15,7 +15,7 @@ export interface CoursesRegisterFormValues {
   goal?: string;
   fees?: number;
   paymentStatus?: string;
-  transactionId?: string;
+  razorpayPaymentId?: string;
 }
 
 export interface CoursesRegisterType extends Omit<Required<CoursesRegisterFormValues>, "courseId">, CommonDataType {
