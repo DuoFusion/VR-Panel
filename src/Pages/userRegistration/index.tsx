@@ -14,8 +14,8 @@ const UserRegistrationContainer = () => {
     debounceDelay: 500,
   });
 
-  const { data: Testomonials, isLoading: isTestomonialsLoading } = Queries.useGetUserRegistration(params);
-  const All_Testomonials = Testomonials?.data;
+  const { data:  UserRegistration, isLoading: isUserRegistrationLoading } = Queries.useGetUserRegistration(params);
+  const All_UserRegistration =  UserRegistration?.data;
 
   const columns: ColumnsType<UserRegistrationType> = [
     { title: "Sr No.", key: "index", fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
@@ -62,20 +62,20 @@ const UserRegistrationContainer = () => {
 
   return (
     <Fragment>
-      <Breadcrumbs mainTitle="Testomonials" parent="Pages" />
+      <Breadcrumbs mainTitle=" User Registration" parent="Pages" />
       <Container fluid className="custom-table">
         <CardWrapper onSearch={(e) => handleSetSearch(e)}>
           <Table
             className="custom-table"
-            dataSource={All_Testomonials?.users}
+            dataSource={All_UserRegistration?.users}
             columns={ColumnsWithFallback(columns)}
             rowKey={(record) => record.email}
             scroll={{ x: "max-content" }}
-            loading={isTestomonialsLoading}
+            loading={isUserRegistrationLoading}
             pagination={{
               current: pageNumber,
               pageSize: pageSize,
-              total: All_Testomonials?.totalData,
+              total: All_UserRegistration?.totalData,
               showSizeChanger: true,
               onChange: handlePaginationChange,
             }}
