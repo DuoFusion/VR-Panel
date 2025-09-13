@@ -46,7 +46,7 @@ const WorkshopContainer = () => {
     // { title: "time", dataIndex: "time", key: "time", render: (time: string) => (FormatTime(time) ? <Tag color="green">{FormatTime(time)}</Tag> : "-") },
     { title: "duration", dataIndex: "duration", key: "duration" },
     { title: "price", dataIndex: "price", key: "price" },
-    { title: "language", dataIndex: "languageId", key: "languageId", render: (languageId) => languageId?.map((item:LanguagesType) => <Tag color="geekblue">{item.name}</Tag>) ?? "-" },
+    { title: "language", dataIndex: "languageId", key: "languageId", render: (languageId) => languageId?.map((item:LanguagesType) => <Tag color="geekblue" key={item._id}>{item.name}</Tag>) ?? "-" },
     { title: "level", dataIndex: "level", key: "level" },
     { title: "review", dataIndex: "review", key: "review", render: (review: number) => <Rate value={review} disabled/> },
     // { title: "mrp", dataIndex: "mrp", key: "mrp" },

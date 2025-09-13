@@ -550,10 +550,10 @@
 .default-square {
   .form-switch {
     .form-check-input {
-      background-image: url(../images/switch/square-gray.png);
+      // background-image: url(../images/switch/square-gray.png);
 
       &:checked {
-        background-image: url(../images/switch/square.svg);
+        // background-image: url(../images/switch/square.svg);
       }
     }
   }

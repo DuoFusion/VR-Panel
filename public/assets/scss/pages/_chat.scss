@@ -612,7 +612,7 @@
   overflow-y: auto;
   padding: 10px;
   background: linear-gradient(0deg, #f5f6fa, #f5f6fa), linear-gradient(0deg, #ffffff, #ffffff);
-  background-image: url(../images/chats/chat-bg.png);
+  // background-image: url(../images/chats/chat-bg.png);
   height: 619px;
 
   &::-webkit-scrollbar {
@@ -680,7 +680,7 @@
 
 .left-msg {
   .msg-img {
-    @include msg-left(url(../images/dashboard/user/13.jpg), 33px, 33px);
+    // @include msg-left(url(../images/dashboard/user/13.jpg), 33px, 33px);
 
     @media (max-width: 1200px) {
       min-width: 16px;
@@ -707,7 +707,7 @@
   }
 
   .msg-img {
-    @include msg-left(url(../images/dashboard-11/user/10.jpg), 33px, 33px);
+    // @include msg-left(url(../images/dashboard-11/user/10.jpg), 33px, 33px);
     margin: 0 0 0 10px;
 
     [dir="rtl"] & {

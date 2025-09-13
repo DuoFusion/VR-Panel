@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import { Container } from "reactstrap";
 import { Queries } from "../../api";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
-import { RegistrationType, TestomonialsType, UserRegistrationApiResponse, UserRegistrationType } from "../../types";
+import { RegistrationType, UserRegistrationType } from "../../types";
 import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
 import { useBasicTableFilterHelper } from "../../utils/hook";
 

@@ -7,11 +7,11 @@ import { Mutations, Queries } from "../../api";
 import { SelectInput, TextInput } from "../../attribute/formFields";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
+import { GenderStatus, PaymentStatus } from "../../data";
 import { CoursesRegisterFormValues } from "../../types";
 import { generateOptions } from "../../utils";
 import { buildPayload } from "../../utils/FormHelpers";
 import { CoursesRegisterSchema } from "../../utils/ValidationSchemas";
-import { GenderStatus, PaymentMethodStatus, PaymentStatus } from "../../data";
 
 const AddEditCoursesRegister = () => {
   const navigate = useNavigate();

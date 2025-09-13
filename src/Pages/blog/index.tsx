@@ -40,7 +40,6 @@ const BlogContainer = () => {
     { title: "title", dataIndex: "title", key: "title" },
     { title: "subtitle", dataIndex: "subtitle", key: "subtitle" },
     { title: "tag", dataIndex: "tag", key: "tag" },
-    // { title: "description", dataIndex: "description", key: "description", width: 300 },
     {
       title: "blogImage",
       dataIndex: "blogImage",

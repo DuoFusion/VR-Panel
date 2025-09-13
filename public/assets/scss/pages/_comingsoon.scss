@@ -4,13 +4,13 @@
 @use "../utils/variables" as *;
 @use "../utils/mixin" as *;
 .comingsoon-bgimg {
-  background: url(../images/other-images/coming-soon-bg.jpg);
+  // background: url(../images/other-images/coming-soon-bg.jpg);
   background-position: bottom;
   background-size: cover;
 }
 
 .basic-comingsoon {
-  background: url(../images/other-images/comingsoon.png);
+  // background: url(../images/other-images/comingsoon.png);
   background-position: center;
   background-size: cover;
 }

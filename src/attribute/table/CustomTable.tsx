@@ -20,6 +20,7 @@ export interface CommonTableContainerProps<T> {
 }
 
 const CustomTable = <T extends { _id: string; title?: string; isBlocked?: boolean }>({ title, parent = "Pages", buttonLabel, onButtonClick, fetchQuery, deleteMutation, toggleMutation, columns, rowKey = (record) => record._id, typeFilterOptions, onEdit }: CommonTableContainerProps<T>) => {
+  
   const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange, handleSetSortBy } = useBasicTableFilterHelper({ initialParams: { page: 1, limit: 10 }, debounceDelay: 500 });
 
   const { data, isLoading } = fetchQuery(params);

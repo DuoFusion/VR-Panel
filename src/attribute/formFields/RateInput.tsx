@@ -1,6 +1,6 @@
-import React from "react";
-import { Rate, Space } from "antd";
+import { Rate } from "antd";
 import { FieldHookConfig, useField } from "formik";
+import React from "react";
 import { Label } from "reactstrap";
 
 interface RateInputProps {
