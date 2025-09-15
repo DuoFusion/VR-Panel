@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { Mutations } from "../../api";
-import { ImageUpload, QuillInput, TextInput } from "../../attribute/formFields";
+import { CustomSwitch, ImageUpload, QuillInput, TextInput } from "../../attribute/formFields";
 import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
 import { BlogFormValues } from "../../types";
@@ -27,7 +27,8 @@ const AddEditBlog = () => {
     tag: initialData?.tag || "",
     blogImage: initialData?.blogImage ? [initialData.blogImage] : [],
     thumbnailImage: initialData?.thumbnailImage ? [initialData.thumbnailImage] : [],
-    priority: initialData?.priority || null,
+    // priority: initialData?.priority || null,
+    features: initialData?.features,
   };
 
   const handleNavigate = () => navigate(ROUTES.BLOG.BLOG);
@@ -63,10 +64,10 @@ const AddEditBlog = () => {
                     <Col md="6">
                       <TextInput name="subtitle" label="subtitle" type="text" placeholder="Enter subtitle" required />
                     </Col>
-                    <Col md="6">
+                    {/* <Col md="6">
                       <TextInput name="priority" label="Priority" type="number" placeholder="Enter priority" required />
-                    </Col>
-                    <Col md="6">
+                    </Col> */}
+                    <Col md="12">
                       <TextInput name="tag" label="tag" type="text" placeholder="Enter tag" required />
                     </Col>
                     <Col md="12">
@@ -78,6 +79,9 @@ const AddEditBlog = () => {
                     </Col>
                     <Col md="3">
                       <ImageUpload name="thumbnailImage" label="blog thumbnail Image" required />
+                    </Col>
+                    <Col md="12">
+                      <CustomSwitch name="features" title="features" />
                     </Col>
                     <Col sm="12">
                       <div className="text-center mt-1">

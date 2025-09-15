@@ -74,6 +74,7 @@ const Mutations = {
   useBlog: () => useApiPost<BlogFormValues, void>([KEYS.BLOG.ADD, KEYS.BLOG.ALL], (input) => Post(URL_KEYS.BLOG.ADD, input)),
   useEditBlog: () => useApiPost<{ blogId: string } & BlogFormValues, void>([KEYS.BLOG.EDIT, KEYS.BLOG.ALL], (input) => Post(URL_KEYS.BLOG.EDIT, input)),
   useDeleteBlog: () => useApiDelete<string, void>([KEYS.BLOG.DELETE, KEYS.BLOG.ALL], (id) => Delete(`${URL_KEYS.BLOG.DELETE}/${id}`)),
+  useBlogHandleActive: () => useApiPost<{ blogId: string; features?: boolean }, void>([KEYS.BLOG.EDIT, KEYS.BLOG.ALL], (input) => Post(URL_KEYS.BLOG.EDIT, input)),
 
   // ************ Contact Us ***********
   useDeleteContactUs: () => useApiDelete<string, void>([KEYS.CONTACT_US.DELETE, KEYS.CONTACT_US.ALL], (id) => Delete(`${URL_KEYS.CONTACT_US.DELETE}/${id}`)),

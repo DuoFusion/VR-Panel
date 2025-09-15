@@ -8,6 +8,7 @@ export interface BlogFormValues {
   subtitle?: string;
   description?: string;
   tag?: string;
+  features?: boolean;
 }
 
 export interface BlogType extends BlogFormValues, CommonDataType {

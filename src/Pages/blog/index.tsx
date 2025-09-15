@@ -1,4 +1,4 @@
-import { Button, Flex, Image, Modal, Table } from "antd";
+import { Button, Flex, Image, Modal, Switch, Table, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { Edit, Trash } from "iconsax-react";
 import { Fragment } from "react";
@@ -9,16 +9,20 @@ import { ROUTES } from "../../constants";
 import { Breadcrumbs, CardWrapper } from "../../coreComponents";
 import { BlogType } from "../../types";
 import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
+import { FormatDateTime } from "../../utils/DateFormatted";
 import { useBasicTableFilterHelper } from "../../utils/hook";
+import { FeaturesStatus } from "../../data";
 
 const BlogContainer = () => {
-  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange } = useBasicTableFilterHelper({
+  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange , handleSetSortBy} = useBasicTableFilterHelper({
     initialParams: { page: 1, limit: 10 },
     debounceDelay: 500,
+    sortKey: "featuresFilter",
   });
 
   const navigate = useNavigate();
   const { mutate: DeleteBlog } = Mutations.useDeleteBlog();
+  const { mutate: HandleActive, isPending: isHandleActiveLoading } = Mutations.useBlogHandleActive();
 
   const { data: Blog, isLoading: isBlogLoading } = Queries.useGetBlog(params);
   const All_Blog = Blog?.data;
@@ -35,11 +39,12 @@ const BlogContainer = () => {
 
   const columns: ColumnsType<BlogType> = [
     { title: "Sr No.", key: "index", fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
-    { title: "priority", dataIndex: "priority", key: "priority" },
+    // { title: "priority", dataIndex: "priority", key: "priority" },
     { title: "Id", dataIndex: "_id", key: "_id" },
     { title: "title", dataIndex: "title", key: "title" },
     { title: "subtitle", dataIndex: "subtitle", key: "subtitle" },
     { title: "tag", dataIndex: "tag", key: "tag" },
+    { title: "Date/Time", dataIndex: "createdAt", key: "createdAt", render: (date) => (FormatDateTime(date) ? <Tag color="geekblue">{FormatDateTime(date)}</Tag> : "-") },
     {
       title: "blogImage",
       dataIndex: "blogImage",
@@ -51,6 +56,14 @@ const BlogContainer = () => {
       dataIndex: "thumbnailImage",
       key: "thumbnailImage",
       render: (thumbnailImage: string) => (thumbnailImage ? <Image src={thumbnailImage} width={60} height={60} alt="courses_image" fallback="/placeholder.png" /> : "-"),
+    },
+    {
+      title: "features",
+      dataIndex: "features",
+      key: "features",
+      render: (features: boolean, record: BlogType) => <Switch checked={features} className="switch-xsm" onChange={(checked) => HandleActive({ blogId: record._id.toString(), features: checked })} />,
+      fixed: "right",
+      width: 90,
     },
     {
       title: "Option",
@@ -88,14 +101,14 @@ const BlogContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="Blog" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Add Blog" onButtonClick={() => navigate(handleNavigate)}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)}  searchClassName="col-md-6 col-xl-8" typeFilterPlaceholder="Select Status" typeFilterOptions={FeaturesStatus} onTypeFilterChange={handleSetSortBy}  buttonLabel="Add Blog" onButtonClick={() => navigate(handleNavigate)}>
           <Table
             className="custom-table"
             dataSource={All_Blog?.blog_data}
             columns={ColumnsWithFallback(columns)}
             rowKey={(record) => record._id}
             scroll={{ x: "max-content" }}
-            loading={isBlogLoading}
+            loading={isBlogLoading || isHandleActiveLoading}
             pagination={{
               current: pageNumber,
               pageSize: pageSize,

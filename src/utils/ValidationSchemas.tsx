@@ -223,8 +223,8 @@ export const BlogSchema = Yup.object({
   title: fieldSchema("string", "title"),
   subtitle: fieldSchema("string", "subtitle"),
   description: fieldSchema("string", "description"),
-  priority: fieldSchema("number", "priority"),
   tag: fieldSchema("string", "tag"),
   blogImage: imageSchema("blog Image"),
   thumbnailImage: imageSchema("blog thumbnail Image"),
+  features: fieldSchema("boolean", { required: false }),
 });
