@@ -24,6 +24,8 @@ const FaqContainer = () => {
   const All_Faq = Faq?.data;
   const handleNavigate = ROUTES.FAQ.ADD_EDIT_FAQ;
 
+  const handleAdd = () => navigate(handleNavigate, { state: { nextPriority: (All_Faq?.totalData ?? 0) + 1 } });
+
   const handleEdit = (item: FaqType) => {
     navigate(handleNavigate, {
       state: {
@@ -36,7 +38,7 @@ const FaqContainer = () => {
   const columns: ColumnsType<FaqType> = [
     { title: "Sr No.", key: "index", fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
     { title: "priority", dataIndex: "priority", key: "priority" },
-    { title: "Id", dataIndex: "_id", key: "_id" },
+    // { title: "Id", dataIndex: "_id", key: "_id" },
     { title: "question", dataIndex: "question", key: "question", width: 400 },
     { title: "answer", dataIndex: "answer", key: "answer", width: 400 },
     {
@@ -75,7 +77,7 @@ const FaqContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="Faq" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Add Faq" onButtonClick={() => navigate(handleNavigate)}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Add Faq" onButtonClick={() => handleAdd()}>
           <Table
             className="custom-table"
             dataSource={All_Faq?.faq_data}

@@ -40,7 +40,7 @@ const BlogContainer = () => {
   const columns: ColumnsType<BlogType> = [
     { title: "Sr No.", key: "index", fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
     // { title: "priority", dataIndex: "priority", key: "priority" },
-    { title: "Id", dataIndex: "_id", key: "_id" },
+    // { title: "Id", dataIndex: "_id", key: "_id" },
     { title: "title", dataIndex: "title", key: "title" },
     { title: "subtitle", dataIndex: "subtitle", key: "subtitle" },
     { title: "tag", dataIndex: "tag", key: "tag" },

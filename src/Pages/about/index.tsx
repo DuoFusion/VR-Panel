@@ -1,8 +1,7 @@
 import { Col } from "antd";
 import { FormEvent, Fragment, useEffect, useState } from "react";
 import { Mutations, Queries } from "../../api";
-import { Breadcrumbs } from "../../coreComponents";
-import Information from "../../coreComponents/Information";
+import { Breadcrumbs, Information } from "../../coreComponents";
 
 const AboutContainer = () => {
   const [editorContent, setEditorContent] = useState<string>("");

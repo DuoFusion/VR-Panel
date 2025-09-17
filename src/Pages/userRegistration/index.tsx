@@ -1,21 +1,28 @@
 import { Table, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
-import { Fragment } from "react";
+import { Fragment, Key, useState } from "react";
 import { Container } from "reactstrap";
 import { Queries } from "../../api";
-import { Breadcrumbs, CardWrapper } from "../../coreComponents";
+import { Breadcrumbs, CardWrapper, MessageModel } from "../../coreComponents";
 import { RegistrationType, UserRegistrationType } from "../../types";
 import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
 import { useBasicTableFilterHelper } from "../../utils/hook";
+import { useAppDispatch } from "../../store/hooks";
+import { KEYS, URL_KEYS } from "../../constants";
+import { setMessageModal } from "../../store/slices/LayoutSlice";
 
 const UserRegistrationContainer = () => {
+  const [isUserSelect, setUserSelect] = useState<Key[]>([]);
+
   const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange } = useBasicTableFilterHelper({
     initialParams: { page: 1, limit: 10 },
     debounceDelay: 500,
   });
 
-  const { data:  UserRegistration, isLoading: isUserRegistrationLoading } = Queries.useGetUserRegistration(params);
-  const All_UserRegistration =  UserRegistration?.data;
+  const dispatch = useAppDispatch();
+
+  const { data: UserRegistration, isLoading: isUserRegistrationLoading } = Queries.useGetUserRegistration(params);
+  const All_UserRegistration = UserRegistration?.data;
 
   const columns: ColumnsType<UserRegistrationType> = [
     { title: "Sr No.", key: "index", fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
@@ -64,12 +71,12 @@ const UserRegistrationContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle=" User Registration" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Send Message" onButtonClick={() => dispatch(setMessageModal())}>
           <Table
             className="custom-table"
             dataSource={All_UserRegistration?.users}
             columns={ColumnsWithFallback(columns)}
-            rowKey={(record) => record.email}
+            rowKey={(record) => record.id}
             scroll={{ x: "max-content" }}
             loading={isUserRegistrationLoading}
             pagination={{
@@ -81,14 +88,12 @@ const UserRegistrationContainer = () => {
             }}
             rowSelection={{
               type: "checkbox",
-              onChange: (selectedRowKeys, selectedRows) => {
-                console.log("Selected Row Keys:", selectedRowKeys);
-                console.log("Selected Rows:", selectedRows);
-              },
+              onChange: (selectedRowKeys) => setUserSelect(selectedRowKeys),
             }}
           />
         </CardWrapper>
       </Container>
+      <MessageModel userSelect={isUserSelect} queryKey={KEYS.USER_REGISTRATION.MESSAGE} apiUrl={URL_KEYS.USER_REGISTRATION.MESSAGE} />
     </Fragment>
   );
 };

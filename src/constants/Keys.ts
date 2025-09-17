@@ -9,6 +9,7 @@ export const KEYS = {
     ADD: "add-workshop",
     EDIT: "edit-workshop",
     DELETE: "delete-workshop",
+    MESSAGE: "send-message-workshop",
   },
   UPLOAD: {
     ADD: "upload",
@@ -19,6 +20,7 @@ export const KEYS = {
     ADD: "add-courses",
     EDIT: "edit-courses",
     DELETE: "delete-courses",
+    MESSAGE: "send-message-courses",
   },
   BANNER: {
     ALL: "banner",
@@ -56,11 +58,13 @@ export const KEYS = {
     ALL: "course-register",
     EDIT: "edit-course-register",
     DELETE: "delete-course-register",
+    MESSAGE: "send-message-course-register",
   },
   WORKSHOP_REGISTER: {
     ALL: "workshop-register",
     EDIT: "edit-workshop-register",
     DELETE: "delete-workshop-register",
+    MESSAGE: "send-message-workshop-register",
   },
   ABOUT: {
     ALL: "about",
@@ -74,12 +78,14 @@ export const KEYS = {
   },
   USER_REGISTRATION: {
     ALL: "user-registration",
+    MESSAGE: "send-message-user-registration",
   },
   NEWS_LETTER: {
     ALL: "news-letter",
     ADD: "add-news-letter",
     EDIT: "edit-news-letter",
     DELETE: "delete-news-letter",
+    MESSAGE: "send-message-news-letter",
   },
   BLOG: {
     ALL: "blog",
@@ -92,5 +98,8 @@ export const KEYS = {
     ADD: "add-contact-us",
     EDIT: "edit-contact-us",
     DELETE: "delete-contact-us",
+  },
+  DASHBOARD: {
+    ALL: "dashboard",
   },
 } as const;

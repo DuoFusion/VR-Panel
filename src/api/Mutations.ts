@@ -1,5 +1,5 @@
 import { KEYS, URL_KEYS } from "../constants";
-import { AboutType, AchievementsFormValues, AdminSettingFormValues, BannerFormValues, BlogFormValues, ChangePasswordPayload, CoursesFormValues, CoursesRegisterFormValues, FaqFormValues, LanguagesFormValues, LoginPayload, LoginResponse, TestomonialsFormValues, UploadResponse, WebSettingFormValues, WorkshopFormValues, WorkshopRegisterFormValues } from "../types";
+import { AboutType, AchievementsFormValues, AdminSettingFormValues, BannerFormValues, BlogFormValues, ChangePasswordPayload, CoursesFormValues, CoursesRegisterFormValues, FaqFormValues, LanguagesFormValues, LoginPayload, LoginResponse, MessageFormValues, TestomonialsFormValues, UploadResponse, WebSettingFormValues, WorkshopFormValues, WorkshopRegisterFormValues } from "../types";
 import Delete from "./Delete";
 import { useApiDelete, useApiPost } from "./hooks";
 import Post from "./Post";
@@ -69,6 +69,7 @@ const Mutations = {
 
   // ************ News Letter ***********
   useDeleteNewsLetter: () => useApiDelete<string, void>([KEYS.NEWS_LETTER.DELETE, KEYS.NEWS_LETTER.ALL], (id) => Delete(`${URL_KEYS.NEWS_LETTER.DELETE}/${id}`)),
+  useNewsLetterHandleActive: () => useApiPost<{ newsLetterId: string; archive?: boolean }, void>([KEYS.NEWS_LETTER.EDIT, KEYS.NEWS_LETTER.ALL], (input) => Post(URL_KEYS.NEWS_LETTER.EDIT, input)),
 
   // ************ Blog ***********
   useBlog: () => useApiPost<BlogFormValues, void>([KEYS.BLOG.ADD, KEYS.BLOG.ALL], (input) => Post(URL_KEYS.BLOG.ADD, input)),
@@ -78,6 +79,10 @@ const Mutations = {
 
   // ************ Contact Us ***********
   useDeleteContactUs: () => useApiDelete<string, void>([KEYS.CONTACT_US.DELETE, KEYS.CONTACT_US.ALL], (id) => Delete(`${URL_KEYS.CONTACT_US.DELETE}/${id}`)),
+  useContactUsHandleActive: () => useApiPost<{ contactUsId: string; archive?: boolean }, void>([KEYS.CONTACT_US.EDIT, KEYS.CONTACT_US.ALL], (input) => Post(URL_KEYS.CONTACT_US.EDIT, input)),
+
+  // ************ Message ***********
+  useMessage: (key: string, url: string) => useApiPost<MessageFormValues, void>([key], (input) => Post(url, input)),
 };
 
 export default Mutations;

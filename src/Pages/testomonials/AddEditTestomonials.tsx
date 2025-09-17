@@ -24,7 +24,7 @@ const AddEditTestomonials = () => {
     name: initialData?.name || "",
     role: initialData?.role || "",
     image: initialData?.image ? [initialData.image] : [],
-    priority: initialData?.priority || null,
+    priority: initialData?.priority || state?.nextPriority || null,
     message: initialData?.message || "",
     rating: initialData?.rating || null,
   };

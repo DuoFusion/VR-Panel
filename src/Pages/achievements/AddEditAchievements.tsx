@@ -23,7 +23,7 @@ const AddEditAchievements = () => {
   const initialValues: AchievementsFormValues = {
     title: initialData?.title || "",
     image: initialData?.image ? [initialData.image] : [],
-    priority: initialData?.priority || null,
+    priority: initialData?.priority || state?.nextPriority || null,
   };
 
   const handleNavigate = () => navigate(ROUTES.ACHIEVEMENTS.ACHIEVEMENTS);

@@ -23,7 +23,7 @@ const AddEditFaq = () => {
   const initialValues: FaqFormValues = {
     question: initialData?.question || "",
     answer: initialData?.answer || "",
-    priority: initialData?.priority || null,
+    priority: initialData?.priority || state?.nextPriority || null,
   };
 
   const handleNavigate = () => navigate(ROUTES.FAQ.FAQ);

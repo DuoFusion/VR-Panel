@@ -8,6 +8,12 @@ export const FeaturesStatus = [
   { value: "false", label: "Features OFF" },
 ];
 
+export const ArchiveStatus = [
+  { value: "true", label: "Archived" },
+  { value: "false", label: "UnArchived" },
+];
+
+
 export const DiscountStatus = [
   { value: "percentage", label: "Percentage" },
   { value: "fixed", label: "Fixed" },

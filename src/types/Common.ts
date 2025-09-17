@@ -66,6 +66,7 @@ export interface ImageUploadProps {
   isListType?: UploadListType;
   label?: string;
   required?: boolean;
+  disabled?: boolean;
 }
 
 // ************ Svg's ***********

@@ -1,7 +1,7 @@
 import { PlusOutlined } from "@ant-design/icons";
 import type { UploadProps } from "antd";
 import { Image, Upload } from "antd";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Label } from "reactstrap";
 import { Mutations } from "../../api";
 import { FileType, ImageUploadProps } from "../../types";
@@ -15,7 +15,7 @@ const getBase64 = (file: FileType): Promise<string> =>
     reader.onerror = (error) => reject(error);
   });
 
-const ImageUpload: FC<ImageUploadProps> = ({ multiple, name, accept, isListType, label, required }) => {
+const ImageUpload: FC<ImageUploadProps> = ({ multiple, name, accept, isListType, label, required ,disabled}) => {
   const [field, meta, helpers] = useField<string[]>({ name: name || "" });
 
   const [fileList, setFileList] = useState<string[]>(Array.isArray(field.value) ? field.value : []);
@@ -66,6 +66,10 @@ const ImageUpload: FC<ImageUploadProps> = ({ multiple, name, accept, isListType,
     </button>
   );
 
+  useEffect(() => {
+    setFileList(Array.isArray(field.value) ? field.value : []);
+  }, [field.value]);
+
   return (
     <div className="input-box">
       {isListType !== "picture-circle" && (
@@ -89,6 +93,7 @@ const ImageUpload: FC<ImageUploadProps> = ({ multiple, name, accept, isListType,
         }}
         multiple={multiple}
         className={meta.touched && meta.error ? "is-invalid" : ""}
+        disabled={disabled}
       >
         {multiple || fileList.length < 1 ? uploadButton : null}
       </Upload>

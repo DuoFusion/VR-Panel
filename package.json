@@ -22,6 +22,7 @@
     "formik": "^2.4.6",
     "iconsax-react": "^0.0.8",
     "react": "^19.1.1",
+    "react-countup": "^6.5.3",
     "react-dom": "^19.1.1",
     "react-quill-new": "^3.6.0",
     "react-redux": "^9.2.0",

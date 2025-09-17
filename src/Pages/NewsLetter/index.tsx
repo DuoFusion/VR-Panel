@@ -1,21 +1,31 @@
-import { Button, Flex, Modal, Table } from "antd";
+import { Button, Flex, Modal, Switch, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { Trash } from "iconsax-react";
-import { Fragment } from "react";
+import { Fragment, Key, useState } from "react";
 import { Container } from "reactstrap";
 import { Mutations, Queries } from "../../api";
-import { Breadcrumbs, CardWrapper } from "../../coreComponents";
+import { Breadcrumbs, CardWrapper, MessageModel } from "../../coreComponents";
 import { NewsLetterType } from "../../types";
 import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
 import { useBasicTableFilterHelper } from "../../utils/hook";
+import { ArchiveStatus } from "../../data";
+import { useAppDispatch } from "../../store/hooks";
+import { setMessageModal } from "../../store/slices/LayoutSlice";
+import { KEYS, URL_KEYS } from "../../constants";
 
 const NewsLetterContainer = () => {
-  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange } = useBasicTableFilterHelper({
+  const [isUserSelect, setUserSelect] = useState<Key[]>([]);
+
+  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange, handleSetSortBy } = useBasicTableFilterHelper({
     initialParams: { page: 1, limit: 10 },
     debounceDelay: 500,
+    sortKey: "archiveFilter",
   });
 
+  const dispatch = useAppDispatch();
+
   const { mutate: DeleteNewsLetter } = Mutations.useDeleteNewsLetter();
+  const { mutate: HandleActive, isPending: isHandleActiveLoading } = Mutations.useNewsLetterHandleActive();
 
   const { data: NewsLetter, isLoading: isNewsLetterLoading } = Queries.useGetNewsLetter(params);
   const All_NewsLetter = NewsLetter?.data;
@@ -23,6 +33,14 @@ const NewsLetterContainer = () => {
   const columns: ColumnsType<NewsLetterType> = [
     { title: "Sr No.", key: "index", fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
     { title: "email", dataIndex: "email", key: "email" },
+    {
+      title: "archive",
+      dataIndex: "archive",
+      key: "archive",
+      render: (archive, record) => <Switch checked={archive} className="switch-xsm" onChange={(checked) => HandleActive({ newsLetterId: record._id.toString(), archive: checked })} />,
+      fixed: "right",
+      width: 90,
+    },
     {
       title: "Option",
       key: "actionIcons",
@@ -56,14 +74,14 @@ const NewsLetterContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="News Letter" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-12 ">
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-md-6 col-xl-8" typeFilterPlaceholder="Select Status" typeFilterOptions={ArchiveStatus} onTypeFilterChange={handleSetSortBy} buttonLabel="Send Message" onButtonClick={() => dispatch(setMessageModal())}>
           <Table
             className="custom-table"
             dataSource={All_NewsLetter?.newsLetter_data}
             columns={ColumnsWithFallback(columns)}
             rowKey={(record) => record._id}
             scroll={{ x: "max-content" }}
-            loading={isNewsLetterLoading}
+            loading={isNewsLetterLoading || isHandleActiveLoading}
             pagination={{
               current: pageNumber,
               pageSize: pageSize,
@@ -71,9 +89,14 @@ const NewsLetterContainer = () => {
               showSizeChanger: true,
               onChange: handlePaginationChange,
             }}
+            rowSelection={{
+              type: "checkbox",
+              onChange: (selectedRowKeys) => setUserSelect(selectedRowKeys),
+            }}
           />
         </CardWrapper>
       </Container>
+      <MessageModel userSelect={isUserSelect} queryKey={KEYS.NEWS_LETTER.MESSAGE} apiUrl={URL_KEYS.NEWS_LETTER.MESSAGE} />
     </Fragment>
   );
 };

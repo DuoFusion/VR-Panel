@@ -11,6 +11,7 @@ export interface RegistrationType {
 }
 
 export interface UserRegistrationType {
+  id: string;
   name: string;
   email: string;
   whatsAppNumber: string;

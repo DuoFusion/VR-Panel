@@ -31,7 +31,7 @@ const AddEditCourses = () => {
     price: initialData?.price || null,
     totalLectures: initialData?.totalLectures || null,
     totalHours: initialData?.totalHours || "",
-    priority: initialData?.priority || null,
+    priority: initialData?.priority || state?.nextPriority || null,
     // whatWillYouLearn: initialData?.whatWillYouLearn || "",
     // instructorName: initialData?.instructorName || "",
     description: initialData?.description || "",
@@ -45,6 +45,7 @@ const AddEditCourses = () => {
     thumbnailImage: initialData?.thumbnailImage ? [initialData.thumbnailImage] : [],
     // listOfLecture: initialData?.listOfLecture || [{ title: "", description: "" }],
     features: initialData?.features,
+    link: initialData?.link || "",
   };
 
   const handleNavigate = () => navigate(ROUTES.COURSES.COURSES);
@@ -104,11 +105,14 @@ const AddEditCourses = () => {
                     <Col md="6" xl="4">
                       <TextInput name="priority" label="Priority" type="number" placeholder="Enter priority" required />
                     </Col>
-                     <Col md="6">
+                    <Col md="6">
                       <RateInput name="review" label="Course review" required />
                     </Col>
                     <Col md="6">
                       <SelectInput name="level" label="skill Level" placeholder="select an skill Level" options={LevelStatus} loading={isLanguagesLoading} required />
+                    </Col>
+                    <Col md="12">
+                      <TextInput name="link" label="Lecture Link" type="text" placeholder="Enter Lecture Link" required />
                     </Col>
                     <Col md="12">
                       <QuillInput name="description" label="Description" required />

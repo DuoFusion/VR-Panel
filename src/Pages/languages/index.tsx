@@ -24,6 +24,11 @@ const LanguagesContainer = () => {
   const All_Languages = Languages?.data;
   const handleNavigate = ROUTES.LANGUAGE.ADD_EDIT_LANGUAGE;
 
+  // const allLanguages = All_Languages?.language_data || [];
+  // const nextPriority = (allLanguages?.length ?? 0) > 0 ? Math.max(...allLanguages.map((l) => l.priority || 0)) + 1 : 1;
+
+  const handleAdd = () => navigate(handleNavigate, { state: { nextPriority: (All_Languages?.totalData ?? 0) + 1 } });
+
   const handleEdit = (item: LanguagesType) => {
     navigate(handleNavigate, {
       state: {
@@ -36,7 +41,7 @@ const LanguagesContainer = () => {
   const columns: ColumnsType<LanguagesType> = [
     { title: "Sr No.", key: "index", fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
     { title: "priority", dataIndex: "priority", key: "priority" },
-    { title: "Languages Id", dataIndex: "_id", key: "_id" },
+    // { title: "Languages Id", dataIndex: "_id", key: "_id" },
     { title: "Languages Name", dataIndex: "name", key: "name" },
     {
       title: "Option",
@@ -74,7 +79,7 @@ const LanguagesContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="Languages" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Add Languages" onButtonClick={() => navigate(handleNavigate)}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Add Languages" onButtonClick={() => handleAdd()}>
           <Table
             className="custom-table"
             dataSource={All_Languages?.language_data}

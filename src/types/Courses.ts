@@ -29,6 +29,7 @@ export interface CoursesFormValues {
   thumbnailImage?: string | string[];
   // listOfLecture?: ListOfLectureType[];
   features?: boolean;
+  link?: string;
 }
 
 export interface CoursesType extends Omit<Required<CoursesFormValues>, "languageId">, CommonDataType {

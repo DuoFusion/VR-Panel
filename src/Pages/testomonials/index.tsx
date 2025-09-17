@@ -24,6 +24,8 @@ const TestomonialsContainer = () => {
   const All_Testomonials = Testomonials?.data;
   const handleNavigate = ROUTES.TESTOMONIALS.ADD_EDIT_TESTOMONIALS;
 
+  const handleAdd = () => navigate(handleNavigate, { state: { nextPriority: (All_Testomonials?.totalData ?? 0) + 1 } });
+
   const handleEdit = (item: TestomonialsType) => {
     navigate(handleNavigate, {
       state: {
@@ -36,11 +38,11 @@ const TestomonialsContainer = () => {
   const columns: ColumnsType<TestomonialsType> = [
     { title: "Sr No.", key: "index", fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
     { title: "priority", dataIndex: "priority", key: "priority" },
-    { title: "Id", dataIndex: "_id", key: "_id" },
+    // { title: "Id", dataIndex: "_id", key: "_id" },
     { title: "name", dataIndex: "name", key: "name" },
     { title: "role", dataIndex: "role", key: "role" },
     { title: "message", dataIndex: "message", key: "message", width: 400 },
-    { title: "rating", dataIndex: "rating", key: "rating", render: (rating: number) => <Rate value={rating} disabled/> },
+    { title: "rating", dataIndex: "rating", key: "rating", render: (rating: number) => <Rate value={rating} disabled /> },
     {
       title: "Image",
       dataIndex: "image",
@@ -83,7 +85,7 @@ const TestomonialsContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="Testomonials" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Add Testomonials" onButtonClick={() => navigate(handleNavigate)}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Add Testomonials" onButtonClick={() => handleAdd()}>
           <Table
             className="custom-table"
             dataSource={All_Testomonials?.testomonial_data}

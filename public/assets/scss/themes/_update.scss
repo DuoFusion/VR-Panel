@@ -1628,7 +1628,7 @@
         outline: none !important;
       }
       &:disabled {
-        background-color: var(--bs-secondary-bg);
+        background-color: var(--chart-progress-light);
         color: #6e6e6f;
       }
       &::placeholder {
@@ -1729,6 +1729,10 @@
       }
       &.is-invalid {
         border: 1px dashed variables.$danger-text-color !important;
+      }
+      &:disabled {
+        background-color: var(--chart-progress-light);
+        color: #6e6e6f;
       }
     }
 
@@ -1933,6 +1937,70 @@
   }
 }
 
+.ant-table-wrapper {
+  table {
+    tr {
+      th.ant-table-selection-column,
+      td.ant-table-selection-column {
+        padding-inline-end: 0px !important;
+        padding-inline-start: 18px !important;
+      }
+    }
+  }
+
+  .ant-table-selection-column {
+    padding-inline-end: 0px !important;
+    padding-inline-start: 18px !important;
+  }
+
+  .ant-table-tbody {
+    .ant-table-row.ant-table-row-selected {
+      > .ant-table-cell {
+        background-color: var(--bs-secondary-bg) !important;
+      }
+    }
+  }
+}
+
+.ant-checkbox {
+  &-wrapper {
+    &:not(.ant-checkbox-wrapper-disabled):hover .ant-checkbox-inner {
+      border-color: var(--theme-default) !important;
+    }
+
+    &-checked:not(.ant-checkbox-wrapper-disabled):hover .ant-checkbox-inner {
+      border-color: var(--theme-default) !important;
+      background-color: var(--theme-default) !important;
+    }
+  }
+
+  &:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
+    border-color: var(--theme-default) !important;
+  }
+
+  &-checked {
+    .ant-checkbox-inner {
+      border-color: var(--theme-default) !important;
+      background-color: var(--theme-default) !important;
+    }
+
+    &:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
+      border-color: var(--theme-default) !important;
+      background-color: var(--theme-default) !important;
+    }
+  }
+
+  .ant-checkbox-input:focus-visible + .ant-checkbox-inner {
+    outline: 3px solid var(--theme-default) !important;
+  }
+
+  &-indeterminate {
+    .ant-checkbox-inner:after {
+      background-color: var(--theme-default) !important;
+    }
+  }
+}
+
 .ant-btn-variant-outlined:not(:disabled):not(.ant-btn-disabled):hover {
   color: #ffffff !important;
 }
@@ -2029,6 +2097,196 @@
     }
   }
 }
+.dashboard-3 {
+  .sales-border {
+    &:first-child,
+    &:nth-child(5),
+    &:nth-child(9) {
+      .sales-card {
+        &::before {
+          border: none;
+        }
+      }
+    }
+    @media (max-width: 1199px) {
+      &:nth-child(3) {
+        .sales-card {
+          &::before {
+            border: none;
+          }
+        }
+      }
+    }
+    &:last-child {
+      .sales-card {
+        &::after {
+          background: none;
+        }
+      }
+    }
+  }
+
+  .sales-card {
+    padding-left: 20px;
+    [dir="rtl"] & {
+      padding-left: unset;
+      padding-right: 20px;
+    }
+    @media (max-width: 1755px) {
+      padding-left: 7px;
+    }
+    @media (max-width: 600px) {
+      padding-left: 3px !important;
+    }
+    @media (max-width: 1680px) {
+      padding-left: 5px;
+    }
+    &::after {
+      @media (max-width: 575px) {
+        content: "";
+        display: block;
+        width: 90%;
+        height: 1px;
+        background: variables.$border;
+        margin: 0 auto 0;
+      }
+    }
+    &::before {
+      position: absolute;
+      content: "";
+      border: 1px solid variables.$border;
+      top: 15px;
+      left: 10px;
+      height: calc(100% - 30px);
+      opacity: 0.3;
+
+      [dir="rtl"] & {
+        right: 10px;
+        left: unset;
+      }
+
+      @media (max-width: 575px) {
+        border: none;
+      }
+    }
+
+    @media (max-width: 320px) {
+      padding: 0 0 0 22px !important;
+    }
+    @media (max-width: 375px) {
+      padding: 0 0 0 15px !important;
+    }
+
+    .e-commerce-card {
+      display: flex;
+      padding: 29px 53px 27px 15px;
+      gap: 11px;
+
+      [dir="rtl"] & {
+        padding: 29px 15px 27px 53px !important;
+      }
+      @media (max-width: 576px) {
+        padding: 29px 53px 27px 0px !important;
+      }
+      @media (max-width: 1755px) {
+        padding: 29px 53px 27px 12px;
+      }
+      div {
+        h4 {
+          margin: 4px 0 0 0;
+
+          @media (max-width: 1480px) {
+            font-size: 16px;
+          }
+        }
+        span {
+          padding: 4px 0 0 0;
+          color: variables.$theme-body-sub-title-color;
+          @include mixin.pixelstrap-ellipsis;
+          @media (max-width: 1480px) {
+            font-size: 12px;
+          }
+        }
+      }
+
+      @media (max-width: 1470px) {
+        padding: 29px 53px 27px 0px;
+      }
+      @media (max-width: 575px) {
+        padding: unset;
+        // justify-content: center;
+      }
+      &:hover {
+        .svg-fill {
+          animation: tada 1.5s ease infinite;
+          cursor: pointer;
+        }
+      }
+      .svg-box {
+        height: 55px;
+        width: 55px;
+        padding: 13px 12px 12px 13px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .svg-fill {
+          height: 25px;
+          width: 25px;
+          stroke: var(--theme-default);
+        }
+
+        @media (max-width: 1480px) {
+          height: 50px;
+          width: 50px;
+
+          .svg-fill {
+            height: 25px;
+            width: 25px;
+          }
+        }
+      }
+    }
+    .tread-align {
+      gap: 4px;
+      align-items: center;
+      @include mixin.pixelstrap-ellipsis;
+
+      @media (max-width: 1470px) {
+        padding-left: 6px;
+      }
+      @media (max-width: 1580px) {
+        width: 191px;
+      }
+
+      @media (max-width: 1480px) {
+        width: 180px;
+      }
+      @media (max-width: 800px) {
+        width: 76% !important;
+      }
+      @media (max-width: 768px) {
+        padding-left: 16px;
+        width: 74%;
+      }
+      @media (max-width: 600px) {
+        padding: unset;
+        width: 100% !important;
+      }
+      svg {
+        height: 18px;
+        width: 18px;
+        margin-bottom: 16px;
+      }
+      p {
+        color: variables.$theme-body-sub-title-color;
+        @include mixin.pixelstrap-ellipsis;
+      }
+    }
+  }
+}
+
 /**=====================
     4.3 Update CSS Ends
 ==========================**/

@@ -13,6 +13,7 @@ const URL = {
     ADD: "/workshop/add",
     EDIT: "/workshop/edit",
     DELETE: "/workshop/delete",
+    MESSAGE: "/workshop/send-message",
   },
   UPLOAD: {
     ADD: "/upload",
@@ -23,6 +24,7 @@ const URL = {
     ADD: "/courses/add",
     EDIT: "/courses/edit",
     DELETE: "/courses/delete",
+    MESSAGE: "/courses/send-message",
   },
   BANNER: {
     ALL: "/banner",
@@ -60,11 +62,13 @@ const URL = {
     ALL: "/course-register",
     EDIT: "/course-register/edit",
     DELETE: "/course-register/delete",
+    MESSAGE: "/course-register/send-message",
   },
   WORKSHOP_REGISTER: {
     ALL: "/workshop-register",
     EDIT: "/workshop-register/edit",
     DELETE: "/workshop-register/delete",
+    MESSAGE: "/workshop-register/send-message",
   },
   ABOUT: {
     ALL: "/about",
@@ -78,12 +82,14 @@ const URL = {
   },
   USER_REGISTRATION: {
     ALL: "/user-registration",
+    MESSAGE: "/user-registration/send-message",
   },
   NEWS_LETTER: {
     ALL: "/news-letter",
     ADD: "/news-letter/add",
     EDIT: "/news-letter/edit",
     DELETE: "/news-letter/delete",
+    MESSAGE: "/news-letter/send-message",
   },
   BLOG: {
     ALL: "/blog",
@@ -96,6 +102,12 @@ const URL = {
     ADD: "/contact-us/add",
     EDIT: "/contact-us/edit",
     DELETE: "/contact-us/delete",
+  },
+  MESSAGE: {
+    ADD: "/message/add",
+  },
+  DASHBOARD: {
+    ALL: "/dashboard",
   },
 } as const;
 

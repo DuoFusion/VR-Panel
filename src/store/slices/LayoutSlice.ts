@@ -5,6 +5,7 @@ const layoutSlice = createSlice({
   initialState: {
     responsiveSearch: false,
     sideBarToggle: false,
+    isMessageModal: false,
   },
   reducers: {
     setResponsiveSearch: (state) => {
@@ -16,8 +17,11 @@ const layoutSlice = createSlice({
     toggleSidebar: (state) => {
       state.sideBarToggle = !state.sideBarToggle;
     },
+    setMessageModal: (state) => {
+      state.isMessageModal = !state.isMessageModal;
+    },
   },
 });
 
-export const { setResponsiveSearch, toggleSidebar, setSideBarToggle } = layoutSlice.actions;
+export const { setResponsiveSearch, toggleSidebar, setSideBarToggle, setMessageModal } = layoutSlice.actions;
 export default layoutSlice.reducer;

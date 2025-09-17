@@ -5,6 +5,7 @@ export interface ContactUsType extends CommonDataType {
   name?: string;
   email?: string;
   message?: string;
+  archive?: boolean;
 }
 
 export interface ContactUsDataResponse extends PageStatus {

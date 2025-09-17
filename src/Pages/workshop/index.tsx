@@ -1,16 +1,19 @@
 import { Button, Flex, Image, Modal, Rate, Switch, Table, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
-import { Edit, Trash } from "iconsax-react";
-import { Fragment } from "react";
+import { Edit, Whatsapp, Trash } from "iconsax-react";
+import { Fragment, Key, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "reactstrap";
 import { Mutations, Queries } from "../../api";
-import { ROUTES } from "../../constants";
-import { Breadcrumbs, CardWrapper } from "../../coreComponents";
+import { KEYS, ROUTES, URL_KEYS } from "../../constants";
+import { Breadcrumbs, CardWrapper, MessageModel } from "../../coreComponents";
 import { FeaturesStatus } from "../../data";
 import { LanguagesType, WorkshopType } from "../../types";
 import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
 import { useBasicTableFilterHelper } from "../../utils/hook";
+import { FormatDateTime } from "../../utils/DateFormatted";
+import { useAppDispatch } from "../../store/hooks";
+import { setMessageModal } from "../../store/slices/LayoutSlice";
 
 const WorkshopContainer = () => {
   const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange, handleSetSortBy } = useBasicTableFilterHelper({
@@ -18,15 +21,19 @@ const WorkshopContainer = () => {
     debounceDelay: 500,
     sortKey: "featuresFilter",
   });
+  const [isUserSelect, setUserSelect] = useState<Key[]>([]);
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const { mutate: DeleteWorkshop } = Mutations.useDeleteWorkshop();
   const { mutate: HandleActive, isPending: isHandleActiveLoading } = Mutations.useHandleActive();
 
   const { data: Workshop, isLoading: isWorkshopLoading } = Queries.useGetWorkshop(params);
   const All_Workshop = Workshop?.data;
-
   const handleNavigate = ROUTES.WORKSHOP.ADD_EDIT_WORKSHOP;
+
+  const handleAdd = () => navigate(handleNavigate, { state: { nextPriority: (All_Workshop?.totalData ?? 0) + 1 } });
 
   const handleEdit = (item: WorkshopType) => {
     navigate(handleNavigate, {
@@ -37,18 +44,33 @@ const WorkshopContainer = () => {
     });
   };
 
+  const handleMessage = (item: WorkshopType) => {
+    dispatch(setMessageModal());
+    setUserSelect([item?._id]);
+  };
+
   const columns: ColumnsType<WorkshopType> = [
     { title: "Sr No.", dataIndex: "index", key: "index", width: 100, fixed: "left", render: (_, __, index) => (pageNumber - 1) * pageSize + index + 1 },
     { title: "priority", dataIndex: "priority", key: "priority" },
-    { title: "Workshop Id", dataIndex: "_id", key: "_id" },
+    // { title: "Workshop Id", dataIndex: "_id", key: "_id" },
     { title: "Workshop Name", dataIndex: "title", key: "title" },
-    // { title: "date", dataIndex: "date", key: "date", render: (date: string) => (FormatDate(date) ? <Tag color="geekblue">{FormatDate(date)}</Tag> : "-") },
+    { title: "date & time", dataIndex: "createdAt", key: "createdAt", render: (date: string) => (FormatDateTime(date) ? <Tag color="geekblue">{FormatDateTime(date)}</Tag> : "-") },
     // { title: "time", dataIndex: "time", key: "time", render: (time: string) => (FormatTime(time) ? <Tag color="green">{FormatTime(time)}</Tag> : "-") },
     { title: "duration", dataIndex: "duration", key: "duration" },
     { title: "price", dataIndex: "price", key: "price" },
-    { title: "language", dataIndex: "languageId", key: "languageId", render: (languageId) => languageId?.map((item:LanguagesType) => <Tag color="geekblue" key={item._id}>{item.name}</Tag>) ?? "-" },
+    {
+      title: "language",
+      dataIndex: "languageId",
+      key: "languageId",
+      render: (languageId) =>
+        languageId?.map((item: LanguagesType) => (
+          <Tag color="geekblue" key={item._id}>
+            {item.name}
+          </Tag>
+        )) ?? "-",
+    },
     { title: "level", dataIndex: "level", key: "level" },
-    { title: "review", dataIndex: "review", key: "review", render: (review: number) => <Rate value={review} disabled/> },
+    { title: "review", dataIndex: "review", key: "review", render: (review: number) => <Rate value={review} disabled /> },
     // { title: "mrp", dataIndex: "mrp", key: "mrp" },
     // { title: "instructor Name", dataIndex: "instructorName", key: "instructorName" },
     // {
@@ -102,6 +124,9 @@ const WorkshopContainer = () => {
           >
             <Forbidden className="action" />
           </Button> */}
+          <Button type="text" onClick={() => handleMessage(record)} title="Message" className="m-1 p-1 btn btn-success">
+            <Whatsapp className="action" />
+          </Button>
           <Button type="text" onClick={() => handleEdit(record)} title="Edit" className="m-1 p-1 btn btn-primary">
             <Edit className="action" />
           </Button>
@@ -131,7 +156,7 @@ const WorkshopContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="Workshop" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-md-6 col-xl-8" typeFilterPlaceholder="Select Status" typeFilterOptions={FeaturesStatus} onTypeFilterChange={handleSetSortBy} buttonLabel="Add Workshop" onButtonClick={() => navigate(handleNavigate)}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-md-6 col-xl-8" typeFilterPlaceholder="Select Status" typeFilterOptions={FeaturesStatus} onTypeFilterChange={handleSetSortBy} buttonLabel="Add Workshop" onButtonClick={() => handleAdd()}>
           <Table
             className="custom-table"
             dataSource={All_Workshop?.workshop_data}
@@ -146,9 +171,14 @@ const WorkshopContainer = () => {
               showSizeChanger: true,
               onChange: handlePaginationChange,
             }}
+            // rowSelection={{
+            //   type: "checkbox",
+            //   onChange: (selectedRowKeys) => setUserSelect(selectedRowKeys),
+            // }}
           />
         </CardWrapper>
       </Container>
+      <MessageModel userSelect={isUserSelect} queryKey={KEYS.WORKSHOP.MESSAGE} apiUrl={URL_KEYS.WORKSHOP.MESSAGE} />
     </Fragment>
   );
 };

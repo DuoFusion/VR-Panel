@@ -22,8 +22,9 @@ const AddEditLanguages = () => {
 
   const initialValues: LanguagesFormValues = {
     name: initialData?.name || "",
-    priority: initialData?.priority || null,
+    priority: initialData?.priority || state?.nextPriority || null,
   };
+
   const handleNavigate = () => navigate(ROUTES.LANGUAGE.LANGUAGE);
 
   const handleSubmit = async (values: LanguagesFormValues, { resetForm }: FormikHelpers<LanguagesFormValues>) => {

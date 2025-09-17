@@ -19,6 +19,7 @@ export interface WorkshopFormValues {
   priority?: number;
   // fullDescription?: string;
   features?: boolean;
+  link?: string;
 }
 
 export interface WorkshopType extends Omit<Required<WorkshopFormValues>, "languageId">, CommonDataType {

@@ -1,6 +1,6 @@
 import { Button, Spin } from "antd";
 import { Form, Formik } from "formik";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Mutations, Queries } from "../../api";
 import { ImageUpload, TextInput } from "../../attribute/formFields";
@@ -11,6 +11,8 @@ import { AdminSettingSchema } from "../../utils/ValidationSchemas";
 import { useAppSelector } from "../../store/hooks";
 
 const AdminSettingContainer = () => {
+  const [isEditing, setIsEditing] = useState(false);
+
   const { user } = useAppSelector((store) => store.auth);
   const { mutate: useAdminSetting, isPending: isAdminSettingAdding } = Mutations.useAdminSetting();
   const { data, isLoading: isAdminSettingLoading } = Queries.useGetAdminSetting(user?._id || "");
@@ -26,7 +28,7 @@ const AdminSettingContainer = () => {
 
   const handleSubmit = async (values: AdminSettingFormValues) => {
     const payload = buildPayload({ profileId: user?._id, ...values }, AdminSetting);
-    useAdminSetting(payload);
+    useAdminSetting(payload, { onSuccess: () => setIsEditing(false) });
   };
 
   return (
@@ -41,29 +43,40 @@ const AdminSettingContainer = () => {
               </div>
             ) : (
               <Formik<AdminSettingFormValues> initialValues={initialValues} validationSchema={AdminSettingSchema} onSubmit={handleSubmit} enableReinitialize>
-                {() => (
+                {({ dirty }) => (
                   <Form>
                     <Row className="gy-3">
                       <Col md="12" className="text-center input-box profile-image">
-                        <ImageUpload name="profilePhoto" isListType="picture-circle" required />
+                        <ImageUpload name="profilePhoto" isListType="picture-circle" required disabled={!isEditing} />
                       </Col>
                       <Col md="6">
-                        <TextInput name="firstName" label="User first Name" type="text" placeholder="Enter first Name" />
+                        <TextInput name="firstName" label="User first Name" type="text" placeholder="Enter first Name" disabled={!isEditing} />
                       </Col>
                       <Col md="6">
-                        <TextInput name="lastName" label="User last Name" type="text" placeholder="Enter last Name" />
+                        <TextInput name="lastName" label="User last Name" type="text" placeholder="Enter last Name" disabled={!isEditing} />
                       </Col>
                       <Col md="6">
-                        <TextInput name="email" label="email" type="email" placeholder="Enter email" required />
+                        <TextInput name="email" label="email" type="email" placeholder="Enter email" required disabled={!isEditing} />
                       </Col>
                       <Col md="6">
-                        <TextInput name="phoneNumber" label="phone Number" type="number" placeholder="Enter phone Number" required />
+                        <TextInput name="phoneNumber" label="phone Number" type="number" placeholder="Enter phone Number" required disabled={!isEditing} />
                       </Col>
                       <Col sm="12">
                         <div className="text-center mt-1">
-                          <Button htmlType="submit" type="primary" className="btn btn-primary" size="large" loading={isAdminSettingAdding}>
-                            Save
-                          </Button>
+                          {!isEditing ? (
+                            <Button htmlType="button" type="primary" className="btn btn-primary" size="large" onClick={() => setIsEditing(true)}>
+                              Edit
+                            </Button>
+                          ) : (
+                            <>
+                              <Button htmlType="submit" type="primary" className="btn btn-primary" size="large" loading={isAdminSettingAdding} disabled={!dirty}>
+                                Save
+                              </Button>
+                              <Button htmlType="button" className="btn btn-light ms-3" size="large" onClick={() => setIsEditing(false)}>
+                                Cancel
+                              </Button>
+                            </>
+                          )}
                         </div>
                       </Col>
                     </Row>

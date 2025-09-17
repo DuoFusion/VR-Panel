@@ -40,9 +40,10 @@ const AddEditWorkshop = () => {
     price: initialData?.price || null,
     languageId: initialData?.languageId?.map((language: LanguagesType) => language?._id) ?? [],
     // mrp: initialData?.mrp || null,
-    priority: initialData?.priority || null,
+    priority: initialData?.priority || state?.nextPriority || null,
     // fullDescription: initialData?.fullDescription || "",
     features: initialData?.features,
+    link: initialData?.link || "",
   };
 
   const handleSubmit = async (values: WorkshopFormValues, { resetForm }: FormikHelpers<WorkshopFormValues>) => {
@@ -69,7 +70,7 @@ const AddEditWorkshop = () => {
               {() => (
                 <Form>
                   <Row className="gy-3">
-                    <Col md="6" xl="4">
+                    <Col md="6">
                       <TextInput name="title" label="Title" type="text" placeholder="Enter workshop title" required />
                     </Col>
                     {/* <Col md="6" xl="4">
@@ -78,10 +79,10 @@ const AddEditWorkshop = () => {
                     {/* <Col md="6" xl="4">
                       <DataAndTime name="time" type="time" label="Time" format="HH:mm:ss" required />
                     </Col> */}
-                    <Col md="6" xl="4">
+                    <Col md="6">
                       <TextInput name="duration" label="Duration" type="text" placeholder="Enter duration" required />
                     </Col>
-                    <Col md="6" xl="4">
+                    <Col md="6">
                       <TextInput name="price" label="Price" type="number" placeholder="Enter price" required />
                     </Col>
                     {/* <Col md="6" xl="4">
@@ -98,6 +99,9 @@ const AddEditWorkshop = () => {
                     </Col>
                     <Col md="6">
                       <SelectInput name="level" label="skill Level" placeholder="select an skill Level" options={LevelStatus} loading={isLanguagesLoading} required />
+                    </Col>
+                    <Col md="6">
+                      <TextInput name="link" label="Lecture Link" type="text" placeholder="Enter Lecture Link" required />
                     </Col>
                     <Col md="12">
                       <QuillInput name="description" label="Description" required />
