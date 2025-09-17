@@ -13,7 +13,6 @@ export const ArchiveStatus = [
   { value: "false", label: "UnArchived" },
 ];
 
-
 export const DiscountStatus = [
   { value: "percentage", label: "Percentage" },
   { value: "fixed", label: "Fixed" },

@@ -29,7 +29,7 @@ import LanguagesContainer from "../Pages/languages";
 import AddEditLanguages from "../Pages/languages/AddEditLanguages";
 import AdminSettingContainer from "../Pages/adminSetting";
 import UserRegistrationContainer from "../Pages/userRegistration";
-import NewsLetterContainer from "../Pages/NewsLetter";
+import NewsLetterContainer from "../Pages/newsLetter";
 import BlogContainer from "../Pages/blog";
 import AddEditBlog from "../Pages/blog/AddEditBlog";
 import ContactUsContainer from "../Pages/contactUs";
