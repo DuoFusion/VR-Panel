@@ -8,6 +8,7 @@ import SubMenu from "./SubMenu";
 import { useState } from "react";
 import { MenuItem } from "../../types";
 import { menuList } from "../../data";
+import SimpleBar from "simplebar-react";
 
 const Sidebar = () => {
   const [activeMenu, setActiveMenu] = useState<MenuItem[]>([]);
@@ -20,7 +21,7 @@ const Sidebar = () => {
       <div>
         <div className="logo-wrapper">
           <Link to={ROUTES.DASHBOARD}>
-            <h2>VR Course</h2>
+            <Image className="img-fluid for-light" src={`${ImagePath}logo/logo.png`} alt="logo" />
           </Link>
           <div className="back-btn" onClick={() => dispatch(toggleSidebar())}>
             <i className="fa-solid fa-angle-left" />
@@ -31,32 +32,24 @@ const Sidebar = () => {
         </div>
         <div className="logo-icon-wrapper">
           <Link to={ROUTES.DASHBOARD}>
-            <h2>VR</h2>
+            <Image className="img-fluid for-light" src={`${ImagePath}logo/logo-icon.png`} alt="logo" />
           </Link>
         </div>
         <nav className="sidebar-main">
           <div id="sidebar-menu">
             <ul className="sidebar-links custom-scrollbar" id="simple-bar">
-              <div className="simplebar-wrapper">
-                <div className="simplebar-mask">
-                  <div className="simplebar-offset">
-                    <div className="simplebar-content-wrapper">
-                      <div className="simplebar-content">
-                        <li className="back-btn">
-                          <Link to={ROUTES.DASHBOARD}>
-                            <Image className="img-fluid" src={`${ImagePath}logo/logo-icon.png`} alt="logo" />
-                          </Link>
-                          <div className="mobile-back text-end">
-                            <span>Back </span>
-                            <i className="fa fa-angle-right ps-2" />
-                          </div>
-                        </li>
-                        <SubMenu menu={menuList} activeMenu={activeMenu} setActiveMenu={setActiveMenu} level={0} />
-                      </div>
-                    </div>
+              <SimpleBar style={{ width: "68px", height: "350px" }}>
+                <li className="back-btn">
+                  <Link to={ROUTES.DASHBOARD}>
+                    <Image className="img-fluid" src={`${ImagePath}logo/logo-icon.png`} alt="logo" />
+                  </Link>
+                  <div className="mobile-back text-end">
+                    <span>Back </span>
+                    <i className="fa fa-angle-right ps-2" />
                   </div>
-                </div>
-              </div>
+                </li>
+                <SubMenu menu={menuList} activeMenu={activeMenu} setActiveMenu={setActiveMenu} level={0} />
+              </SimpleBar>
             </ul>
           </div>
         </nav>

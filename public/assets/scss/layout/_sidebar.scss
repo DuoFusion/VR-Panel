@@ -88,6 +88,7 @@
 }
 .page-wrapper {
   position: relative;
+  overflow: hidden;
   .page-header {
     max-width: 100vw;
     position: $main-header-position;
@@ -1382,7 +1383,7 @@
           transition: 0.3s;
           box-shadow: 0 0 21px 0 rgba($semi-dark, 0.1);
           .logo-wrapper {
-            padding: 20px 17px 21px 10px;
+            padding: 10px 17px 11px 10px;
             box-shadow: 0px 4px 30px 0px #0a4b550d;
           }
           .logo-icon-wrapper {

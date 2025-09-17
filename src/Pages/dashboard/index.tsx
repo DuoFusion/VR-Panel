@@ -2,8 +2,12 @@ import { Fragment } from "react";
 import CountUp from "react-countup";
 import SvgIcon from "../../attribute/icons/SvgIcon";
 import { Breadcrumbs } from "../../coreComponents";
+import { Queries } from "../../api";
 
 const DashboardContainer = () => {
+  const { data: Dashboard } = Queries.useGetDashboard();
+  const DashboardData = Dashboard?.data;
+  
   return (
     <Fragment>
       <Breadcrumbs mainTitle="Dashboard" parent="Pages" />
@@ -15,7 +19,7 @@ const DashboardContainer = () => {
                 <div className="header-top">
                   <div>
                     <h2 className="mb-2">
-                      ₹<CountUp end={1222222} separator="," />
+                      ₹<CountUp end={DashboardData?.profit?.grandTotalPayment || 0} separator="," />
                     </h2>
                     <span className="mb-1">Total Income</span>
                   </div>
@@ -30,7 +34,7 @@ const DashboardContainer = () => {
                 <div className="header-top">
                   <div>
                     <h2 className="mb-2">
-                      ₹<CountUp end={1222222} separator="," />
+                      ₹<CountUp end={DashboardData?.profit?.totalWorkshopPayments || 0} separator="," />
                     </h2>
                     <span className="mb-1">Total Workshop</span>
                   </div>
@@ -46,7 +50,7 @@ const DashboardContainer = () => {
                   <div className="header-top">
                     <div>
                       <h2 className="mb-2">
-                        ₹<CountUp end={1222222} separator="," />
+                        ₹<CountUp end={DashboardData?.profit?.totalCoursePayments || 0} separator="," />
                       </h2>
                       <span className="mb-1">Total Course</span>
                     </div>
@@ -69,7 +73,7 @@ const DashboardContainer = () => {
                       <SvgIcon className="svg-fill" iconId="stroke-user" />
                     </div>
                     <div>
-                      <h4 className="counter">214</h4>
+                      <h4 className="counter">{DashboardData?.userRegistrations}</h4>
                       <span>Total User Registration</span>
                     </div>
                   </div>
@@ -82,7 +86,7 @@ const DashboardContainer = () => {
                       <SvgIcon className="svg-fill" iconId="stroke-file" />
                     </div>
                     <div>
-                      <h4 className="counter">214</h4>
+                      <h4 className="counter">{DashboardData?.workshops}</h4>
                       <span>Total Workshop</span>
                     </div>
                   </div>
@@ -95,7 +99,7 @@ const DashboardContainer = () => {
                       <SvgIcon className="svg-fill" iconId="stroke-to-do" />
                     </div>
                     <div>
-                      <h4 className="counter">214</h4>
+                      <h4 className="counter">{DashboardData?.workshopRegisters}</h4>
                       <span>Total Workshop Register</span>
                     </div>
                   </div>
@@ -108,7 +112,7 @@ const DashboardContainer = () => {
                       <SvgIcon className="svg-fill" iconId="stroke-sample-page" />
                     </div>
                     <div>
-                      <h4 className="counter">214</h4>
+                      <h4 className="counter">{DashboardData?.contacts}</h4>
                       <span>Total Courses</span>
                     </div>
                   </div>
@@ -121,7 +125,7 @@ const DashboardContainer = () => {
                       <SvgIcon className="svg-fill" iconId="stroke-table" />
                     </div>
                     <div>
-                      <h4 className="counter">214</h4>
+                      <h4 className="counter">{DashboardData?.courseRegisters}</h4>
                       <span>Total Courses Register</span>
                     </div>
                   </div>
@@ -134,7 +138,7 @@ const DashboardContainer = () => {
                       <SvgIcon className="svg-fill" iconId="stroke-project" />
                     </div>
                     <div>
-                      <h4 className="counter">214</h4>
+                      <h4 className="counter">{DashboardData?.languages}</h4>
                       <span>Total Language</span>
                     </div>
                   </div>
@@ -147,7 +151,7 @@ const DashboardContainer = () => {
                       <SvgIcon className="svg-fill" iconId="stroke-icons" />
                     </div>
                     <div>
-                      <h4 className="counter">214</h4>
+                      <h4 className="counter">{DashboardData?.achievements}</h4>
                       <span>Total Achievements</span>
                     </div>
                   </div>
@@ -160,7 +164,7 @@ const DashboardContainer = () => {
                       <SvgIcon className="svg-fill" iconId="stroke-contact" />
                     </div>
                     <div>
-                      <h4 className="counter">214</h4>
+                      <h4 className="counter">{DashboardData?.contacts}</h4>
                       <span>Total Contact Us</span>
                     </div>
                   </div>
@@ -173,7 +177,7 @@ const DashboardContainer = () => {
                       <SvgIcon className="svg-fill" iconId="stroke-button" />
                     </div>
                     <div>
-                      <h4 className="counter">214</h4>
+                      <h4 className="counter">{DashboardData?.testimonials}</h4>
                       <span>Total Testimonials</span>
                     </div>
                   </div>
@@ -186,7 +190,7 @@ const DashboardContainer = () => {
                       <SvgIcon className="svg-fill" iconId="stroke-faq" />
                     </div>
                     <div>
-                      <h4 className="counter">214</h4>
+                      <h4 className="counter">{DashboardData?.faqs}</h4>
                       <span>Total FAQ</span>
                     </div>
                   </div>
@@ -199,7 +203,7 @@ const DashboardContainer = () => {
                       <SvgIcon className="svg-fill" iconId="stroke-blog" />
                     </div>
                     <div>
-                      <h4 className="counter">214</h4>
+                      <h4 className="counter">{DashboardData?.blogs}</h4>
                       <span>Total Blog</span>
                     </div>
                   </div>
@@ -212,7 +216,7 @@ const DashboardContainer = () => {
                       <SvgIcon className="svg-fill" iconId="stroke-bookmark" />
                     </div>
                     <div>
-                      <h4 className="counter">214</h4>
+                      <h4 className="counter">{DashboardData?.newsletters}</h4>
                       <span>Total News Letter</span>
                     </div>
                   </div>

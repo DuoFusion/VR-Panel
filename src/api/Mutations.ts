@@ -1,5 +1,5 @@
 import { KEYS, URL_KEYS } from "../constants";
-import { AboutType, AchievementsFormValues, AdminSettingFormValues, BannerFormValues, BlogFormValues, ChangePasswordPayload, CoursesFormValues, CoursesRegisterFormValues, FaqFormValues, LanguagesFormValues, LoginPayload, LoginResponse, MessageFormValues, TestomonialsFormValues, UploadResponse, WebSettingFormValues, WorkshopFormValues, WorkshopRegisterFormValues } from "../types";
+import { AboutType, AchievementsFormValues, AdminSettingFormValues, BannerFormValues, BlogFormValues, ChangePasswordPayload, CoursesFormValues, CoursesRegisterFormValues, EmailMessageFormValues, FaqFormValues, LanguagesFormValues, LoginPayload, LoginResponse, MessageFormValues, TestomonialsFormValues, UploadResponse, WebSettingFormValues, WorkshopFormValues, WorkshopRegisterFormValues } from "../types";
 import Delete from "./Delete";
 import { useApiDelete, useApiPost } from "./hooks";
 import Post from "./Post";
@@ -83,6 +83,7 @@ const Mutations = {
 
   // ************ Message ***********
   useMessage: (key: string, url: string) => useApiPost<MessageFormValues, void>([key], (input) => Post(url, input)),
+  useEmailMessage: (key: string, url: string) => useApiPost<EmailMessageFormValues, void>([key], (input) => Post(url, input)),
 };
 
 export default Mutations;

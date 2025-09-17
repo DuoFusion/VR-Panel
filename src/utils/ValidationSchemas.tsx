@@ -236,3 +236,9 @@ export const MessageSchema = Yup.object({
   message: fieldSchema("string", { required: false }),
   imageUrl: imageSchema("Workshop Image", false),
 });
+
+// Message
+export const EmailMessageSchema = Yup.object({
+  subject: fieldSchema("string", { required: false }),
+  message: fieldSchema("string", { required: false }),
+});

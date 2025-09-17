@@ -5,3 +5,9 @@ export interface MessageFormValues {
   message?: string;
   imageUrl?: string | string[];
 }
+
+export interface EmailMessageFormValues {
+  to?: Key[];
+  subject?: string;
+  message?: string;
+}

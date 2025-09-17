@@ -4,13 +4,13 @@ import { Trash } from "iconsax-react";
 import { Fragment, Key, useState } from "react";
 import { Container } from "reactstrap";
 import { Mutations, Queries } from "../../api";
-import { Breadcrumbs, CardWrapper, MessageModel } from "../../coreComponents";
+import { Breadcrumbs, CardWrapper, EmailMessageModel } from "../../coreComponents";
 import { NewsLetterType } from "../../types";
 import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
 import { useBasicTableFilterHelper } from "../../utils/hook";
 import { ArchiveStatus } from "../../data";
 import { useAppDispatch } from "../../store/hooks";
-import { setMessageModal } from "../../store/slices/LayoutSlice";
+import { setEmailMessageModal } from "../../store/slices/LayoutSlice";
 import { KEYS, URL_KEYS } from "../../constants";
 
 const NewsLetterContainer = () => {
@@ -74,12 +74,12 @@ const NewsLetterContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="News Letter" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-md-6 col-xl-8" typeFilterPlaceholder="Select Status" typeFilterOptions={ArchiveStatus} onTypeFilterChange={handleSetSortBy} buttonLabel="Send Message" onButtonClick={() => dispatch(setMessageModal())}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-md-6 col-xl-8" typeFilterPlaceholder="Select Status" typeFilterOptions={ArchiveStatus} onTypeFilterChange={handleSetSortBy} buttonLabel="Send Message" onButtonClick={() => dispatch(setEmailMessageModal())}>
           <Table
             className="custom-table"
             dataSource={All_NewsLetter?.newsLetter_data}
             columns={ColumnsWithFallback(columns)}
-            rowKey={(record) => record._id}
+            rowKey={(record) => record?.email}
             scroll={{ x: "max-content" }}
             loading={isNewsLetterLoading || isHandleActiveLoading}
             pagination={{
@@ -96,7 +96,7 @@ const NewsLetterContainer = () => {
           />
         </CardWrapper>
       </Container>
-      <MessageModel userSelect={isUserSelect} queryKey={KEYS.NEWS_LETTER.MESSAGE} apiUrl={URL_KEYS.NEWS_LETTER.MESSAGE} />
+      <EmailMessageModel userSelect={isUserSelect} queryKey={KEYS.NEWS_LETTER.MESSAGE} apiUrl={URL_KEYS.NEWS_LETTER.MESSAGE} />
     </Fragment>
   );
 };
