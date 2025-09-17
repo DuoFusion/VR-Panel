@@ -48,7 +48,8 @@ const MessageModel: FC<{ userSelect: Key[]; queryKey: string; apiUrl: string }> 
             <Form>
               <Row className="gy-3">
                 <Col md="12">
-                  <TextInput name="message" label="Message" type="text" placeholder="Enter your message" />
+                  <TextInput name="message" label="Message" type="textarea" placeholder="Enter your message" />
+                  {/* <QuillInput name="message" label="message" required /> */}
                 </Col>
                 <Col>
                   <ImageUpload name="imageUrl" label="Message Image" />
