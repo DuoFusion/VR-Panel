@@ -1,5 +1,5 @@
 import { KEYS, URL_KEYS } from "../constants";
-import { AboutApiResponse, AchievementsApiResponse, AdminSettingApiResponse, BannerApiResponse, BlogApiResponse, ContactUsApiResponse, CoursesApiResponse, CoursesRegisterApiResponse, DashboardApiResponse, FaqApiResponse, LanguagesApiResponse, NewsLetterApiResponse, Params, TestomonialsApiResponse, UserRegistrationApiResponse, WebSettingApiResponse, WorkshopApiResponse } from "../types";
+import { AboutApiResponse, AchievementsApiResponse, AdminSettingApiResponse, BannerApiResponse, BlogApiResponse, ContactUsApiResponse, CoursesApiResponse, CoursesRegisterApiResponse, DashboardApiResponse, FaqApiResponse, LanguagesApiResponse, NewsLetterApiResponse, Params, PaymentFailedApiResponse, PaymentSuccessApiResponse, TestomonialsApiResponse, UserRegistrationApiResponse, WebSettingApiResponse, WorkshopApiResponse } from "../types";
 import { WorkshopRegisterApiResponse } from "../types/WorkshopRegister";
 import Get from "./Get";
 import { useApiGet } from "./hooks";
@@ -55,6 +55,10 @@ const Queries = {
 
   // ************ Dashboard ***********
   useGetDashboard: () => useApiGet<DashboardApiResponse>([KEYS.DASHBOARD.ALL], () => Get(URL_KEYS.DASHBOARD.ALL)),
+
+  // ************ Payment Message ***********
+  useGetPaymentSuccess: () => useApiGet<PaymentSuccessApiResponse>([KEYS.PAYMENT_SUCCESS.ALL], () => Get(URL_KEYS.PAYMENT_SUCCESS.ALL)),
+  useGetPaymentFailed: () => useApiGet<PaymentFailedApiResponse>([KEYS.PAYMENT_FAILED.ALL], () => Get(URL_KEYS.PAYMENT_FAILED.ALL)),
 };
 
 export default Queries;

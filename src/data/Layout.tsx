@@ -21,4 +21,5 @@ export const menuList: MenuItem[] = [
   { id: 16, title: "news letter", url: ROUTES.NEWS_LETTER.NEWS_LETTER, icon: "bookmark", type: "link" },
   { id: 17, title: "Admin Setting", url: ROUTES.ADMIN_SETTING, icon: "knowledgebase", type: "link" },
   { id: 18, title: "Web Setting", url: ROUTES.WEB_SETTING, icon: "knowledgebase", type: "link" },
+  { id: 19, title: "Payment Message", url: ROUTES.PAYMENT_MESSAGE, icon: "chat", type: "link" },
 ];

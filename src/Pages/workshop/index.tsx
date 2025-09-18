@@ -1,6 +1,6 @@
-import { Button, Flex, Image, Modal, Rate, Switch, Table, Tag } from "antd";
+import { Button, Flex, Image, Modal, Rate, Switch, Table, Tag, Tooltip } from "antd";
 import { ColumnsType } from "antd/es/table";
-import { Edit, Whatsapp, Trash } from "iconsax-react";
+import { Edit, Whatsapp, Trash, Link } from "iconsax-react";
 import { Fragment, Key, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "reactstrap";
@@ -57,7 +57,7 @@ const WorkshopContainer = () => {
     { title: "date & time", dataIndex: "createdAt", key: "createdAt", render: (date: string) => (FormatDateTime(date) ? <Tag color="geekblue">{FormatDateTime(date)}</Tag> : "-") },
     // { title: "time", dataIndex: "time", key: "time", render: (time: string) => (FormatTime(time) ? <Tag color="green">{FormatTime(time)}</Tag> : "-") },
     { title: "duration", dataIndex: "duration", key: "duration" },
-    { title: "price", dataIndex: "price", key: "price" },
+    { title: "price", dataIndex: "price", key: "price", render: (price: number) => (price === 0 ? "Free" : price) },
     {
       title: "language",
       dataIndex: "languageId",
@@ -124,6 +124,11 @@ const WorkshopContainer = () => {
           >
             <Forbidden className="action" />
           </Button> */}
+          <Tooltip title={record?.link}>
+            <Button type="text" onClick={() => navigator.clipboard.writeText(record?.link)} className="m-1 p-1 btn btn-primary">
+              <Link className="action" />
+            </Button>
+          </Tooltip>
           <Button type="text" onClick={() => handleMessage(record)} title="Message" className="m-1 p-1 btn btn-success">
             <Whatsapp className="action" />
           </Button>

@@ -109,6 +109,14 @@ const URL = {
   DASHBOARD: {
     ALL: "/dashboard",
   },
+  PAYMENT_SUCCESS: {
+    ALL: "/payment-success",
+    ADD_EDIT: "/payment-success/add/edit",
+  },
+  PAYMENT_FAILED: {
+    ALL: "/payment-failed",
+    ADD_EDIT: "/payment-failed/add/edit",
+  },
 } as const;
 
 // Construct the URL object

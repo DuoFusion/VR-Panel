@@ -1,6 +1,6 @@
-import { Button, Flex, Image, Modal, Rate, Switch, Table, Tag } from "antd";
+import { Button, Flex, Image, Modal, Rate, Switch, Table, Tag, Tooltip } from "antd";
 import { ColumnsType } from "antd/es/table";
-import { Edit, Trash, Whatsapp } from "iconsax-react";
+import { Edit, Link, Trash, Whatsapp } from "iconsax-react";
 import { Fragment, Key, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container } from "reactstrap";
@@ -58,7 +58,7 @@ const CoursesContainer = () => {
     // { title: "background", dataIndex: "background", key: "background" },
     // { title: "short Description", dataIndex: "shortDescription", key: "shortDescription", width: 400 },
     { title: "duration", dataIndex: "duration", key: "duration" },
-    { title: "price", dataIndex: "price", key: "price" },
+    { title: "price", dataIndex: "price", key: "price", render: (price: number) => (price === 0 ? "Free" : price) },
     { title: "mrp", dataIndex: "mrp", key: "mrp" },
     { title: "language", dataIndex: "languageId", key: "languageId", render: (languageId) => languageId?.map((item: LanguagesType) => <Tag color="geekblue">{item.name}</Tag>) ?? "-" },
     { title: "total Lectures", dataIndex: "totalLectures", key: "totalLectures" },
@@ -118,6 +118,11 @@ const CoursesContainer = () => {
           >
             <Forbidden className="action" />
           </Button> */}
+          <Tooltip title={record?.link}>
+            <Button type="text" onClick={() => navigator.clipboard.writeText(record?.link)} className="m-1 p-1 btn btn-primary">
+              <Link className="action" />
+            </Button>
+          </Tooltip>
           <Button type="text" onClick={() => handleMessage(record)} title="Message" className="m-1 p-1 btn btn-success">
             <Whatsapp className="action" />
           </Button>

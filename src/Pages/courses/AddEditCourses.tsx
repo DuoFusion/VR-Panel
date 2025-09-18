@@ -28,7 +28,7 @@ const AddEditCourses = () => {
     subtitle: initialData?.subtitle || "",
     // background: initialData?.background || "",
     duration: initialData?.duration || "",
-    price: initialData?.price || null,
+    price: initialData?.price || 0,
     totalLectures: initialData?.totalLectures || null,
     totalHours: initialData?.totalHours || "",
     priority: initialData?.priority || state?.nextPriority || null,

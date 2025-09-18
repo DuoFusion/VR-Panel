@@ -102,4 +102,12 @@ export const KEYS = {
   DASHBOARD: {
     ALL: "dashboard",
   },
+  PAYMENT_SUCCESS: {
+    ALL: "payment-success",
+    ADD_EDIT: "add-edit-payment-success",
+  },
+  PAYMENT_FAILED: {
+    ALL: "payment-failed",
+    ADD_EDIT: "add-edit-payment-failed",
+  },
 } as const;

@@ -37,7 +37,7 @@ const AddEditWorkshop = () => {
     // instructorName: initialData?.instructorName || "",
     thumbnailImage: initialData?.thumbnailImage ? [initialData.thumbnailImage] : [],
     workshopImage: initialData?.workshopImage ? [initialData.workshopImage] : [],
-    price: initialData?.price || null,
+    price: initialData?.price || 0,
     languageId: initialData?.languageId?.map((language: LanguagesType) => language?._id) ?? [],
     // mrp: initialData?.mrp || null,
     priority: initialData?.priority || state?.nextPriority || null,

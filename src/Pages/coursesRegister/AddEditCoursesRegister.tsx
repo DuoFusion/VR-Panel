@@ -36,7 +36,7 @@ const AddEditCoursesRegister = () => {
     targetPercentage: initialData?.targetPercentage || "",
     goal: initialData?.goal || "",
     paymentStatus: initialData?.paymentStatus || "",
-    fees: initialData?.fees || null,
+    fees: initialData?.fees || 0,
     razorpayPaymentId: initialData?.razorpayPaymentId || "",
   };
 
@@ -105,7 +105,7 @@ const AddEditCoursesRegister = () => {
                       <SelectInput name="paymentStatus" label="payment Status" placeholder="select an paymentStatus" options={PaymentStatus} required />
                     </Col>
                     <Col md="6">
-                      <TextInput name="razorpayPaymentId" label="razorpay Payment Id" type="text" placeholder="Enter razorpay Payment Id" required />
+                      <TextInput name="razorpayPaymentId" label="razorpay Payment Id" type="text" placeholder="Enter razorpay Payment Id" disabled />
                     </Col>
                     <Col sm="12">
                       <div className="text-center mt-1">

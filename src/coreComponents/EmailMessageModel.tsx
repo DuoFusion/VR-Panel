@@ -43,7 +43,7 @@ const EmailMessageModel: FC<{ userSelect: Key[]; queryKey: string; apiUrl: strin
   return (
     <Formik<EmailMessageFormValues> initialValues={initialValues} validationSchema={EmailMessageSchema} onSubmit={handleSubmit} enableReinitialize>
       {({ handleSubmit, resetForm }) => (
-        <Modal open={isEmailMessageModal} title="Message" onOk={() => handleSubmit()} onCancel={() => onCloseModal(resetForm)} okButtonProps={{ loading: isEmailMessageAdding }}>
+        <Modal width={1000} open={isEmailMessageModal} title="Message" onOk={() => handleSubmit()} onCancel={() => onCloseModal(resetForm)} okButtonProps={{ loading: isEmailMessageAdding }}>
           <div className="input-items">
             <Form>
               <Row className="gy-3">

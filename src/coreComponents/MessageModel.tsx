@@ -43,7 +43,7 @@ const MessageModel: FC<{ userSelect: Key[]; queryKey: string; apiUrl: string }> 
   return (
     <Formik<MessageFormValues> initialValues={initialValues} validationSchema={MessageSchema} onSubmit={handleSubmit} enableReinitialize>
       {({ handleSubmit, resetForm }) => (
-        <Modal open={isMessageModal} title="Message" onOk={() => handleSubmit()} onCancel={() => onCloseModal(resetForm)} okButtonProps={{ loading: isMessageAdding }}>
+        <Modal width={1000} open={isMessageModal} title="Message" onOk={() => handleSubmit()} onCancel={() => onCloseModal(resetForm)} okButtonProps={{ loading: isMessageAdding }}>
           <div className="input-items">
             <Form>
               <Row className="gy-3">

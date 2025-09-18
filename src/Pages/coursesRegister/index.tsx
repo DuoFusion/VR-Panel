@@ -44,7 +44,7 @@ const CoursesRegisterContainer = () => {
     { title: "User Name", dataIndex: "name", key: "name" },
     { title: "User email", dataIndex: "email", key: "email" },
     { title: "User whatsApp Number", dataIndex: "whatsAppNumber", key: "whatsAppNumber" },
-    { title: "fees", dataIndex: "fees", key: "fees" },
+    { title: "fees", dataIndex: "fees", key: "fees", render: (fees: number) => fees === 0 ? "Free" : fees },
     { title: "payment Status", dataIndex: "paymentStatus", key: "paymentStatus", render: (paymentStatus: string) => <Tag color={paymentStatus === "Success" ? "green" : paymentStatus === "Pending" ? "blue" : "red"}>{paymentStatus}</Tag> },
     { title: "city", dataIndex: "city", key: "city" },
     { title: "gender", dataIndex: "gender", key: "gender" },

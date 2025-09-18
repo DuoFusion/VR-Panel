@@ -20,3 +20,4 @@ export * from "./Blog";
 export * from "./ContactUs";
 export * from "./Message";
 export * from "./Dashboard";
+export * from "./PaymentMessage";
