@@ -6,6 +6,10 @@ export interface AdminSettingFormValues {
   email?: string;
   phoneNumber?: number | null;
   profilePhoto?: string | string[] | any;
+  whatsappKey?: string;
+  whatsappUrl?: string;
+  senderEmail?: string;
+  emailPassword?: string;
 }
 
 export interface AdminSettingType extends AdminSettingFormValues, CommonDataType {

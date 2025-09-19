@@ -100,7 +100,7 @@ const WebSettingContainer = () => {
                       <Col md="6">
                         <TextInput name="shortDescription" label="Web short Description" type="textarea" placeholder="Enter short Description" required disabled={!isEditing} />
                       </Col>
-                      <h2>Instructor</h2>
+                      <h2 className="text-center pt-4">Instructor</h2>
                       <Col md="12">
                         <TextInput name="instructorName" label="Instructor Name" type="text" placeholder="Enter instructor name" required disabled={!isEditing} />
                       </Col>

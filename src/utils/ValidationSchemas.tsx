@@ -218,6 +218,10 @@ export const AdminSettingSchema = Yup.object({
   email: fieldSchema("string", "email"),
   phoneNumber: fieldSchema("number", "phoneNumber"),
   profilePhoto: imageSchema("profile Photo"),
+  emailPassword: fieldSchema("string", "email Password"),
+  senderEmail: fieldSchema("string", "sender Email"),
+  whatsappKey: fieldSchema("string", "whatsapp Key"),
+  whatsappUrl: fieldSchema("string", "whatsapp Url"),
 });
 
 // Blog

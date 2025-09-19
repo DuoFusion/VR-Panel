@@ -24,6 +24,10 @@ const AdminSettingContainer = () => {
     email: AdminSetting?.email || "",
     phoneNumber: AdminSetting?.phoneNumber || 0,
     profilePhoto: AdminSetting?.profilePhoto ? [AdminSetting?.profilePhoto] : [],
+    emailPassword: AdminSetting?.emailPassword || "",
+    senderEmail: AdminSetting?.senderEmail || "",
+    whatsappKey: AdminSetting?.whatsappKey || "",
+    whatsappUrl: AdminSetting?.whatsappUrl || "",
   };
 
   const handleSubmit = async (values: AdminSettingFormValues) => {
@@ -60,6 +64,20 @@ const AdminSettingContainer = () => {
                       </Col>
                       <Col md="6">
                         <TextInput name="phoneNumber" label="phone Number" type="number" placeholder="Enter phone Number" required disabled={!isEditing} />
+                      </Col>
+                      <h2 className="text-center pt-4">Send Whatsapp Message</h2>
+                      <Col md="6">
+                        <TextInput name="whatsappKey" label="whatsapp Key" type="text" placeholder="Enter Whatsapp Key" required disabled={!isEditing} />
+                      </Col>
+                      <Col md="6">
+                        <TextInput name="whatsappUrl" label="whatsapp Url" type="text" placeholder="Enter Whatsapp Url" required disabled={!isEditing} />
+                      </Col>
+                      <h2 className="text-center pt-4">Send Mail</h2>
+                      <Col md="6">
+                        <TextInput name="senderEmail" label="Sender email" type="email" placeholder="Enter Sender email" required disabled={!isEditing} />
+                      </Col>
+                      <Col md="6">
+                        <TextInput name="emailPassword" label="email password" type="text" placeholder="Enter email password" required disabled={!isEditing} />
                       </Col>
                       <Col sm="12">
                         <div className="text-center mt-1">
