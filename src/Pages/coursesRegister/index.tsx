@@ -12,19 +12,23 @@ import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
 import { useBasicTableFilterHelper } from "../../utils/hook";
 import { useAppDispatch } from "../../store/hooks";
 import { setMessageModal } from "../../store/slices/LayoutSlice";
+import { generateOptions } from "../../utils";
 
 const CoursesRegisterContainer = () => {
   const [isUserSelect, setUserSelect] = useState<Key[]>([]);
 
-  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange } = useBasicTableFilterHelper({
+  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange, handleSetSortBy } = useBasicTableFilterHelper({
     initialParams: { page: 1, limit: 10 },
     debounceDelay: 500,
+    sortKey: "courseFilter",
   });
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { mutate: DeleteCoursesRegister } = Mutations.useDeleteCoursesRegister();
 
+  const { data: Courses, isLoading: isCoursesLoading } = Queries.useGetCourses({});
+  const All_Courses = Courses?.data?.course_data;
   const { data: CoursesRegister, isLoading: isCoursesRegisterLoading } = Queries.useGetCoursesRegister(params);
   const All_CoursesRegister = CoursesRegister?.data;
   const handleNavigate = ROUTES.COURSES_REGISTER.ADD_EDIT_COURSES_REGISTER;
@@ -44,7 +48,7 @@ const CoursesRegisterContainer = () => {
     { title: "User Name", dataIndex: "name", key: "name" },
     { title: "User email", dataIndex: "email", key: "email" },
     { title: "User whatsApp Number", dataIndex: "whatsAppNumber", key: "whatsAppNumber" },
-    { title: "fees", dataIndex: "fees", key: "fees", render: (fees: number) => fees === 0 ? "Free" : fees },
+    { title: "fees", dataIndex: "fees", key: "fees", render: (fees: number) => (fees === 0 ? "Free" : fees) },
     { title: "payment Status", dataIndex: "paymentStatus", key: "paymentStatus", render: (paymentStatus: string) => <Tag color={paymentStatus === "Success" ? "green" : paymentStatus === "Pending" ? "blue" : "red"}>{paymentStatus}</Tag> },
     { title: "city", dataIndex: "city", key: "city" },
     { title: "gender", dataIndex: "gender", key: "gender" },
@@ -90,14 +94,14 @@ const CoursesRegisterContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="Courses Register" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Send Message" onButtonClick={() => dispatch(setMessageModal())}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-md-6 col-xl-8" typeFilterPlaceholder="Select Status" typeFilterOptions={generateOptions(All_Courses)} onTypeFilterChange={handleSetSortBy} buttonLabel="Send Message" onButtonClick={() => dispatch(setMessageModal())}>
           <Table
             className="custom-table"
             dataSource={All_CoursesRegister?.courseRegister_data}
             columns={ColumnsWithFallback(columns)}
             rowKey={(record) => record._id}
             scroll={{ x: "max-content" }}
-            loading={isCoursesRegisterLoading}
+            loading={isCoursesRegisterLoading || isCoursesLoading}
             pagination={{
               current: pageNumber,
               pageSize: pageSize,

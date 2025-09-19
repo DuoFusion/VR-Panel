@@ -89,7 +89,7 @@ const URL = {
     ADD: "/news-letter/add",
     EDIT: "/news-letter/edit",
     DELETE: "/news-letter/delete",
-    MESSAGE: "/mail/send",
+    MESSAGE: "/news-letter/send",
   },
   BLOG: {
     ALL: "/blog",

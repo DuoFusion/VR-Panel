@@ -12,22 +12,26 @@ import { ColumnsWithFallback } from "../../utils/ColumnsWithFallback";
 import { useBasicTableFilterHelper } from "../../utils/hook";
 import { useAppDispatch } from "../../store/hooks";
 import { setMessageModal } from "../../store/slices/LayoutSlice";
+import { generateOptions } from "../../utils";
 
 const WorkshopRegisterContainer = () => {
   const [isUserSelect, setUserSelect] = useState<Key[]>([]);
   // console.log("Selected Row Keys:", isUserSelect);
 
-  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange } = useBasicTableFilterHelper({
+  const { pageNumber, pageSize, params, handleSetSearch, handlePaginationChange ,handleSetSortBy} = useBasicTableFilterHelper({
     initialParams: { page: 1, limit: 10 },
     debounceDelay: 500,
+    sortKey: "workshopFilter",
   });
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const { mutate: DeleteWorkshopRegister } = Mutations.useDeleteWorkshopRegister();
+  const { data: Workshop , isLoading: isWorkshopLoading} = Queries.useGetWorkshop({});
+  const All_Workshop = Workshop?.data?.workshop_data;
 
-  const { data: WorkshopRegister, isLoading: isWorkshopLoading } = Queries.useGetWorkshopRegister(params);
+  const { data: WorkshopRegister, isLoading: isWorkshopRegisterLoading } = Queries.useGetWorkshopRegister(params);
   const All_WorkshopRegister = WorkshopRegister?.data;
 
   const handleNavigate = ROUTES.WORKSHOP_REGISTER.ADD_EDIT_WORKSHOP_REGISTER;
@@ -93,14 +97,14 @@ const WorkshopRegisterContainer = () => {
     <Fragment>
       <Breadcrumbs mainTitle="Workshop Register" parent="Pages" />
       <Container fluid className="custom-table">
-        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-xl-10 col-md-9 col-sm-7" buttonLabel="Send Message" onButtonClick={() => dispatch(setMessageModal())}>
+        <CardWrapper onSearch={(e) => handleSetSearch(e)} searchClassName="col-md-6 col-xl-8" typeFilterPlaceholder="Select Status" typeFilterOptions={generateOptions(All_Workshop)} onTypeFilterChange={handleSetSortBy} buttonLabel="Send Message" onButtonClick={() => dispatch(setMessageModal())}>
           <Table
             className="custom-table"
             dataSource={All_WorkshopRegister?.workshopRegister_data}
             columns={ColumnsWithFallback(columns)}
             rowKey={(record) => record._id}
             scroll={{ x: "max-content" }}
-            loading={isWorkshopLoading}
+            loading={isWorkshopLoading || isWorkshopRegisterLoading}
             pagination={{
               current: pageNumber,
               pageSize: pageSize,

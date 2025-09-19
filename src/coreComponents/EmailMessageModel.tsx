@@ -48,7 +48,7 @@ const EmailMessageModel: FC<{ userSelect: Key[]; queryKey: string; apiUrl: strin
             <Form>
               <Row className="gy-3">
                 <Col md="12">
-                  <TextInput name="subject" label="subject" type="text" placeholder="Enter your Email subject" />
+                  <TextInput name="subject" label="subject" type="text" placeholder="Enter your Email subject" required/>
                 </Col>
                 <Col md="12">
                   <QuillInput name="message" label="message" required />
