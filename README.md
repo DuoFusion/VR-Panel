@@ -1,3 +1,7 @@
+VITE_PORT=3331
+VITE_API_BASE_URL=https://dr-vinu-ramani-be.hkdigiverse.com
+VITE_API_BASE_URL=http://localhost:3333
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
