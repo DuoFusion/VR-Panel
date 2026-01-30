@@ -15,11 +15,11 @@ function useApiPost<TInput, TResponse>(mutationKey: QueryKey, callback: (input: 
     mutationKey,
     mutationFn: callback,
     ...options,
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data, variables, context,mutationContext) => {
       for (let i = 1; i < mutationKey.length; i++) {
         q.invalidateQueries({ queryKey: [mutationKey[i]] } as InvalidateQueryFilters);
       }
-      options?.onSuccess?.(data, variables, context);
+      options?.onSuccess?.(data, variables, context,mutationContext);
     },
     onError: (error: CombinedErrorResponse) => {
       switch (error.status) {
